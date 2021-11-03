@@ -14,7 +14,9 @@ class ButtonText extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
     return TextButton(
-      onPressed: () {},
+      onPressed: () {
+        Navigator.of(context).pushNamed(this.destRoute);
+      },
       child: Text(
         this.buttonName,
         style: TextStyle(

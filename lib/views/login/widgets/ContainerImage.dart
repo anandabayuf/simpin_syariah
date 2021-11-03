@@ -6,6 +6,7 @@ class ContainerImage extends StatelessWidget {
     return Image.asset(
       'assets/images/login/LambangKoperasi.png',
       width: 250,
+      height: 250,
     );
   }
 }

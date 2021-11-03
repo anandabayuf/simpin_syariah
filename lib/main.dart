@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:project_simpin_syariah/views/forgetpassword/screens/InputEmailScreen.dart';
 import 'package:project_simpin_syariah/views/login/screen/LoginScreen.dart';
 
 void main() {
@@ -16,6 +17,7 @@ class MyApp extends StatelessWidget {
       initialRoute: '/login',
       routes: {
         '/login': (context) => LoginScreen(),
+        '/lupa-password': (context) => InputEmailScreen(),
       },
     );
   }

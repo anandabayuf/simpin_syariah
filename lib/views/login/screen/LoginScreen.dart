@@ -2,9 +2,9 @@ import 'package:colorful_safe_area/colorful_safe_area.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
-import 'package:project_simpin_syariah/views/login/widgets/ButtonText.dart';
+import 'package:project_simpin_syariah/views/widgets/ButtonText.dart';
 import 'package:project_simpin_syariah/views/login/widgets/ContainerImage.dart';
-import 'package:project_simpin_syariah/views/login/widgets/CustomText.dart';
+import 'package:project_simpin_syariah/views/widgets/CustomText.dart';
 import 'package:project_simpin_syariah/views/login/widgets/FormLogin.dart';
 
 class LoginScreen extends StatelessWidget {
@@ -42,8 +42,8 @@ class LoginScreen extends StatelessWidget {
                     child: FormLogin()
                   ),
                   SizedBox(height: 30.0,),
-                  ButtonText('Lupa password?', ''),
-                  SizedBox(height: 30.0,),
+                  ButtonText('Lupa password?', '/lupa-password'),
+                  SizedBox(height: 10.0,),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [

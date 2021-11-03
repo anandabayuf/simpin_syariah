@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
-import 'package:project_simpin_syariah/views/login/widgets/CustomText.dart';
+import 'package:project_simpin_syariah/views/widgets/CustomText.dart';
 
 class FormLogin extends StatefulWidget {
   @override
@@ -134,7 +134,7 @@ class _FormLoginState extends State<FormLogin> {
               }
             },
           ),
-          SizedBox(height: 50.0,),
+          SizedBox(height: 30.0,),
           Container(
             width: 186,
             height: 39,
@@ -143,7 +143,7 @@ class _FormLoginState extends State<FormLogin> {
                 textStyle: TextStyle(
                   fontSize: 15.0
                 ),
-                elevation: 20,
+                elevation: 10,
                 primary: HexColor("#F8B50F"),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(12.0)
