@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:project_simpin_syariah/views/widgets/CustomText.dart';
+import 'package:project_simpin_syariah/views/widgets/FailedInformation.dart';
 
 class FormLogin extends StatefulWidget {
   @override
@@ -13,12 +14,16 @@ class _FormLoginState extends State<FormLogin> {
   late TextEditingController _email;
   late TextEditingController _password;
   late bool _passwordVisible;
+  late bool _isButtonClicked;
+  final String staticEmail = 'john@email.com';
+  final String staticPassword = '12345678';
 
   @override
   void initState() {
     _email = TextEditingController();
     _password = TextEditingController();
     _passwordVisible = false;
+    _isButtonClicked = false;
     super.initState();
   }
 
@@ -50,6 +55,7 @@ class _FormLoginState extends State<FormLogin> {
               fontSize: 15.0
             ),
             cursorColor: Colors.white,
+            keyboardType: TextInputType.emailAddress,
             decoration: InputDecoration(
               focusColor: Colors.white,
               hintText: 'Masukkan email anda',
@@ -92,6 +98,7 @@ class _FormLoginState extends State<FormLogin> {
                 fontSize: 15.0
             ),
             cursorColor: Colors.white,
+            keyboardType: TextInputType.visiblePassword,
             decoration: InputDecoration(
               focusColor: Colors.white,
               hintText: 'Masukkan password anda',
@@ -129,13 +136,42 @@ class _FormLoginState extends State<FormLogin> {
               }
               return null;
             },
-            onFieldSubmitted: (String value) async {
+            onFieldSubmitted: (String value) {
               if (_formKey.currentState!.validate()) {
+                setState(() {
+                  _isButtonClicked = true;
+                });
+
+                Future.delayed(
+                  Duration(
+                      seconds: 3
+                  ),
+                  (){
+                    setState(() {
+                      this._isButtonClicked = false;
+                    });
+
+                    //check code
+                    if(this._email.text == this.staticEmail) {
+                      if(this._password.text != this.staticPassword){
+                        Scaffold.of(context).showSnackBar(
+                            FailedInformation(context, 'Password yang anda masukkan salah')
+                        );
+                      }
+                    } else {
+                      Scaffold.of(context).showSnackBar(
+                          FailedInformation(context, 'Akun dengan email tersebut belum terdaftar')
+                      );
+                    }
+                  }
+                );
               }
             },
           ),
           SizedBox(height: 30.0,),
-          Container(
+          _isButtonClicked ? CircularProgressIndicator(
+            color: HexColor('#F8B50F'),
+          ) : Container(
             width: 186,
             height: 39,
             child: ElevatedButton(
@@ -151,6 +187,33 @@ class _FormLoginState extends State<FormLogin> {
               ),
               onPressed: () {
                 if (_formKey.currentState!.validate()) {
+                  setState(() {
+                    _isButtonClicked = true;
+                  });
+
+                  Future.delayed(
+                    Duration(
+                      seconds: 3
+                    ),
+                    (){
+                      setState(() {
+                        this._isButtonClicked = false;
+                      });
+
+                      //check code
+                      if(this._email.text == this.staticEmail) {
+                        if(this._password.text != this.staticPassword){
+                          Scaffold.of(context).showSnackBar(
+                              FailedInformation(context, 'Password yang anda masukkan salah')
+                          );
+                        }
+                      } else {
+                        Scaffold.of(context).showSnackBar(
+                          FailedInformation(context, 'Akun dengan email tersebut belum terdaftar')
+                        );
+                      }
+                    }
+                  );
                 }
               },
               child: CustomText('Login', 15.0, false)

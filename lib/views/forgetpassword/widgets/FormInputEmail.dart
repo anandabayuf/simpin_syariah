@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:project_simpin_syariah/views/widgets/CustomText.dart';
+import 'package:project_simpin_syariah/views/widgets/FailedInformation.dart';
 
 class FormInputEmail extends StatefulWidget {
   @override
@@ -11,10 +12,13 @@ class FormInputEmail extends StatefulWidget {
 class _FormInputEmailState extends State<FormInputEmail> {
   final _formKey = GlobalKey<FormState>();
   late TextEditingController _email;
+  late bool _isButtonClicked;
+  final String staticEmail = 'john@email.com';
 
   @override
   void initState() {
     _email = TextEditingController();
+    this._isButtonClicked = false;
     super.initState();
   }
 
@@ -33,8 +37,8 @@ class _FormInputEmailState extends State<FormInputEmail> {
       child: Column(
         children: [
           Container(
-              width: screenSize.width,
-              child: CustomText('Email', 15.0, false)
+            width: screenSize.width,
+            child: CustomText('Email', 15.0, false)
           ),
           SizedBox(height: 10.0,),
           TextFormField(
@@ -45,6 +49,7 @@ class _FormInputEmailState extends State<FormInputEmail> {
                 fontSize: 15.0
             ),
             cursorColor: Colors.white,
+            keyboardType: TextInputType.emailAddress,
             decoration: InputDecoration(
               focusColor: Colors.white,
               hintText: 'Masukkan email anda',
@@ -73,29 +78,81 @@ class _FormInputEmailState extends State<FormInputEmail> {
             },
             onFieldSubmitted: (String value) {
               if (_formKey.currentState!.validate()) {
+                setState(() {
+                  this._isButtonClicked = true;
+                });
+
+                Future.delayed(
+                  Duration(
+                      seconds: 3
+                  ),
+                  (){
+                    setState(() {
+                      this._isButtonClicked = false;
+                    });
+
+                    //check code
+                    if(this._email.text == this.staticEmail){
+                      Navigator.of(context).pushReplacementNamed(
+                          '/verifikasi-email'
+                      );
+                    } else {
+                      Scaffold.of(context).showSnackBar(
+                        FailedInformation(context, 'Akun dengan email tersebut belum terdaftar')
+                      );
+                    }
+                  }
+                );
               }
             },
           ),
           SizedBox(height: 50.0,),
-          Container(
+          _isButtonClicked ?  CircularProgressIndicator(
+            color: HexColor('#F8B50F'),
+          ) : Container(
             width: 244,
             height: 39,
             child: ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                    textStyle: TextStyle(
-                        fontSize: 15.0
-                    ),
-                    elevation: 10,
-                    primary: HexColor("#F8B50F"),
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(12.0)
-                    )
+              style: ElevatedButton.styleFrom(
+                textStyle: TextStyle(
+                    fontSize: 15.0
                 ),
-                onPressed: () {
-                  if (_formKey.currentState!.validate()) {
-                  }
-                },
-                child: CustomText('Kirim Kode Verifikasi', 15.0, false)
+                elevation: 10,
+                primary: HexColor("#F8B50F"),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(12.0)
+                )
+              ),
+              onPressed: () {
+                if (_formKey.currentState!.validate()) {
+                  setState(() {
+                    this._isButtonClicked = true;
+                  });
+
+                  Future.delayed(
+                    Duration(
+                        seconds: 3
+                    ),
+                    (){
+                      setState(() {
+                        this._isButtonClicked = false;
+                      });
+
+                      //check code
+                      if(this._email.text == this.staticEmail){
+                        Navigator.of(context).pushReplacementNamed(
+                            '/verifikasi-email'
+                        );
+                      } else {
+                        Scaffold.of(context).showSnackBar(
+                            FailedInformation(context, 'Akun dengan email tersebut belum terdaftar')
+                        );
+                      }
+                    }
+                  );
+                }
+              },
+              child: CustomText('Kirim Kode Verifikasi', 15.0, false)
             ),
           ),
         ],
