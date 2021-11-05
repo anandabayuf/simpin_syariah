@@ -47,6 +47,7 @@ flutter:
     - assets/images/
     - assets/images/login/
     - assets/images/forgetpassword/
+    - assets/images/appbar/
 
   fonts:
     - family: Comfortaa
