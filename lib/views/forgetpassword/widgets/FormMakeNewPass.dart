@@ -1,9 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
-import 'package:project_simpin_syariah/views/widgets/CustomText.dart';
-import 'package:project_simpin_syariah/views/widgets/FailedInformation.dart';
-import 'package:project_simpin_syariah/views/widgets/SuccessInformation.dart';
+import 'package:project_simpin_syariah/views/customwidgets/CustomText.dart';
+import 'package:project_simpin_syariah/views/customwidgets/FailedInformation.dart';
+import 'package:project_simpin_syariah/views/customwidgets/SuccessInformation.dart';
 
 class FormMakeNewPass extends StatefulWidget {
   @override

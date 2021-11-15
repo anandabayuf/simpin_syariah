@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:project_simpin_syariah/views/forgetpassword/widgets/ContainerIconImage.dart';
 import 'package:project_simpin_syariah/views/forgetpassword/widgets/FormInputEmail.dart';
-import 'package:project_simpin_syariah/views/widgets/CustomText.dart';
+import 'package:project_simpin_syariah/views/customwidgets/CustomText.dart';
 
 class InputEmailScreen extends StatelessWidget {
   @override
