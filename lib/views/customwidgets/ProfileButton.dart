@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
-import 'package:project_simpin_syariah/views/widgets/CustomText.dart';
+import 'package:project_simpin_syariah/views/customwidgets/CustomText.dart';
 
 class ProfileButton extends StatefulWidget{
   @override
@@ -49,6 +49,21 @@ class _ProfileButtonState extends State<ProfileButton> {
               child: Align(
                 alignment: Alignment.center,
                 child: Text(
+                  'Profil Saya',
+                  style: TextStyle(
+                      fontSize: 15.0,
+                      color: Colors.white,
+                      fontFamily: 'Comfortaa'
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+              ),
+            ),
+            PopupMenuItem<int>(
+              value: 1,
+              child: Align(
+                alignment: Alignment.center,
+                child: Text(
                   'Versi Aplikasi',
                   style: TextStyle(
                     fontSize: 15.0,
@@ -61,7 +76,7 @@ class _ProfileButtonState extends State<ProfileButton> {
             ),
             PopupMenuDivider(),
             PopupMenuItem<int>(
-              value: 1,
+              value: 2,
               child: Align(
                 alignment: Alignment.center,
                 child: Text(
