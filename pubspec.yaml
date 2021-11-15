@@ -27,8 +27,11 @@ dependencies:
   cupertino_icons: ^1.0.2
   hexcolor: ^2.0.5
   flutter_launcher_icons: ^0.9.2
+  flutter_svg: ^0.21.0-nullsafety.1
+  persistent_bottom_nav_bar: ^4.0.2
 
 dev_dependencies:
+  intl: any
   flutter_test:
     sdk: flutter
 
@@ -48,6 +51,7 @@ flutter:
     - assets/images/login/
     - assets/images/forgetpassword/
     - assets/images/appbar/
+    - assets/icons/bottomnav/
 
   fonts:
     - family: Comfortaa
