@@ -1,8 +1,7 @@
-import 'dart:math';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
+import 'package:project_simpin_syariah/models/pembiayaan/DetailRiwayatPembiayaan.dart';
 import 'package:project_simpin_syariah/views/customwidgets/CustomText.dart';
 import 'package:intl/intl.dart';
 import 'package:intl/date_symbol_data_local.dart';
@@ -13,14 +12,14 @@ class ContainerDetailRiwayatPembiayaan extends StatefulWidget{
 }
 
 class _ContainerDetailRiwayatPembiayaanState extends State<ContainerDetailRiwayatPembiayaan> {
-  late DataDetailRiwayatPembiayaan datas;
-  late List<DataDetailRiwayatPembiayaan> listDatas;
+  late DetailRiwayatPembiayaan datas;
+  late List<DetailRiwayatPembiayaan> listDatas;
   late DateFormat dateFormat;
 
   @override
   void initState() {
     super.initState();
-    datas = DataDetailRiwayatPembiayaan(0, 0, "", "", "", DateTime.now(), 0, 0);
+    datas = DetailRiwayatPembiayaan(0, 0, "", "", "", DateTime.now(), 0, 0);
     this.listDatas = datas.getDataDetailRiwayatPembiayaan();
     initializeDateFormatting();
     dateFormat = new DateFormat.yMMMMd('id');
@@ -145,43 +144,3 @@ class _ContainerDetailRiwayatPembiayaanState extends State<ContainerDetailRiwaya
   }
 }
 
-class DataDetailRiwayatPembiayaan{
-  late int id;
-  late int nilaiPembiayaan;
-  late String tujuanPembiayaan;
-  late String jenisAkad;
-  late String statusPembiayaan;
-  late DateTime tanggalPembayaran;
-  late int bayarCicilan;
-  late int sisaCicilan;
-
-  DataDetailRiwayatPembiayaan(int id, int nilaiPembiayaan, String tujuanPembiayaan,
-      String jenisAkad, String statusPembiayaan, DateTime tanggalPembayaran,
-      int bayarCicilan, int sisaCicilan){
-    this.id = id;
-    this.nilaiPembiayaan = nilaiPembiayaan;
-    this.tujuanPembiayaan = tujuanPembiayaan;
-    this.jenisAkad = jenisAkad;
-    this.statusPembiayaan = statusPembiayaan;
-    this.tanggalPembayaran = tanggalPembayaran;
-    this.bayarCicilan = bayarCicilan;
-    this.sisaCicilan = sisaCicilan;
-  }
-
-  List<DataDetailRiwayatPembiayaan> getDataDetailRiwayatPembiayaan(){
-    return [
-      new DataDetailRiwayatPembiayaan(0, 200000000, "Peruntukkan XXX", "Mudharabah", "Lunas", DateTime.utc(2021, DateTime.march, 16), 1000000, 12),
-      new DataDetailRiwayatPembiayaan(1, 200000000, "Peruntukkan XXX", "Mudharabah", "Belum Lunas", DateTime.utc(2021, DateTime.march, 16), 1000000, 12),
-      new DataDetailRiwayatPembiayaan(2, 200000000, "Peruntukkan XXX", "Mudharabah", "Belum Lunas", DateTime.utc(2021, DateTime.march, 16), 1000000, 12),
-      new DataDetailRiwayatPembiayaan(3, 200000000, "Peruntukkan XXX", "Mudharabah", "Belum Lunas", DateTime.utc(2021, DateTime.march, 16), 1000000, 12),
-      new DataDetailRiwayatPembiayaan(4, 200000000, "Peruntukkan XXX", "Mudharabah", "Belum Lunas", DateTime.utc(2021, DateTime.march, 16), 1000000, 12),
-      new DataDetailRiwayatPembiayaan(5, 200000000, "Peruntukkan XXX", "Mudharabah", "Belum Lunas", DateTime.utc(2021, DateTime.march, 16), 1000000, 12),
-      new DataDetailRiwayatPembiayaan(6, 200000000, "Peruntukkan XXX", "Mudharabah", "Belum Lunas", DateTime.utc(2021, DateTime.march, 16), 1000000, 12),
-      new DataDetailRiwayatPembiayaan(7, 200000000, "Peruntukkan XXX", "Mudharabah", "Belum Lunas", DateTime.utc(2021, DateTime.march, 16), 1000000, 12),
-      new DataDetailRiwayatPembiayaan(8, 200000000, "Peruntukkan XXX", "Mudharabah", "Belum Lunas", DateTime.utc(2021, DateTime.march, 16), 1000000, 12),
-      new DataDetailRiwayatPembiayaan(9, 200000000, "Peruntukkan XXX", "Mudharabah", "Belum Lunas", DateTime.utc(2021, DateTime.march, 16), 1000000, 12),
-      new DataDetailRiwayatPembiayaan(10, 200000000, "Peruntukkan XXX", "Mudharabah", "Belum Lunas", DateTime.utc(2021, DateTime.march, 16), 1000000, 12),
-      new DataDetailRiwayatPembiayaan(11, 200000000, "Peruntukkan XXX", "Mudharabah", "Belum Lunas", DateTime.utc(2021, DateTime.march, 16), 1000000, 12),
-    ];
-  }
-}

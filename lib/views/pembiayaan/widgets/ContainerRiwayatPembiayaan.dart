@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
+import 'package:project_simpin_syariah/models/pembiayaan/RiwayatPembiayaan.dart';
 import 'package:project_simpin_syariah/views/customwidgets/CustomText.dart';
 import 'package:intl/intl.dart';
 
@@ -10,13 +11,13 @@ class ContainerRiwayatPembiayaan extends StatefulWidget{
 }
 
 class _ContainerRiwayatPembiayaanState extends State<ContainerRiwayatPembiayaan> {
-  late DataRiwayatPembiayaan datas;
-  late List<DataRiwayatPembiayaan> listDatas;
+  late RiwayatPembiayaan datas;
+  late List<RiwayatPembiayaan> listDatas;
 
   @override
   void initState() {
     super.initState();
-    datas = DataRiwayatPembiayaan(0, 0, "", "", "");
+    datas = RiwayatPembiayaan(0, 0, "", "", "");
     this.listDatas = datas.getDataRiwayatPembiayaan();
   }
 
@@ -136,32 +137,5 @@ class _ContainerRiwayatPembiayaanState extends State<ContainerRiwayatPembiayaan>
         );
       },
     );
-  }
-}
-
-class DataRiwayatPembiayaan{
-  late int id;
-  late int nilaiPembiayaan;
-  late String tujuanPembiayaan;
-  late String jenisAkad;
-  late String statusPembiayaan;
-
-  DataRiwayatPembiayaan(int id, int nilaiPembiayaan, String tujuanPembiayaan,
-      String jenisAkad, String statusPembiayaan){
-    this.id = id;
-    this.nilaiPembiayaan = nilaiPembiayaan;
-    this.tujuanPembiayaan = tujuanPembiayaan;
-    this.jenisAkad = jenisAkad;
-    this.statusPembiayaan = statusPembiayaan;
-  }
-
-  List<DataRiwayatPembiayaan> getDataRiwayatPembiayaan(){
-    return [
-      new DataRiwayatPembiayaan(0, 200000000, "Peruntukkan XXX", "Mudharabah", "Lunas"),
-      new DataRiwayatPembiayaan(1, 100000000, "Peruntukkan XXX", "Mudharabah", "Belum Lunas"),
-      new DataRiwayatPembiayaan(2, 300000000, "Peruntukkan XXX", "Mudharabah", "Belum Lunas"),
-      new DataRiwayatPembiayaan(3, 500000000, "Peruntukkan XXX", "Mudharabah", "Lunas"),
-      new DataRiwayatPembiayaan(4, 800000000, "Peruntukkan XXX", "Mudharabah", "Belum Lunas"),
-    ];
   }
 }
