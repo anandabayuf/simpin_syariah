@@ -7,6 +7,7 @@ class ButtonBack extends StatelessWidget{
     return IconButton(
       onPressed: () {
         print("back");
+        Navigator.of(context).pop();
       },
       padding: EdgeInsets.zero,
       constraints: BoxConstraints(),
