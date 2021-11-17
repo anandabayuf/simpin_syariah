@@ -8,51 +8,69 @@ import 'package:project_simpin_syariah/models/pembiayaan/Pembiayaan.dart';
 import 'package:project_simpin_syariah/views/customwidgets/CustomText.dart';
 import 'package:intl/intl.dart';
 import 'package:intl/date_symbol_data_local.dart';
+import 'package:project_simpin_syariah/views/pembiayaan/screens/AjukanPembiayaanScreen3.dart';
 
 class FormPembiayaan2 extends StatefulWidget {
   final Pembiayaan pembiayaan;
+  final GlobalKey<FormState> formKeyScreen1;
 
-  FormPembiayaan2({Key? key, required this.pembiayaan}) : super(key: key);
+  FormPembiayaan2({Key? key, required this.pembiayaan, required this.formKeyScreen1}) : super(key: key);
 
   @override
-  _FormPembiayaan2State createState() => _FormPembiayaan2State(pembiayaan);
+  _FormPembiayaan2State createState() => _FormPembiayaan2State(pembiayaan, formKeyScreen1);
 }
 
 class _FormPembiayaan2State extends State<FormPembiayaan2> {
-  final _formKey = GlobalKey<FormState>();
-  late Pembiayaan datas;
+  final formKeyScreen2 = GlobalKey<FormState>();
+
+  final Pembiayaan pembiayaan;
+  final GlobalKey<FormState> formKeyScreen1;
+
   late DateTime tanggalAkad;
-  late TextEditingController nilaiPPA;
+  late MoneyMaskedTextController nilaiPPA;
   late MoneyMaskedTextController hargaJual;
   late TextEditingController angsuran;
-  late TextEditingController tHPGajiTerakhir;
+  late MoneyMaskedTextController tHPGajiTerakhir;
   late TextEditingController cashRatio;
-  final Pembiayaan pembiayaan;
 
   late DateFormat dateFormat;
 
-  _FormPembiayaan2State(this.pembiayaan);
+  _FormPembiayaan2State(this.pembiayaan, this.formKeyScreen1);
 
   @override
   void initState() {
-    datas = Pembiayaan.emptyConstructor();
-
-    tanggalAkad = pembiayaan.tanggalAkad;
-    nilaiPPA = TextEditingController(text: pembiayaan.nilaiPPA.toString());
-    hargaJual = MoneyMaskedTextController(initialValue: pembiayaan.hargaJual.toDouble(), thousandSeparator: '.', leftSymbol: 'Rp ', precision: 0, decimalSeparator: '');
-    angsuran = TextEditingController(text: pembiayaan.angsuran.toString());
-    tHPGajiTerakhir = TextEditingController(text: pembiayaan.tHPGajiTerakhir.toString());
-    cashRatio = TextEditingController(text: pembiayaan.cashRatio.toString());
+    this.tanggalAkad = this.pembiayaan.tanggalAkad;
+    this.nilaiPPA = MoneyMaskedTextController(initialValue: this.pembiayaan.nilaiPPA.toDouble(), thousandSeparator: '.', leftSymbol: 'Rp ', precision: 0, decimalSeparator: '');
+    this.hargaJual = MoneyMaskedTextController(initialValue: this.pembiayaan.hargaJual.toDouble(), thousandSeparator: '.', leftSymbol: 'Rp ', precision: 0, decimalSeparator: '');
+    this.angsuran = TextEditingController(text: this.pembiayaan.angsuran.toString());
+    this.tHPGajiTerakhir = MoneyMaskedTextController(initialValue: this.pembiayaan.tHPGajiTerakhir.toDouble(), thousandSeparator: '.', leftSymbol: 'Rp ', precision: 0, decimalSeparator: '');
+    this.cashRatio = TextEditingController(text: this.pembiayaan.cashRatio.toString());
     
     initializeDateFormatting();
-    dateFormat = new DateFormat.yMMMMd('id');
+    this.dateFormat = new DateFormat.yMMMMd('id');
 
     super.initState();
   }
 
   @override
   void dispose() {
+    this.nilaiPPA.dispose();
+    this.hargaJual.dispose();
+    this.angsuran.dispose();
+    this.tHPGajiTerakhir.dispose();
+    this.cashRatio.dispose();
     super.dispose();
+  }
+
+  void saveAllDataPembiayaan(){
+    setState(() {
+      this.pembiayaan.tanggalAkad = this.tanggalAkad;
+      this.pembiayaan.nilaiPPA = this.nilaiPPA.numberValue.toInt();
+      this.pembiayaan.hargaJual = this.hargaJual.numberValue.toInt();
+      this.pembiayaan.angsuran = int.parse(this.angsuran.text);
+      this.pembiayaan.tHPGajiTerakhir = this.tHPGajiTerakhir.numberValue.toInt();
+      this.pembiayaan.cashRatio = int.parse(this.cashRatio.text);
+    });
   }
 
   @override
@@ -60,7 +78,7 @@ class _FormPembiayaan2State extends State<FormPembiayaan2> {
     Size screenSize = MediaQuery.of(context).size;
 
     return Form(
-      key: this._formKey,
+      key: this.formKeyScreen2,
       child: Column(
         children: [
           Container(
@@ -79,10 +97,9 @@ class _FormPembiayaan2State extends State<FormPembiayaan2> {
                   print('confirm $date');
                   setState(() {
                     this.tanggalAkad = date;
-                    this.pembiayaan.tanggalAkad = this.tanggalAkad;
                   });
                 },
-                currentTime: this.pembiayaan.tanggalAkad,
+                currentTime: this.tanggalAkad,
                 locale: LocaleType.id,
                 theme: DatePickerTheme(
                   backgroundColor: HexColor("#F8B50F"),
@@ -110,7 +127,7 @@ class _FormPembiayaan2State extends State<FormPembiayaan2> {
                 borderRadius: BorderRadius.circular(10.0),
               ),
               padding: EdgeInsets.all(10.0),
-              height: 70.0,
+              height: 50.0,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -304,7 +321,7 @@ class _FormPembiayaan2State extends State<FormPembiayaan2> {
           SizedBox(height: 5.0,),
           TextFormField(
             controller: this.cashRatio,
-            textInputAction: TextInputAction.next,
+            textInputAction: TextInputAction.done,
             style: TextStyle(
                 color: Colors.white,
                 fontSize: 15.0,
@@ -347,11 +364,16 @@ class _FormPembiayaan2State extends State<FormPembiayaan2> {
                 width: 156,
                 child: ElevatedButton(
                   onPressed: (){
-                    this.pembiayaan.nilaiPPA = int.parse(this.nilaiPPA.text);
-                    this.pembiayaan.hargaJual = this.hargaJual.numberValue.toInt();
-                    this.pembiayaan.angsuran = int.parse(this.angsuran.text);
-                    this.pembiayaan.tHPGajiTerakhir = int.parse(this.tHPGajiTerakhir.text);
-                    this.pembiayaan.cashRatio = int.parse(this.cashRatio.text);
+                    this.saveAllDataPembiayaan();
+
+                    print(
+                      "tanggal akad : ${this.pembiayaan.tanggalAkad}\n"
+                      "nilai PPA : ${this.pembiayaan.nilaiPPA}\n"
+                      "harga jual : ${this.pembiayaan.hargaJual}\n"
+                      "angsuran : ${this.pembiayaan.angsuran}\n"
+                      "thp gaji terakhir : ${this.pembiayaan.tHPGajiTerakhir}\n"
+                      "cash ratio : ${this.pembiayaan.cashRatio}\n"
+                    );
 
                     Navigator.pop(context);
                   },
@@ -361,7 +383,7 @@ class _FormPembiayaan2State extends State<FormPembiayaan2> {
                       padding: EdgeInsets.zero
                   ),
                   child: Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
+                    mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       CircleAvatar(
                         child: Icon(
@@ -389,14 +411,22 @@ class _FormPembiayaan2State extends State<FormPembiayaan2> {
                 width: 150,
                 child: ElevatedButton(
                   onPressed: (){
-                    print("${pembiayaan.peruntukkan1} - ${pembiayaan.peruntukkan2} - ${this.hargaJual.numberValue}");
-                    // if(_formKey.currentState!.validate()){
-                    //   this.pembiayaan.nilaiPPA = int.parse(this.nilaiPPA.text);
-                    //   this.pembiayaan.hargaJual = int.parse(this.hargaJual.text);
-                    //   this.pembiayaan.angsuran = int.parse(this.angsuran.text);
-                    //   this.pembiayaan.tHPGajiTerakhir = int.parse(this.tHPGajiTerakhir.text);
-                    //   this.pembiayaan.cashRatio = int.parse(this.cashRatio.text);
-                    // }
+                    this.saveAllDataPembiayaan();
+
+                    print(
+                        "tanggal akad : ${this.pembiayaan.tanggalAkad}\n"
+                            "nilai PPA : ${this.pembiayaan.nilaiPPA}\n"
+                            "harga jual : ${this.pembiayaan.hargaJual}\n"
+                            "angsuran : ${this.pembiayaan.angsuran}\n"
+                            "thp gaji terakhir : ${this.pembiayaan.tHPGajiTerakhir}\n"
+                            "cash ratio : ${this.pembiayaan.cashRatio}\n"
+                    );
+
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => AjukanPembiayaanScreen3(pembiayaan: pembiayaan,
+                          formKeyScreen1: this.formKeyScreen1, formKeyScreen2: this.formKeyScreen2,))
+                    );
                   },
                   style: ElevatedButton.styleFrom(
                       elevation: 0,

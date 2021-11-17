@@ -15,8 +15,12 @@ class FormPembiayaan1 extends StatefulWidget {
 }
 
 class _FormPembiayaan1State extends State<FormPembiayaan1> {
-  final _formKey = GlobalKey<FormState>();
+  final formKeyScreen1 = GlobalKey<FormState>();
+
   late Pembiayaan datas;
+
+  final Pembiayaan pembiayaan;
+
   late String peruntukkan1Value;
   late String peruntukkan2Value;
   late String jenisAkad;
@@ -24,7 +28,6 @@ class _FormPembiayaan1State extends State<FormPembiayaan1> {
   late String vendor;
   late String rekPihakKetiga;
   late String analyticAcc;
-  final Pembiayaan pembiayaan;
 
   _FormPembiayaan1State(this.pembiayaan);
 
@@ -32,13 +35,13 @@ class _FormPembiayaan1State extends State<FormPembiayaan1> {
   void initState() {
     datas = Pembiayaan.emptyConstructor();
 
-    peruntukkan1Value = pembiayaan.peruntukkan1;
-    peruntukkan2Value = pembiayaan.peruntukkan2;
-    jenisAkad = pembiayaan.jenisAkad;
-    pemindahanHak = pembiayaan.pemindahanHak;
-    vendor = pembiayaan.vendor;
-    rekPihakKetiga = pembiayaan.rekPihakKetiga;
-    analyticAcc = pembiayaan.analyticAcc;
+    this.peruntukkan1Value = this.pembiayaan.peruntukkan1;
+    this.peruntukkan2Value = this.pembiayaan.peruntukkan2;
+    this.jenisAkad = this.pembiayaan.jenisAkad;
+    this.pemindahanHak = this.pembiayaan.pemindahanHak;
+    this.vendor = this.pembiayaan.vendor;
+    this.rekPihakKetiga = this.pembiayaan.rekPihakKetiga;
+    this.analyticAcc = this.pembiayaan.analyticAcc;
 
     super.initState();
   }
@@ -48,12 +51,24 @@ class _FormPembiayaan1State extends State<FormPembiayaan1> {
     super.dispose();
   }
 
+  void saveAllDataPembiayaan(){
+    setState(() {
+      this.pembiayaan.peruntukkan1 = this.peruntukkan1Value;
+      this.pembiayaan.peruntukkan2 = this.peruntukkan2Value;
+      this.pembiayaan.jenisAkad = this.jenisAkad;
+      this.pembiayaan.pemindahanHak = this.pemindahanHak;
+      this.pembiayaan.vendor = this.vendor;
+      this.pembiayaan.rekPihakKetiga = this.rekPihakKetiga;
+      this.pembiayaan.analyticAcc = this.analyticAcc;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     Size screenSize = MediaQuery.of(context).size;
 
     return Form(
-      key: this._formKey,
+      key: this.formKeyScreen1,
       child: Column(
         children: [
           Container(
@@ -78,22 +93,37 @@ class _FormPembiayaan1State extends State<FormPembiayaan1> {
                   color: Colors.transparent
                 )
               ),
+              errorBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(10.0),
+                borderSide: BorderSide(
+                    color: Colors.red
+                )
+              ),
             ),
             icon: Icon(
               Icons.arrow_drop_down,
               color: Colors.white,
               size: 24.0,
             ),
+
             style: TextStyle(
               fontSize: 15.0,
               color: Colors.white,
               fontFamily: "Comfortaa"
             ),
             onChanged: (String? newValue) {
+              if (this.formKeyScreen1.currentState!.validate()) {
+
+              }
               setState(() {
                 this.peruntukkan1Value = newValue!;
-                this.pembiayaan.peruntukkan1 = this.peruntukkan1Value;
               });
+            },
+            validator: (String? value){
+              if(value == null){
+                return "harus diisi";
+              }
+              return null;
             },
             items: datas.getDataPeruntukkan().map<DropdownMenuItem<String>>((String value) {
               return DropdownMenuItem<String>(
@@ -132,6 +162,12 @@ class _FormPembiayaan1State extends State<FormPembiayaan1> {
                       color: Colors.transparent
                   )
               ),
+              errorBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(10.0),
+                  borderSide: BorderSide(
+                      color: Colors.red
+                  )
+              ),
             ),
             icon: Icon(
               Icons.arrow_drop_down,
@@ -144,10 +180,18 @@ class _FormPembiayaan1State extends State<FormPembiayaan1> {
                 fontFamily: "Comfortaa"
             ),
             onChanged: (String? newValue) {
+              if (this.formKeyScreen1.currentState!.validate()) {
+
+              }
               setState(() {
                 this.peruntukkan2Value = newValue!;
-                this.pembiayaan.peruntukkan2 = this.peruntukkan2Value;
               });
+            },
+            validator: (String? value){
+              if(value == null){
+                return "harus diisi";
+              }
+              return null;
             },
             items: datas.getDataPeruntukkan().map<DropdownMenuItem<String>>((String value) {
               return DropdownMenuItem<String>(
@@ -186,6 +230,12 @@ class _FormPembiayaan1State extends State<FormPembiayaan1> {
                       color: Colors.transparent
                   )
               ),
+              errorBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(10.0),
+                  borderSide: BorderSide(
+                      color: Colors.red
+                  )
+              ),
             ),
             icon: Icon(
               Icons.arrow_drop_down,
@@ -198,9 +248,18 @@ class _FormPembiayaan1State extends State<FormPembiayaan1> {
                 fontFamily: "Comfortaa"
             ),
             onChanged: (String? newValue) {
+              if (this.formKeyScreen1.currentState!.validate()) {
+
+              }
               setState(() {
                 this.jenisAkad = newValue!;
               });
+            },
+            validator: (String? value){
+              if(value == null){
+                return "harus diisi";
+              }
+              return null;
             },
             items: datas.getDataJenisAkad().map<DropdownMenuItem<String>>((String value) {
               return DropdownMenuItem<String>(
@@ -239,6 +298,12 @@ class _FormPembiayaan1State extends State<FormPembiayaan1> {
                       color: Colors.transparent
                   )
               ),
+              errorBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(10.0),
+                  borderSide: BorderSide(
+                      color: Colors.red
+                  )
+              ),
             ),
             icon: Icon(
               Icons.arrow_drop_down,
@@ -251,9 +316,18 @@ class _FormPembiayaan1State extends State<FormPembiayaan1> {
                 fontFamily: "Comfortaa"
             ),
             onChanged: (String? newValue) {
+              if (this.formKeyScreen1.currentState!.validate()) {
+
+              }
               setState(() {
                 this.pemindahanHak = newValue!;
               });
+            },
+            validator: (String? value){
+              if(value == null){
+                return "harus diisi";
+              }
+              return null;
             },
             items: datas.getDataPemindahanHak().map<DropdownMenuItem<String>>((String value) {
               return DropdownMenuItem<String>(
@@ -292,6 +366,12 @@ class _FormPembiayaan1State extends State<FormPembiayaan1> {
                       color: Colors.transparent
                   )
               ),
+              errorBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(10.0),
+                  borderSide: BorderSide(
+                      color: Colors.red
+                  )
+              ),
             ),
             icon: Icon(
               Icons.arrow_drop_down,
@@ -304,9 +384,18 @@ class _FormPembiayaan1State extends State<FormPembiayaan1> {
                 fontFamily: "Comfortaa"
             ),
             onChanged: (String? newValue) {
+              if (this.formKeyScreen1.currentState!.validate()) {
+
+              }
               setState(() {
                 this.vendor = newValue!;
               });
+            },
+            validator: (String? value){
+              if(value == null){
+                return "harus diisi";
+              }
+              return null;
             },
             items: datas.getDataVendor().map<DropdownMenuItem<String>>((String value) {
               return DropdownMenuItem<String>(
@@ -345,6 +434,12 @@ class _FormPembiayaan1State extends State<FormPembiayaan1> {
                       color: Colors.transparent
                   )
               ),
+              errorBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(10.0),
+                  borderSide: BorderSide(
+                      color: Colors.red
+                  )
+              ),
             ),
             icon: Icon(
               Icons.arrow_drop_down,
@@ -357,9 +452,18 @@ class _FormPembiayaan1State extends State<FormPembiayaan1> {
                 fontFamily: "Comfortaa"
             ),
             onChanged: (String? newValue) {
+              if (this.formKeyScreen1.currentState!.validate()) {
+
+              }
               setState(() {
                 this.rekPihakKetiga = newValue!;
               });
+            },
+            validator: (String? value){
+              if(value == null){
+                return "harus diisi";
+              }
+              return null;
             },
             items: datas.getDataRekPihakKetiga().map<DropdownMenuItem<String>>((String value) {
               return DropdownMenuItem<String>(
@@ -398,6 +502,12 @@ class _FormPembiayaan1State extends State<FormPembiayaan1> {
                       color: Colors.transparent
                   )
               ),
+              errorBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(10.0),
+                  borderSide: BorderSide(
+                      color: Colors.red
+                  )
+              ),
             ),
             icon: Icon(
               Icons.arrow_drop_down,
@@ -410,9 +520,18 @@ class _FormPembiayaan1State extends State<FormPembiayaan1> {
                 fontFamily: "Comfortaa"
             ),
             onChanged: (String? newValue) {
+              if (this.formKeyScreen1.currentState!.validate()) {
+
+              }
               setState(() {
                 this.analyticAcc = newValue!;
               });
+            },
+            validator: (String? value){
+              if(value == null){
+                return "harus diisi";
+              }
+              return null;
             },
             items: datas.getDataAnalyticAccount().map<DropdownMenuItem<String>>((String value) {
               return DropdownMenuItem<String>(
@@ -435,10 +554,19 @@ class _FormPembiayaan1State extends State<FormPembiayaan1> {
               width: 150,
               child: ElevatedButton(
                 onPressed: (){
-                  print("${pembiayaan.peruntukkan1} - ${pembiayaan.peruntukkan2}");
+                  this.saveAllDataPembiayaan();
+                  print(
+                      "peruntukkan 1 : ${this.pembiayaan.peruntukkan1}\n"
+                          "peruntukkan 2 : ${this.pembiayaan.peruntukkan2}\n"
+                          "jenis akad : ${this.pembiayaan.jenisAkad}\n"
+                          "pemindahan hak : ${this.pembiayaan.pemindahanHak}\n"
+                          "vendor : ${this.pembiayaan.vendor}\n"
+                          "rek pihak ketiga : ${this.pembiayaan.rekPihakKetiga}\n"
+                          "analytic acc : ${this.pembiayaan.analyticAcc}\n"
+                  );
                   Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => AjukanPembiayaanScreen2(pembiayaan: pembiayaan))
+                      MaterialPageRoute(builder: (context) => AjukanPembiayaanScreen2(pembiayaan: pembiayaan, formKeyScreen1: formKeyScreen1,))
                   );
                 },
                 style: ElevatedButton.styleFrom(

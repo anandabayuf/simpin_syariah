@@ -2,6 +2,7 @@ import 'package:colorful_safe_area/colorful_safe_area.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:project_simpin_syariah/models/pembiayaan/Pembiayaan.dart';
 import 'package:project_simpin_syariah/views/customwidgets/BottomNav.dart';
 import 'package:project_simpin_syariah/views/customwidgets/CustomText.dart';
@@ -13,8 +14,6 @@ class RiwayatPembiayaanScreen extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
     Size screenSize = MediaQuery.of(context).size;
-    final pembiayaan = new Pembiayaan("", "", "", "", "", "", "", DateTime.now(),
-    0, 0, 0, 0, 0, "", "", "", "", "", "");
 
     return Scaffold(
       extendBody: true,
@@ -53,6 +52,9 @@ class RiwayatPembiayaanScreen extends StatelessWidget{
         child: FloatingActionButton(
           onPressed: (){
             print("Ajukan Pembiayaan");
+            final pembiayaan = new Pembiayaan("", "", "", "", "", "", "", DateTime.now(),
+                0, 0, 0, 0, 0, new XFile(""), new XFile(""), new XFile(""), new XFile(""),
+                new XFile(""), new XFile(""));
             Navigator.push(
               context,
               MaterialPageRoute(builder: (context) => AjukanPembiayaanScreen1(pembiayaan: pembiayaan))

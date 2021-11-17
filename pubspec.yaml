@@ -31,6 +31,8 @@ dependencies:
   persistent_bottom_nav_bar: ^4.0.2
   flutter_datetime_picker: ^1.5.1
   flutter_masked_text2: ^0.9.1
+  dotted_border: ^2.0.0+1
+  image_picker: ^0.8.4+4
 
 dev_dependencies:
   intl: any

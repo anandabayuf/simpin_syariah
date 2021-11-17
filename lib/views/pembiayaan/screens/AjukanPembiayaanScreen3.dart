@@ -2,18 +2,19 @@ import 'package:colorful_safe_area/colorful_safe_area.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:project_simpin_syariah/models/pembiayaan/Pembiayaan.dart';
-import 'package:project_simpin_syariah/views/customwidgets/ButtonBack.dart';
 import 'package:project_simpin_syariah/views/customwidgets/BottomNav.dart';
 import 'package:project_simpin_syariah/views/customwidgets/CustomText.dart';
 import 'package:project_simpin_syariah/views/customwidgets/ProfileButton.dart';
-import 'package:project_simpin_syariah/views/pembiayaan/widgets/FormPembiayaan1.dart';
+import 'package:project_simpin_syariah/views/pembiayaan/widgets/FormPembiayaan3.dart';
 
-class AjukanPembiayaanScreen1 extends StatelessWidget{
+class AjukanPembiayaanScreen3 extends StatelessWidget{
   final Pembiayaan pembiayaan;
+  final GlobalKey<FormState> formKeyScreen1;
+  final GlobalKey<FormState> formKeyScreen2;
 
-  AjukanPembiayaanScreen1({Key? key, required this.pembiayaan}) : super(key: key);
+  AjukanPembiayaanScreen3({Key? key, required this.pembiayaan, required this.formKeyScreen1,
+    required this.formKeyScreen2}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -33,35 +34,22 @@ class AjukanPembiayaanScreen1 extends StatelessWidget{
               padding: EdgeInsets.all(20.0),
               child: Column(
                 children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      IconButton(
-                          onPressed: () {
-                            print("back");
-                            Navigator.of(context).pop();
-                          },
-                          padding: EdgeInsets.zero,
-                          constraints: BoxConstraints(),
-                          icon: Icon(
-                            Icons.arrow_back_rounded,
-                            size: 32.0,
-                            color: Colors.white,
-                          )
-                      ),
-                      Align(
-                        child: ProfileButton(),
-                        alignment: Alignment.centerRight,
-                      ),
-                    ],
+                  Align(
+                    child: ProfileButton(),
+                    alignment: Alignment.centerRight,
                   ),
                   SizedBox(height: 10.0,),
                   Align(
                     child: CustomText('Form Pembiayaan', 24.0, false),
                     alignment: Alignment.centerLeft,
                   ),
+                  SizedBox(height: 5.0,),
+                  Align(
+                    child: CustomText('Upload Pembiayaan', 15.0, true),
+                    alignment: Alignment.centerLeft,
+                  ),
                   SizedBox(height: 20.0,),
-                  FormPembiayaan1(pembiayaan: pembiayaan,),
+                  FormPembiayaan3(pembiayaan: this.pembiayaan, formKeyScreen1: this.formKeyScreen1, formKeyScreen2: this.formKeyScreen2,),
                 ],
               ),
             ),

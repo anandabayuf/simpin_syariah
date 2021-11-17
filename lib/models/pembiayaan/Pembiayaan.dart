@@ -1,3 +1,5 @@
+import 'package:image_picker/image_picker.dart';
+
 class Pembiayaan {
   late String peruntukkan1;
   late String peruntukkan2;
@@ -14,12 +16,12 @@ class Pembiayaan {
   late int tHPGajiTerakhir;
   late int cashRatio;
 
-  late String ktpFile;
-  late String ktpPasanganFile;
-  late String kartuKeluargaFile;
-  late String slipGaji1File;
-  late String slipGaji2File;
-  late String slipGaji3File;
+  late XFile ktpFile;
+  late XFile ktpPasanganFile;
+  late XFile kartuKeluargaFile;
+  late XFile slipGaji1File;
+  late XFile slipGaji2File;
+  late XFile slipGaji3File;
 
   Pembiayaan(
     this.peruntukkan1, this.peruntukkan2, this.jenisAkad, this.pemindahanHak,

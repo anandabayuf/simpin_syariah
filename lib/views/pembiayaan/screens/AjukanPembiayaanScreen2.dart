@@ -10,8 +10,9 @@ import 'package:project_simpin_syariah/views/pembiayaan/widgets/FormPembiayaan2.
 
 class AjukanPembiayaanScreen2 extends StatelessWidget{
   final Pembiayaan pembiayaan;
+  final GlobalKey<FormState> formKeyScreen1;
 
-  AjukanPembiayaanScreen2({Key? key, required this.pembiayaan}) : super(key: key);
+  AjukanPembiayaanScreen2({Key? key, required this.pembiayaan, required this.formKeyScreen1}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +42,7 @@ class AjukanPembiayaanScreen2 extends StatelessWidget{
                     alignment: Alignment.centerLeft,
                   ),
                   SizedBox(height: 20.0,),
-                  FormPembiayaan2(pembiayaan: pembiayaan)
+                  FormPembiayaan2(pembiayaan: pembiayaan, formKeyScreen1: this.formKeyScreen1,)
                 ],
               ),
             ),
