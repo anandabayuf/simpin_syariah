@@ -5,10 +5,10 @@ import 'package:project_simpin_syariah/views/forgetpassword/screens/InputEmailSc
 import 'package:project_simpin_syariah/views/forgetpassword/screens/MakeNewPassScreen.dart';
 import 'package:project_simpin_syariah/views/home/screen/HomeScreen.dart';
 import 'package:project_simpin_syariah/views/login/screen/LoginScreen.dart';
-import 'package:project_simpin_syariah/views/pembiayaan/screens/AjukanPembiayaanScreen1.dart';
 import 'package:project_simpin_syariah/views/pembiayaan/screens/DetailRiwayatPembiayaanScreen.dart';
 import 'package:project_simpin_syariah/views/pembiayaan/screens/RiwayatPembiayaanScreen.dart';
 import 'package:project_simpin_syariah/views/profile/screens/ProfileScreen.dart';
+import 'package:project_simpin_syariah/views/simpanan/screens/RiwayatSimpananScreen.dart';
 
 void main() {
   runApp(MyApp());
@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         fontFamily: 'Comfortaa'
       ),
-      initialRoute: '/pembiayaan/riwayat',
+      initialRoute: '/simpanan/riwayat',
       routes: {
         '/login': (context) => LoginScreen(),
         '/lupa-password': (context) => InputEmailScreen(),
@@ -33,6 +33,7 @@ class MyApp extends StatelessWidget {
         '/profile': (context) => ProfileScreen(),
         '/pembiayaan/riwayat': (context) => RiwayatPembiayaanScreen(),
         '/pembiayaan/riwayat/detail': (context) => DetailRiwayatPembiayaanScreen(),
+        '/simpanan/riwayat': (context) => RiwayatSimpananScreen(),
       },
     );
   }
