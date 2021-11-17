@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:project_simpin_syariah/models/pembiayaan/Pembiayaan.dart';
 import 'package:project_simpin_syariah/views/customwidgets/BottomNav.dart';
+import 'package:project_simpin_syariah/views/customwidgets/ButtonBack.dart';
 import 'package:project_simpin_syariah/views/customwidgets/CustomText.dart';
 import 'package:project_simpin_syariah/views/customwidgets/ProfileButton.dart';
 import 'package:project_simpin_syariah/views/pembiayaan/widgets/FormPembiayaan1.dart';
@@ -34,19 +35,7 @@ class AjukanPembiayaanScreen1 extends StatelessWidget{
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      IconButton(
-                          onPressed: () {
-                            print("back");
-                            Navigator.of(context).pop();
-                          },
-                          padding: EdgeInsets.zero,
-                          constraints: BoxConstraints(),
-                          icon: Icon(
-                            Icons.arrow_back_rounded,
-                            size: 32.0,
-                            color: Colors.white,
-                          )
-                      ),
+                      ButtonBack(),
                       Align(
                         child: ProfileButton(),
                         alignment: Alignment.centerRight,

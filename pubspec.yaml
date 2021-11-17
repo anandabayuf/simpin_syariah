@@ -29,7 +29,10 @@ dependencies:
   flutter_launcher_icons: ^0.9.2
   flutter_svg: ^0.21.0-nullsafety.1
   persistent_bottom_nav_bar: ^4.0.2
-  flutter_datetime_picker: ^1.5.1
+  flutter_datetime_picker:
+    git:
+      url: https://github.com/Realank/flutter_datetime_picker.git
+      ref: master
   flutter_masked_text2: ^0.9.1
   dotted_border: ^2.0.0+1
   image_picker: ^0.8.4+4
@@ -57,6 +60,7 @@ flutter:
     - assets/images/forgetpassword/
     - assets/images/appbar/
     - assets/icons/bottomnav/
+    - assets/icons/dialog/
 
   fonts:
     - family: Comfortaa

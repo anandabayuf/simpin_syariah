@@ -2,9 +2,11 @@ import 'package:colorful_safe_area/colorful_safe_area.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
+import 'package:project_simpin_syariah/models/simpanan/Simpanan.dart';
 import 'package:project_simpin_syariah/views/customwidgets/BottomNav.dart';
 import 'package:project_simpin_syariah/views/customwidgets/CustomText.dart';
 import 'package:project_simpin_syariah/views/customwidgets/ProfileButton.dart';
+import 'package:project_simpin_syariah/views/simpanan/screens/TambahSimpananScreen.dart';
 import 'package:project_simpin_syariah/views/simpanan/widgets/ContainerRiwayatSimpanan.dart';
 
 class RiwayatSimpananScreen extends StatelessWidget{
@@ -48,10 +50,11 @@ class RiwayatSimpananScreen extends StatelessWidget{
         child: FloatingActionButton(
           onPressed: (){
             print("Tambah Simpanan");
-            // Navigator.push(
-            //     context,
-            //     MaterialPageRoute(builder: (context) => AjukanPembiayaanScreen1(pembiayaan: pembiayaan))
-            // );
+            final simpanan = new Simpanan("", 0);
+            Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => TambahSimpananScreen(simpanan: simpanan))
+            );
           },
           elevation: 5.0,
           shape: RoundedRectangleBorder(
