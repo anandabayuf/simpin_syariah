@@ -99,7 +99,17 @@ class _ProfileButtonState extends State<ProfileButton> {
                 backgroundColor: Colors.transparent,
               ),
               SizedBox(width: 5.0,),
-              CustomText('Andini', 15.0, false),
+              Flexible(
+                child: Text(
+                  'Ananda Bayu Fauzan',
+                  overflow: TextOverflow.ellipsis,
+                  style: TextStyle(
+                    fontSize: 15.0,
+                    color: Colors.white,
+                    fontFamily: 'Comfortaa'
+                  ),
+                )
+              ),
               _isButtonClicked ? Icon(
                 Icons.arrow_drop_up,
                 size: 32.0,
