@@ -112,9 +112,6 @@ class _FormPembiayaan1State extends State<FormPembiayaan1> {
               fontFamily: "Comfortaa"
             ),
             onChanged: (String? newValue) {
-              if (this.formKeyScreen1.currentState!.validate()) {
-
-              }
               setState(() {
                 this.peruntukkan1Value = newValue!;
               });
@@ -180,9 +177,6 @@ class _FormPembiayaan1State extends State<FormPembiayaan1> {
                 fontFamily: "Comfortaa"
             ),
             onChanged: (String? newValue) {
-              if (this.formKeyScreen1.currentState!.validate()) {
-
-              }
               setState(() {
                 this.peruntukkan2Value = newValue!;
               });
@@ -248,9 +242,6 @@ class _FormPembiayaan1State extends State<FormPembiayaan1> {
                 fontFamily: "Comfortaa"
             ),
             onChanged: (String? newValue) {
-              if (this.formKeyScreen1.currentState!.validate()) {
-
-              }
               setState(() {
                 this.jenisAkad = newValue!;
               });
@@ -316,9 +307,6 @@ class _FormPembiayaan1State extends State<FormPembiayaan1> {
                 fontFamily: "Comfortaa"
             ),
             onChanged: (String? newValue) {
-              if (this.formKeyScreen1.currentState!.validate()) {
-
-              }
               setState(() {
                 this.pemindahanHak = newValue!;
               });
@@ -384,9 +372,6 @@ class _FormPembiayaan1State extends State<FormPembiayaan1> {
                 fontFamily: "Comfortaa"
             ),
             onChanged: (String? newValue) {
-              if (this.formKeyScreen1.currentState!.validate()) {
-
-              }
               setState(() {
                 this.vendor = newValue!;
               });
@@ -452,9 +437,6 @@ class _FormPembiayaan1State extends State<FormPembiayaan1> {
                 fontFamily: "Comfortaa"
             ),
             onChanged: (String? newValue) {
-              if (this.formKeyScreen1.currentState!.validate()) {
-
-              }
               setState(() {
                 this.rekPihakKetiga = newValue!;
               });
@@ -520,9 +502,6 @@ class _FormPembiayaan1State extends State<FormPembiayaan1> {
                 fontFamily: "Comfortaa"
             ),
             onChanged: (String? newValue) {
-              if (this.formKeyScreen1.currentState!.validate()) {
-
-              }
               setState(() {
                 this.analyticAcc = newValue!;
               });

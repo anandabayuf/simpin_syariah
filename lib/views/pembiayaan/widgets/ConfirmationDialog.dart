@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
-import 'package:project_simpin_syariah/models/simpanan/Simpanan.dart';
+import 'package:project_simpin_syariah/models/pembiayaan/Pembiayaan.dart';
 import 'package:project_simpin_syariah/views/customwidgets/CustomText.dart';
 import 'package:project_simpin_syariah/views/customwidgets/FailedInformation.dart';
 import 'package:project_simpin_syariah/views/customwidgets/SuccessInformation.dart';
 
 class ConfirmationDialog extends AlertDialog {
-  final Simpanan simpanan;
+  final Pembiayaan pembiayaan;
 
-  ConfirmationDialog(BuildContext context, this.simpanan):super(
+  ConfirmationDialog(BuildContext context, this.pembiayaan):super(
     backgroundColor: Colors.white.withOpacity(0.5),
     shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.all(
@@ -25,7 +25,7 @@ class ConfirmationDialog extends AlertDialog {
           height: 10.0,
         ),
         Text(
-          "Apakah anda yakin ingin menambahkan simpanan?",
+          "Apakah anda yakin ingin mengajukan pembiayaan?",
           style: TextStyle(
             fontSize: 20.0,
             color: Colors.white,
@@ -60,15 +60,15 @@ class ConfirmationDialog extends AlertDialog {
               ),
             ),
             onPressed: () {
-              if(simpanan.nominalSimpanan != 0){
-                Navigator.popUntil(context, ModalRoute.withName('/simpanan/riwayat'));
+              if(pembiayaan.nilaiPPA != 0){
+                Navigator.popUntil(context, ModalRoute.withName('/pembiayaan/riwayat'));
                 ScaffoldMessenger.of(context).showSnackBar(
-                    SuccessInformation(context, 'Simpanan berhasil ditambahkan')
+                    SuccessInformation(context, 'Pembiayaan berhasil diajukan')
                 );
               } else{
                 Navigator.pop(context);
                 ScaffoldMessenger.of(context).showSnackBar(
-                    FailedInformation(context, 'Simpanan gagal ditambahkan, periksa kembali data yang anda masukkan')
+                    FailedInformation(context, 'Pembiayaan gagal diajukan, periksa kembali data yang anda masukkan')
                 );
               }
             },

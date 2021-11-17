@@ -6,6 +6,8 @@ import 'package:hexcolor/hexcolor.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:project_simpin_syariah/models/pembiayaan/Pembiayaan.dart';
 import 'package:project_simpin_syariah/views/customwidgets/CustomText.dart';
+import 'package:project_simpin_syariah/views/customwidgets/FailedInformation.dart';
+import 'package:project_simpin_syariah/views/pembiayaan/widgets/ConfirmationDialog.dart';
 
 class FormPembiayaan3 extends StatefulWidget {
   final Pembiayaan pembiayaan;
@@ -220,6 +222,15 @@ class _FormPembiayaan3State extends State<FormPembiayaan3> {
       this.pembiayaan.slipGaji2File = this.slipGaji2;
       this.pembiayaan.slipGaji3File = this.slipGaji3;
     });
+  }
+
+  bool isAllImageUploaded(){
+    return this.pembiayaan.ktpFile.path != "" &&
+        this.pembiayaan.ktpPasanganFile.path != "" &&
+        this.pembiayaan.kartuKeluargaFile.path != "" &&
+        this.pembiayaan.slipGaji1File.path != "" &&
+        this.pembiayaan.slipGaji2File.path != "" &&
+        this.pembiayaan.slipGaji3File.path != "";
   }
 
   @override
@@ -1516,29 +1527,41 @@ class _FormPembiayaan3State extends State<FormPembiayaan3> {
                 child: ElevatedButton(
                   onPressed: (){
                     this.saveAllImage();
-                    print(
-                        "peruntukkan 1 : ${this.pembiayaan.peruntukkan1}\n"
-                        "peruntukkan 2 : ${this.pembiayaan.peruntukkan2}\n"
-                        "jenis akad : ${this.pembiayaan.jenisAkad}\n"
-                        "pemindahan hak : ${this.pembiayaan.pemindahanHak}\n"
-                        "vendor : ${this.pembiayaan.vendor}\n"
-                        "rek pihak ketiga : ${this.pembiayaan.rekPihakKetiga}\n"
-                        "analytic acc : ${this.pembiayaan.analyticAcc}\n"
-                        "tanggal akad : ${this.pembiayaan.tanggalAkad}\n"
-                        "nilai PPA : ${this.pembiayaan.nilaiPPA}\n"
-                        "harga jual : ${this.pembiayaan.hargaJual}\n"
-                        "angsuran : ${this.pembiayaan.angsuran}\n"
-                        "thp gaji terakhir : ${this.pembiayaan.tHPGajiTerakhir}\n"
-                        "cash ratio : ${this.pembiayaan.cashRatio}\n"
-                        "ktp : ${this.pembiayaan.ktpFile.path}\n"
-                        "ktp pasangan : ${this.pembiayaan.ktpPasanganFile.path}\n"
-                        "kk : ${this.pembiayaan.kartuKeluargaFile.path}\n"
-                        "slip gaji #1 : ${this.pembiayaan.slipGaji1File.path}\n"
-                        "slip gaji #2 : ${this.pembiayaan.slipGaji2File.path}\n"
-                        "slip gaji #3 : ${this.pembiayaan.slipGaji3File.path}\n"
-                    );
-                    if(this.formKeyScreen1.currentState!.validate() && this.formKeyScreen2.currentState!.validate()){
 
+                    if(this.formKeyScreen1.currentState!.validate() &&
+                        this.formKeyScreen2.currentState!.validate() &&
+                        this.isAllImageUploaded()){
+                      print(
+                          "peruntukkan 1 : ${this.pembiayaan.peruntukkan1}\n"
+                          "peruntukkan 2 : ${this.pembiayaan.peruntukkan2}\n"
+                          "jenis akad : ${this.pembiayaan.jenisAkad}\n"
+                          "pemindahan hak : ${this.pembiayaan.pemindahanHak}\n"
+                          "vendor : ${this.pembiayaan.vendor}\n"
+                          "rek pihak ketiga : ${this.pembiayaan.rekPihakKetiga}\n"
+                          "analytic acc : ${this.pembiayaan.analyticAcc}\n"
+                          "tanggal akad : ${this.pembiayaan.tanggalAkad}\n"
+                          "nilai PPA : ${this.pembiayaan.nilaiPPA}\n"
+                          "harga jual : ${this.pembiayaan.hargaJual}\n"
+                          "angsuran : ${this.pembiayaan.angsuran}\n"
+                          "thp gaji terakhir : ${this.pembiayaan.tHPGajiTerakhir}\n"
+                          "cash ratio : ${this.pembiayaan.cashRatio}\n"
+                          "ktp : ${this.pembiayaan.ktpFile.path}\n"
+                          "ktp pasangan : ${this.pembiayaan.ktpPasanganFile.path}\n"
+                          "kk : ${this.pembiayaan.kartuKeluargaFile.path}\n"
+                          "slip gaji #1 : ${this.pembiayaan.slipGaji1File.path}\n"
+                          "slip gaji #2 : ${this.pembiayaan.slipGaji2File.path}\n"
+                          "slip gaji #3 : ${this.pembiayaan.slipGaji3File.path}\n"
+                      );
+                      showDialog<String>(
+                        barrierDismissible: false,
+                        context: context,
+                        builder: (BuildContext context) =>
+                          ConfirmationDialog(context, this.pembiayaan)
+                      );
+                    } else {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        FailedInformation(context, "Data masih belum terisi semua, silakan periksa kembali")
+                      );
                     }
                   },
                   style: ElevatedButton.styleFrom(

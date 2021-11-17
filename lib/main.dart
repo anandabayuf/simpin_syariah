@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         fontFamily: 'Comfortaa'
       ),
-      initialRoute: '/simpanan/riwayat',
+      initialRoute: '/pembiayaan/riwayat',
       routes: {
         '/login': (context) => LoginScreen(),
         '/lupa-password': (context) => InputEmailScreen(),
