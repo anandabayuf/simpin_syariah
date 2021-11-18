@@ -15,7 +15,7 @@ class Investasi{
   late String pengembalian;
 
   late int nisbahInvestor;
-  late int equivalentRate;
+  late double equivalentRate;
   late int pajak;
 
   Investasi(
@@ -24,6 +24,8 @@ class Investasi{
     this.jangkaWaktu, this.tanggalMulai, this.tanggalAkhir, this.pengembalian,
     this.nisbahInvestor, this.equivalentRate, this.pajak
   );
+
+  Investasi.emptyConstructor();
 
   List<Investasi> getDataInvestasi(){
     return [
