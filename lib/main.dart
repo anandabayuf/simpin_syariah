@@ -4,6 +4,7 @@ import 'package:project_simpin_syariah/views/forgetpassword/screens/EmailVerific
 import 'package:project_simpin_syariah/views/forgetpassword/screens/InputEmailScreen.dart';
 import 'package:project_simpin_syariah/views/forgetpassword/screens/MakeNewPassScreen.dart';
 import 'package:project_simpin_syariah/views/home/screen/HomeScreen.dart';
+import 'package:project_simpin_syariah/views/investasi/screens/RiwayatInvestasiScreen.dart';
 import 'package:project_simpin_syariah/views/login/screen/LoginScreen.dart';
 import 'package:project_simpin_syariah/views/pembiayaan/screens/DetailRiwayatPembiayaanScreen.dart';
 import 'package:project_simpin_syariah/views/pembiayaan/screens/RiwayatPembiayaanScreen.dart';
@@ -22,7 +23,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         fontFamily: 'Comfortaa'
       ),
-      initialRoute: '/pembiayaan/riwayat',
+      initialRoute: '/investasi/riwayat',
       routes: {
         '/login': (context) => LoginScreen(),
         '/lupa-password': (context) => InputEmailScreen(),
@@ -33,6 +34,7 @@ class MyApp extends StatelessWidget {
         '/profile': (context) => ProfileScreen(),
         '/pembiayaan/riwayat': (context) => RiwayatPembiayaanScreen(),
         '/simpanan/riwayat': (context) => RiwayatSimpananScreen(),
+        '/investasi/riwayat': (context) => RiwayatInvestasiScreen(),
       },
     );
   }
