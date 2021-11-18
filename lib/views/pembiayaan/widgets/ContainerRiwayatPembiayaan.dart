@@ -4,6 +4,7 @@ import 'package:hexcolor/hexcolor.dart';
 import 'package:project_simpin_syariah/models/pembiayaan/RiwayatPembiayaan.dart';
 import 'package:project_simpin_syariah/views/customwidgets/CustomText.dart';
 import 'package:intl/intl.dart';
+import 'package:project_simpin_syariah/views/pembiayaan/screens/DetailRiwayatPembiayaanScreen.dart';
 
 class ContainerRiwayatPembiayaan extends StatefulWidget{
   @override
@@ -35,6 +36,11 @@ class _ContainerRiwayatPembiayaanState extends State<ContainerRiwayatPembiayaan>
           child: InkWell(
             onTap: (){
               print("card ${index}");
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) =>
+                      DetailRiwayatPembiayaanScreen(idRiwayatPembiayaan: index))
+              );
             },
             child: Card(
               color: Colors.white.withOpacity(0.5),
@@ -85,13 +91,13 @@ class _ContainerRiwayatPembiayaanState extends State<ContainerRiwayatPembiayaan>
                       alignment: Alignment.centerLeft,
                       child: Container(
                         height: 30.0,
-                        width: item[index].statusPembiayaan == "Lunas" ? 75 : 130,
+                        width: 75,
                         child: Card(
                           elevation: 5.0,
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(12.0),
                           ),
-                          color: item[index].statusPembiayaan == "Lunas" ? HexColor("#00C851") : HexColor("#FFBB33"),
+                          color: item[index].statusPembiayaan == "Lunas" ? HexColor("#00C851") : Colors.orange,
                           child: Align(
                             child: CustomText("${item[index].statusPembiayaan}", 15.0, false),
                             alignment: Alignment.center,
@@ -106,6 +112,11 @@ class _ContainerRiwayatPembiayaanState extends State<ContainerRiwayatPembiayaan>
                         child: InkWell(
                           onTap: (){
                             print("lihat Detail ${index}");
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(builder: (context) =>
+                                    DetailRiwayatPembiayaanScreen(idRiwayatPembiayaan: index))
+                            );
                           },
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.end,

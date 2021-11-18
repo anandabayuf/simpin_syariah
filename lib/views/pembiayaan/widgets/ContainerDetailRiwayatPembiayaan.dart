@@ -1,26 +1,33 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:hexcolor/hexcolor.dart';
 import 'package:project_simpin_syariah/models/pembiayaan/DetailRiwayatPembiayaan.dart';
+import 'package:project_simpin_syariah/models/pembiayaan/RiwayatPembiayaan.dart';
 import 'package:project_simpin_syariah/views/customwidgets/CustomText.dart';
 import 'package:intl/intl.dart';
 import 'package:intl/date_symbol_data_local.dart';
 
 class ContainerDetailRiwayatPembiayaan extends StatefulWidget{
+  final int idRiwayatPembiayaan;
+
+  ContainerDetailRiwayatPembiayaan({Key? key, required this.idRiwayatPembiayaan}) : super(key: key);
+
   @override
-  _ContainerDetailRiwayatPembiayaanState createState() => _ContainerDetailRiwayatPembiayaanState();
+  _ContainerDetailRiwayatPembiayaanState createState() => _ContainerDetailRiwayatPembiayaanState(this.idRiwayatPembiayaan);
 }
 
 class _ContainerDetailRiwayatPembiayaanState extends State<ContainerDetailRiwayatPembiayaan> {
   late DetailRiwayatPembiayaan datas;
   late List<DetailRiwayatPembiayaan> listDatas;
   late DateFormat dateFormat;
+  final int idRiwayatPembiayaan;
+
+  _ContainerDetailRiwayatPembiayaanState(this.idRiwayatPembiayaan);
 
   @override
   void initState() {
     super.initState();
-    datas = DetailRiwayatPembiayaan(0, 0, "", "", "", DateTime.now(), 0, 0);
-    this.listDatas = datas.getDataDetailRiwayatPembiayaan();
+    datas = DetailRiwayatPembiayaan(0, new RiwayatPembiayaan(0, 0, "", "", ""), DateTime.now(), 0, 0);
+    this.listDatas = datas.getDataDetailRiwayatPembiayaan(this.idRiwayatPembiayaan);
     initializeDateFormatting();
     dateFormat = new DateFormat.yMMMMd('id');
   }
@@ -57,7 +64,7 @@ class _ContainerDetailRiwayatPembiayaanState extends State<ContainerDetailRiwaya
                     SizedBox(height: 5.0,),
                     Align(
                       alignment: Alignment.centerLeft,
-                      child: CustomText("${formatCurrency.format(item[index].nilaiPembiayaan)}", 15.0, false),
+                      child: CustomText("${formatCurrency.format(item[index].riwayatPembiayaan.nilaiPembiayaan)}", 15.0, false),
                     ),
                     SizedBox(height: 15.0,),
                     Align(
@@ -67,7 +74,7 @@ class _ContainerDetailRiwayatPembiayaanState extends State<ContainerDetailRiwaya
                     SizedBox(height: 5.0,),
                     Align(
                       alignment: Alignment.centerLeft,
-                      child: CustomText("${item[index].tujuanPembiayaan}", 15.0, false),
+                      child: CustomText("${item[index].riwayatPembiayaan.tujuanPembiayaan}", 15.0, false),
                     ),
                     SizedBox(height: 15.0,),
                     Align(
@@ -77,41 +84,17 @@ class _ContainerDetailRiwayatPembiayaanState extends State<ContainerDetailRiwaya
                     SizedBox(height: 5.0,),
                     Align(
                       alignment: Alignment.centerLeft,
-                      child: CustomText("${item[index].jenisAkad}", 15.0, false),
+                      child: CustomText("${item[index].riwayatPembiayaan.jenisAkad}", 15.0, false),
                     ),
                     SizedBox(height: 15.0,),
                     Align(
                       alignment: Alignment.centerLeft,
-                      child: CustomText("Status Pembiayaan", 15.0, true),
+                      child: CustomText("Tanggal Jatuh Tempo", 15.0, true),
                     ),
                     SizedBox(height: 5.0,),
                     Align(
                       alignment: Alignment.centerLeft,
-                      child: Container(
-                        height: 30.0,
-                        width: item[index].statusPembiayaan == "Lunas" ? 75 : 130,
-                        child: Card(
-                          elevation: 5.0,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(12.0),
-                          ),
-                          color: item[index].statusPembiayaan == "Lunas" ? HexColor("#00C851") : HexColor("#FFBB33"),
-                          child: Align(
-                            child: CustomText("${item[index].statusPembiayaan}", 15.0, false),
-                            alignment: Alignment.center,
-                          ),
-                        ),
-                      ),
-                    ),
-                    SizedBox(height: 15.0,),
-                    Align(
-                      alignment: Alignment.centerLeft,
-                      child: CustomText("Tanggal Pembayaran", 15.0, true),
-                    ),
-                    SizedBox(height: 5.0,),
-                    Align(
-                      alignment: Alignment.centerLeft,
-                      child: CustomText("${dateFormat.format(item[index].tanggalPembayaran)}", 15.0, false),
+                      child: CustomText("${dateFormat.format(item[index].tanggalJatuhTempo)}", 15.0, false),
                     ),
                     SizedBox(height: 15.0,),
                     Align(

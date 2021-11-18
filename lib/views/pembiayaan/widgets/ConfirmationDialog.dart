@@ -60,7 +60,11 @@ class ConfirmationDialog extends AlertDialog {
               ),
             ),
             onPressed: () {
+              //cuma dummy check
               if(pembiayaan.nilaiPPA != 0){
+                //data pembiayaan masuk ke backend
+
+                //...
                 Navigator.popUntil(context, ModalRoute.withName('/pembiayaan/riwayat'));
                 ScaffoldMessenger.of(context).showSnackBar(
                     SuccessInformation(context, 'Pembiayaan berhasil diajukan')

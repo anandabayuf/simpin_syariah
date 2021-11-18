@@ -32,7 +32,6 @@ class MyApp extends StatelessWidget {
         '/versi': (context) => AppVersionScreen(),
         '/profile': (context) => ProfileScreen(),
         '/pembiayaan/riwayat': (context) => RiwayatPembiayaanScreen(),
-        '/pembiayaan/riwayat/detail': (context) => DetailRiwayatPembiayaanScreen(),
         '/simpanan/riwayat': (context) => RiwayatSimpananScreen(),
       },
     );

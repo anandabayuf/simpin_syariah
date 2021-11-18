@@ -17,10 +17,14 @@ class RiwayatPembiayaan{
   List<RiwayatPembiayaan> getDataRiwayatPembiayaan(){
     return [
       new RiwayatPembiayaan(0, 200000000, "Peruntukkan XXX", "Mudharabah", "Lunas"),
-      new RiwayatPembiayaan(1, 100000000, "Peruntukkan XXX", "Mudharabah", "Belum Lunas"),
-      new RiwayatPembiayaan(2, 300000000, "Peruntukkan XXX", "Mudharabah", "Belum Lunas"),
+      new RiwayatPembiayaan(1, 100000000, "Peruntukkan XXX", "Mudharabah", "Aktif"),
+      new RiwayatPembiayaan(2, 300000000, "Peruntukkan XXX", "Mudharabah", "Aktif"),
       new RiwayatPembiayaan(3, 500000000, "Peruntukkan XXX", "Mudharabah", "Lunas"),
-      new RiwayatPembiayaan(4, 800000000, "Peruntukkan XXX", "Mudharabah", "Belum Lunas"),
+      new RiwayatPembiayaan(4, 800000000, "Peruntukkan XXX", "Mudharabah", "Aktif"),
     ];
+  }
+
+  RiwayatPembiayaan getRiwayatPembiayaan(int id){
+    return this.getDataRiwayatPembiayaan().elementAt(id);
   }
 }

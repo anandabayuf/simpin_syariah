@@ -9,6 +9,10 @@ import 'package:project_simpin_syariah/views/customwidgets/ProfileButton.dart';
 import 'package:project_simpin_syariah/views/pembiayaan/widgets/ContainerDetailRiwayatPembiayaan.dart';
 
 class DetailRiwayatPembiayaanScreen extends StatelessWidget{
+  final int idRiwayatPembiayaan;
+
+  DetailRiwayatPembiayaanScreen({Key? key, required this.idRiwayatPembiayaan}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     Size screenSize = MediaQuery.of(context).size;
@@ -43,7 +47,7 @@ class DetailRiwayatPembiayaanScreen extends StatelessWidget{
                     alignment: Alignment.centerLeft,
                   ),
                   SizedBox(height: 10.0,),
-                  ContainerDetailRiwayatPembiayaan()
+                  ContainerDetailRiwayatPembiayaan(idRiwayatPembiayaan: this.idRiwayatPembiayaan,)
                 ],
               ),
             ),
