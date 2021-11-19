@@ -154,12 +154,12 @@ class _FormLoginState extends State<FormLogin> {
                     //check code
                     if(this._email.text == this.staticEmail) {
                       if(this._password.text != this.staticPassword){
-                        Scaffold.of(context).showSnackBar(
+                        ScaffoldMessenger.of(context).showSnackBar(
                             FailedInformation(context, 'Password yang anda masukkan salah')
                         );
                       }
                     } else {
-                      Scaffold.of(context).showSnackBar(
+                      ScaffoldMessenger.of(context).showSnackBar(
                           FailedInformation(context, 'Akun dengan email tersebut belum terdaftar')
                       );
                     }
@@ -203,12 +203,12 @@ class _FormLoginState extends State<FormLogin> {
                       //check code
                       if(this._email.text == this.staticEmail) {
                         if(this._password.text != this.staticPassword){
-                          Scaffold.of(context).showSnackBar(
+                          ScaffoldMessenger.of(context).showSnackBar(
                               FailedInformation(context, 'Password yang anda masukkan salah')
                           );
                         }
                       } else {
-                        Scaffold.of(context).showSnackBar(
+                        ScaffoldMessenger.of(context).showSnackBar(
                           FailedInformation(context, 'Akun dengan email tersebut belum terdaftar')
                         );
                       }

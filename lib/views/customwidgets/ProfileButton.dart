@@ -101,7 +101,7 @@ class _ProfileButtonState extends State<ProfileButton> {
               SizedBox(width: 5.0,),
               Flexible(
                 child: Text(
-                  'Ananda Bayu Fauzan',
+                  'Andini',
                   overflow: TextOverflow.ellipsis,
                   style: TextStyle(
                     fontSize: 15.0,
@@ -127,8 +127,20 @@ class _ProfileButtonState extends State<ProfileButton> {
   }
 
   void onSelected(BuildContext context, int item) {
-    setState(() {
-      this._isButtonClicked = !this._isButtonClicked;
-    });
+    print(item);
+    switch(item){
+      case 0 : //screen profile saya
+        Navigator.pushNamed(context, "/profile");
+        break;
+      case 1 : //versi aplikasi
+        Navigator.pushNamed(context, "/versi");
+        break;
+      case 2 : //logout
+        //logic logout
+        //...
+
+        Navigator.pushNamed(context, "/login");
+        break;
+    }
   }
 }

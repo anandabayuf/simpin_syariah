@@ -97,7 +97,7 @@ class _FormInputEmailState extends State<FormInputEmail> {
                           '/verifikasi-email'
                       );
                     } else {
-                      Scaffold.of(context).showSnackBar(
+                      ScaffoldMessenger.of(context).showSnackBar(
                         FailedInformation(context, 'Akun dengan email tersebut belum terdaftar')
                       );
                     }
@@ -144,7 +144,7 @@ class _FormInputEmailState extends State<FormInputEmail> {
                             '/verifikasi-email'
                         );
                       } else {
-                        Scaffold.of(context).showSnackBar(
+                        ScaffoldMessenger.of(context).showSnackBar(
                             FailedInformation(context, 'Akun dengan email tersebut belum terdaftar')
                         );
                       }

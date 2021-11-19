@@ -276,7 +276,7 @@ class _FormCodeVerificationState extends State<FormCodeVerification> {
                                 '/buat-password-baru'
                             );
                           } else {
-                            Scaffold.of(context).showSnackBar(
+                            ScaffoldMessenger.of(context).showSnackBar(
                               FailedInformation(context, 'Maaf kode yang anda masukkan tidak sesuai')
                             );
                           }

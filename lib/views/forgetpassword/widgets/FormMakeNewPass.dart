@@ -183,15 +183,16 @@ class _FormMakeNewPassState extends State<FormMakeNewPass> {
                         setState(() {
                           this._isButtonClicked = false;
                         });
-                        Scaffold.of(context).showSnackBar(
-                          SuccessInformation(context, 'Password berhasil diubah')
+                        Navigator.of(context).pushReplacementNamed(
+                            '/login'
+                        );
+                        ScaffoldMessenger.of(context).showSnackBar(
+                            SuccessInformation(context, 'Password berhasil diubah')
                         );
                       }
                     );
 
-                    // Navigator.of(context).pushReplacementNamed(
-                    //     '/login'
-                    // );
+
                   }
                 },
                 child: CustomText('Atur Ulang Password', 15.0, false)
