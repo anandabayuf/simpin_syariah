@@ -9,8 +9,6 @@ class ButtonBack extends StatelessWidget{
         print("back");
         Navigator.of(context).pop();
       },
-      padding: EdgeInsets.zero,
-      constraints: BoxConstraints(),
       icon: Icon(
         Icons.arrow_back_rounded,
         size: 32.0,
