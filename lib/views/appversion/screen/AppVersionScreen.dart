@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:project_simpin_syariah/views/customwidgets/BottomNav.dart';
+import 'package:project_simpin_syariah/views/customwidgets/ButtonBack.dart';
 import 'package:project_simpin_syariah/views/customwidgets/CustomText.dart';
 import 'package:project_simpin_syariah/views/customwidgets/ProfileButton.dart';
 
@@ -27,8 +28,8 @@ class AppVersionScreen extends StatelessWidget{
               child: Column(
                 children: [
                   Align(
-                    child: ProfileButton(),
-                    alignment: Alignment.centerRight,
+                    child: ButtonBack(),
+                    alignment: Alignment.centerLeft,
                   ),
                   Container(
                     height: screenSize.height - 200,
@@ -58,7 +59,6 @@ class AppVersionScreen extends StatelessWidget{
           ),
         ),
       ),
-      bottomNavigationBar: BottomNav(),
     );
   }
 }

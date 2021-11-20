@@ -6,7 +6,6 @@ import 'package:image_picker/image_picker.dart';
 import 'package:project_simpin_syariah/models/pembiayaan/Pembiayaan.dart';
 import 'package:project_simpin_syariah/views/customwidgets/BottomNav.dart';
 import 'package:project_simpin_syariah/views/customwidgets/CustomText.dart';
-import 'package:project_simpin_syariah/views/customwidgets/ProfileButton.dart';
 import 'package:project_simpin_syariah/views/pembiayaan/screens/AjukanPembiayaanScreen1.dart';
 import 'package:project_simpin_syariah/views/pembiayaan/widgets/ContainerRiwayatPembiayaan.dart';
 
@@ -29,11 +28,6 @@ class RiwayatPembiayaanScreen extends StatelessWidget{
               padding: EdgeInsets.all(20.0),
               child: Column(
                 children: [
-                  Align(
-                    child: ProfileButton(),
-                    alignment: Alignment.centerRight,
-                  ),
-                  SizedBox(height: 10.0,),
                   Align(
                     child: CustomText('Riwayat Pembiayaan', 24.0, false),
                     alignment: Alignment.centerLeft,

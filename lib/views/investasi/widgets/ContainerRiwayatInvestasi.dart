@@ -176,6 +176,7 @@ class _ContainerRiwayatInvestasiState extends State<ContainerRiwayatInvestasi> {
             );
           },
         ),
+        SizedBox(height: 60.0,)
       ],
     ) : CustomText("Belum ada riwayat Investasi", 15.0, true);
   }

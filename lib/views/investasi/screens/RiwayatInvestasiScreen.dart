@@ -5,7 +5,6 @@ import 'package:hexcolor/hexcolor.dart';
 import 'package:project_simpin_syariah/models/investasi/Investasi.dart';
 import 'package:project_simpin_syariah/views/customwidgets/BottomNav.dart';
 import 'package:project_simpin_syariah/views/customwidgets/CustomText.dart';
-import 'package:project_simpin_syariah/views/customwidgets/ProfileButton.dart';
 import 'package:project_simpin_syariah/views/investasi/screens/AjukanInvestasiScreen1.dart';
 import 'package:project_simpin_syariah/views/investasi/widgets/ContainerRiwayatInvestasi.dart';
 
@@ -29,15 +28,9 @@ class RiwayatInvestasiScreen extends StatelessWidget{
               child: Column(
                 children: [
                   Align(
-                    child: ProfileButton(),
-                    alignment: Alignment.centerRight,
-                  ),
-                  SizedBox(height: 10.0,),
-                  Align(
                     child: CustomText('Riwayat Investasi', 24.0, false),
                     alignment: Alignment.centerLeft,
                   ),
-                  SizedBox(height: 10.0,),
                   ContainerRiwayatInvestasi()
                 ],
               ),

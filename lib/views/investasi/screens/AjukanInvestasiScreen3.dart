@@ -5,7 +5,6 @@ import 'package:hexcolor/hexcolor.dart';
 import 'package:project_simpin_syariah/models/investasi/Investasi.dart';
 import 'package:project_simpin_syariah/views/customwidgets/BottomNav.dart';
 import 'package:project_simpin_syariah/views/customwidgets/CustomText.dart';
-import 'package:project_simpin_syariah/views/customwidgets/ProfileButton.dart';
 import 'package:project_simpin_syariah/views/investasi/widgets/FormInvestasi3.dart';
 
 class AjukanInvestasiScreen3 extends StatelessWidget{
@@ -35,15 +34,10 @@ class AjukanInvestasiScreen3 extends StatelessWidget{
               child: Column(
                 children: [
                   Align(
-                    child: ProfileButton(),
-                    alignment: Alignment.centerRight,
-                  ),
-                  SizedBox(height: 10.0,),
-                  Align(
                     child: CustomText('Form Investasi', 24.0, false),
-                    alignment: Alignment.centerLeft,
+                    alignment: Alignment.center,
                   ),
-                  SizedBox(height: 20.0,),
+                  SizedBox(height: 30.0,),
                   FormInvestasi3(investasi: this.investasi, formKeyScreen1: this.formKeyScreen1, formKeyScreen2: this.formKeyScreen2,),
                 ],
               ),

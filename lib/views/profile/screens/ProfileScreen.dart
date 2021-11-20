@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:project_simpin_syariah/views/customwidgets/BottomNav.dart';
 import 'package:project_simpin_syariah/views/customwidgets/ButtonText.dart';
-import 'package:project_simpin_syariah/views/customwidgets/ProfileButton.dart';
 
 class ProfileScreen extends StatefulWidget{
   @override
@@ -40,13 +39,36 @@ class _ProfileScreenState extends State<ProfileScreen>{
               padding: EdgeInsets.all(20.0),
               child: Column(
                 children: [
-                  Align(
-                    child: ProfileButton(),
-                    alignment: Alignment.centerRight,
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      IconButton(
+                        onPressed: () {
+                          print("versi");
+                          Navigator.of(context).pushNamed("/versi");
+                        },
+                        icon: Icon(
+                          Icons.info_outline,
+                          size: 32.0,
+                          color: Colors.white,
+                        )
+                      ),
+                      IconButton(
+                          onPressed: () {
+                            print("logout");
+                          },
+                          icon: Icon(
+                            Icons.logout_rounded,
+                            size: 32.0,
+                            color: Colors.red,
+                          )
+                      ),
+                    ],
                   ),
+                  SizedBox(height: 15.0,),
                   Card(
                     child: CircleAvatar(
-                      backgroundImage: AssetImage('assets/images/appbar/ava-mock.png'),
+                      backgroundImage: AssetImage('assets/images/appbar/profilepict.png'),
                       radius: 100.0,
                       backgroundColor: Colors.transparent,
                     ),

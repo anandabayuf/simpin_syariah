@@ -6,7 +6,6 @@ import 'package:project_simpin_syariah/models/simpanan/Simpanan.dart';
 import 'package:project_simpin_syariah/views/customwidgets/BottomNav.dart';
 import 'package:project_simpin_syariah/views/customwidgets/ButtonBack.dart';
 import 'package:project_simpin_syariah/views/customwidgets/CustomText.dart';
-import 'package:project_simpin_syariah/views/customwidgets/ProfileButton.dart';
 import 'package:project_simpin_syariah/views/simpanan/widgets/FormSimpanan.dart';
 
 class TambahSimpananScreen extends StatelessWidget{
@@ -20,6 +19,13 @@ class TambahSimpananScreen extends StatelessWidget{
 
     return Scaffold(
       extendBody: true,
+      appBar: AppBar(
+        leading: ButtonBack(),
+        title: CustomText('Form Simpanan', 24.0, false),
+        centerTitle: true,
+        elevation: 0,
+        backgroundColor: HexColor("#50AEA7"),
+      ),
       body: ColorfulSafeArea(
         color: HexColor("#50AEA7"),
         child: Container(
@@ -30,27 +36,7 @@ class TambahSimpananScreen extends StatelessWidget{
             physics: AlwaysScrollableScrollPhysics(),
             child: Container(
               padding: EdgeInsets.all(20.0),
-              child: Column(
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      ButtonBack(),
-                      Align(
-                        child: ProfileButton(),
-                        alignment: Alignment.centerRight,
-                      ),
-                    ],
-                  ),
-                  SizedBox(height: 10.0,),
-                  Align(
-                    child: CustomText('Form Simpanan', 24.0, false),
-                    alignment: Alignment.centerLeft,
-                  ),
-                  SizedBox(height: 20.0,),
-                  FormSimpanan(simpanan: simpanan),
-                ],
-              ),
+              child: FormSimpanan(simpanan: simpanan),
             ),
           ),
         ),

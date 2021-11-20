@@ -183,6 +183,7 @@ class _ContainerRiwayatSimpananState extends State<ContainerRiwayatSimpanan> {
             );
           },
         ),
+        SizedBox(height: 60.0,)
       ],
     ) : CustomText("Belum ada riwayat Simpanan", 15.0, true);
   }

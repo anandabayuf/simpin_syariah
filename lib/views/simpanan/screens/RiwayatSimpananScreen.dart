@@ -5,7 +5,6 @@ import 'package:hexcolor/hexcolor.dart';
 import 'package:project_simpin_syariah/models/simpanan/Simpanan.dart';
 import 'package:project_simpin_syariah/views/customwidgets/BottomNav.dart';
 import 'package:project_simpin_syariah/views/customwidgets/CustomText.dart';
-import 'package:project_simpin_syariah/views/customwidgets/ProfileButton.dart';
 import 'package:project_simpin_syariah/views/simpanan/screens/TambahSimpananScreen.dart';
 import 'package:project_simpin_syariah/views/simpanan/widgets/ContainerRiwayatSimpanan.dart';
 
@@ -28,11 +27,6 @@ class RiwayatSimpananScreen extends StatelessWidget{
               padding: EdgeInsets.all(20.0),
               child: Column(
                 children: [
-                  Align(
-                    child: ProfileButton(),
-                    alignment: Alignment.centerRight,
-                  ),
-                  SizedBox(height: 10.0,),
                   Align(
                     child: CustomText('Riwayat Simpanan', 24.0, false),
                     alignment: Alignment.centerLeft,

@@ -5,7 +5,6 @@ import 'package:hexcolor/hexcolor.dart';
 import 'package:project_simpin_syariah/models/pembiayaan/Pembiayaan.dart';
 import 'package:project_simpin_syariah/views/customwidgets/BottomNav.dart';
 import 'package:project_simpin_syariah/views/customwidgets/CustomText.dart';
-import 'package:project_simpin_syariah/views/customwidgets/ProfileButton.dart';
 import 'package:project_simpin_syariah/views/pembiayaan/widgets/FormPembiayaan2.dart';
 
 class AjukanPembiayaanScreen2 extends StatelessWidget{
@@ -33,15 +32,10 @@ class AjukanPembiayaanScreen2 extends StatelessWidget{
               child: Column(
                 children: [
                   Align(
-                    child: ProfileButton(),
-                    alignment: Alignment.centerRight,
-                  ),
-                  SizedBox(height: 10.0,),
-                  Align(
                     child: CustomText('Form Pembiayaan', 24.0, false),
-                    alignment: Alignment.centerLeft,
+                    alignment: Alignment.center,
                   ),
-                  SizedBox(height: 20.0,),
+                  SizedBox(height: 30.0,),
                   FormPembiayaan2(pembiayaan: pembiayaan, formKeyScreen1: this.formKeyScreen1,)
                 ],
               ),
