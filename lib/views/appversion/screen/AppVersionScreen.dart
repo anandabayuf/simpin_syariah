@@ -2,10 +2,8 @@ import 'package:colorful_safe_area/colorful_safe_area.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
-import 'package:project_simpin_syariah/views/customwidgets/BottomNav.dart';
 import 'package:project_simpin_syariah/views/customwidgets/ButtonBack.dart';
 import 'package:project_simpin_syariah/views/customwidgets/CustomText.dart';
-import 'package:project_simpin_syariah/views/customwidgets/ProfileButton.dart';
 
 class AppVersionScreen extends StatelessWidget{
   final double appVer = 2.1;
