@@ -16,7 +16,7 @@ class ContainerTitle extends StatelessWidget{
               width: 40.0,
             ),
             color: Colors.transparent,
-            elevation: 18.0,
+            elevation: 10.0,
             shape: CircleBorder(),
           ),
           SizedBox(width: 10.0,),
