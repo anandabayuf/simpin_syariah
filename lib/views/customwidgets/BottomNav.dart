@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:hexcolor/hexcolor.dart';
+import 'package:project_simpin_syariah/models/user/User.dart';
 import 'package:project_simpin_syariah/views/customwidgets/CustomText.dart';
 
 
@@ -12,6 +13,8 @@ class BottomNav extends StatefulWidget{
 
 class _BottomNavState extends State<BottomNav> {
   late int index;
+
+  final User user = User.emptyConstructor().getDummyUser();
 
   @override
   void initState() {
@@ -121,13 +124,17 @@ class _BottomNavState extends State<BottomNav> {
               )
             ),
             BottomNavigationBarItem(
-                icon: CircleAvatar(
+                icon: this.user.profileURL != "" ? CircleAvatar(
                   backgroundImage: AssetImage('assets/images/appbar/profilepict.png'),
                   radius: 20.0,
                   backgroundColor: Colors.transparent,
+                ) : Icon(
+                  Icons.account_circle_outlined,
+                  color: Colors.white.withOpacity(0.5),
+                  size: 30.0,
                 ),
                 title: CustomText('', 12.0, true),
-                activeIcon: CircleAvatar(
+                activeIcon: this.user.profileURL != "" ? CircleAvatar(
                   backgroundColor: Colors.white.withOpacity(0.5),
                   child: CircleAvatar(
                     backgroundImage: AssetImage('assets/images/appbar/profilepict.png'),
@@ -135,7 +142,15 @@ class _BottomNavState extends State<BottomNav> {
                     backgroundColor: Colors.transparent,
                   ),
                   radius: 25.0,
-                )
+                ) : CircleAvatar(
+                  backgroundColor: Colors.white.withOpacity(0.5),
+                  child: Icon(
+                    Icons.account_circle_outlined,
+                    color: Colors.white,
+                    size: 30.0,
+                  ),
+                  radius: 25.0,
+                ),
             ),
           ],
         ),
