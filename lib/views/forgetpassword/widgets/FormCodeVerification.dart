@@ -291,7 +291,7 @@ class _FormCodeVerificationState extends State<FormCodeVerification> {
           _isButtonClicked ?  CircularProgressIndicator(
             color: HexColor('#F8B50F'),
           ) : Container(
-            width: 244,
+            width: screenSize.width,
             height: 39,
             child: ElevatedButton(
               style: ElevatedButton.styleFrom(
@@ -335,7 +335,7 @@ class _FormCodeVerificationState extends State<FormCodeVerification> {
                   }
                 );
               },
-              child: CustomText('Verifikasi', 15.0, false)
+              child: CustomText('VERIFIKASI', 15.0, false)
             ),
           ),
         ],

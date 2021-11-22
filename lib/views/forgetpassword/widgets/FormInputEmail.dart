@@ -110,7 +110,7 @@ class _FormInputEmailState extends State<FormInputEmail> {
           _isButtonClicked ?  CircularProgressIndicator(
             color: HexColor('#F8B50F'),
           ) : Container(
-            width: 244,
+            width: screenSize.width,
             height: 39,
             child: ElevatedButton(
               style: ElevatedButton.styleFrom(
@@ -152,7 +152,7 @@ class _FormInputEmailState extends State<FormInputEmail> {
                   );
                 }
               },
-              child: CustomText('Kirim Kode Verifikasi', 15.0, false)
+              child: CustomText('KIRIM KODE VERIFIKASI', 15.0, false)
             ),
           ),
         ],

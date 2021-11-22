@@ -156,7 +156,7 @@ class _FormMakeNewPassState extends State<FormMakeNewPass> {
           _isButtonClicked ?  CircularProgressIndicator(
             color: HexColor('#F8B50F'),
           ) : Container(
-            width: 244,
+            width: screenSize.width,
             height: 39,
             child: ElevatedButton(
                 style: ElevatedButton.styleFrom(
@@ -195,7 +195,7 @@ class _FormMakeNewPassState extends State<FormMakeNewPass> {
 
                   }
                 },
-                child: CustomText('Atur Ulang Password', 15.0, false)
+                child: CustomText('ATUR ULANG PASSWORD', 15.0, false)
             ),
           ),
         ],

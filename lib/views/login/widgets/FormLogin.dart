@@ -172,7 +172,7 @@ class _FormLoginState extends State<FormLogin> {
           _isButtonClicked ? CircularProgressIndicator(
             color: HexColor('#F8B50F'),
           ) : Container(
-            width: 186,
+            width: screenSize.width ,
             height: 39,
             child: ElevatedButton(
               style: ElevatedButton.styleFrom(
@@ -216,7 +216,7 @@ class _FormLoginState extends State<FormLogin> {
                   );
                 }
               },
-              child: CustomText('Login', 15.0, false)
+              child: CustomText('LOGIN', 15.0, false)
             ),
           ),
         ],
