@@ -37,6 +37,8 @@ dependencies:
   dotted_border: ^2.0.0+1
   image_picker: ^0.8.4+4
   filter_list: ^1.0.0
+  badges: ^2.0.1
+  carousel_slider: ^4.0.0
 
 dev_dependencies:
   intl: any
