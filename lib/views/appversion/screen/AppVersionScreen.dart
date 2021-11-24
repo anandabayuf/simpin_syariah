@@ -47,7 +47,7 @@ class AppVersionScreen extends StatelessWidget{
                         SizedBox(height: 30.0,),
                         CustomText('Simpin Syariah', 24.0, false),
                         SizedBox(height: 10.0,),
-                        CustomText('Versi ${appVer}', 15.0, true),
+                        CustomText('Versi $appVer', 15.0, true),
                       ],
                     ),
                   ),
