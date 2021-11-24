@@ -1,23 +1,34 @@
-import 'package:project_simpin_syariah/models/simpanan/Simpanan.dart';
-
 class RiwayatSimpanan{
-  int id;
-  Simpanan simpanan;
+  late String id;
+  late String jenisSimpanan;
+  late int saldo;
 
-  RiwayatSimpanan(this.id, this.simpanan);
+  RiwayatSimpanan(this.id, this.jenisSimpanan, this.saldo);
+
+  RiwayatSimpanan.emptyConstructor();
+
+  List<String> getDataJenisSimpanan(){
+    return [
+      "Jenis Simpanan - 1",
+      "Jenis Simpanan - 2",
+      "Jenis Simpanan - 3"
+    ];
+  }
 
   List<RiwayatSimpanan> getRiwayatSimpanan(){
     return[
-      new RiwayatSimpanan(0, new Simpanan("Jenis Simpanan - 1", 1000000)),
-      new RiwayatSimpanan(1, new Simpanan("Jenis Simpanan - 2", 5000000)),
-      new RiwayatSimpanan(2, new Simpanan("Jenis Simpanan - 3", 3000000)),
-      new RiwayatSimpanan(3, new Simpanan("Jenis Simpanan - 1", 2000000)),
-      new RiwayatSimpanan(4, new Simpanan("Jenis Simpanan - 2", 10000000))
+      new RiwayatSimpanan("123ABC", "Jenis Simpanan - 1", 1000000),
+      new RiwayatSimpanan("890XYZ", "Jenis Simpanan - 2", 5000000),
+      new RiwayatSimpanan("348JJE", "Jenis Simpanan - 3", 3000000),
     ];
   }
 
   List<RiwayatSimpanan> getEmptyRiwayatSimpanan(){
     return[
     ];
+  }
+
+  RiwayatSimpanan getRiwayatSimpananById(String idRiwayatSimpanan){
+    return this.getRiwayatSimpanan().where((element) => element.id == idRiwayatSimpanan).first;
   }
 }
