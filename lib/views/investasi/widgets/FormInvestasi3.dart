@@ -1,8 +1,9 @@
+import 'dart:io';
+import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:flutter_masked_text2/flutter_masked_text2.dart';
 import 'package:hexcolor/hexcolor.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:project_simpin_syariah/models/investasi/Investasi.dart';
 import 'package:project_simpin_syariah/views/customwidgets/CustomText.dart';
 import 'package:project_simpin_syariah/views/customwidgets/FailedInformation.dart';
@@ -27,35 +28,209 @@ class _FormInvestasi3State extends State<FormInvestasi3> {
   final GlobalKey<FormState> formKeyScreen1;
   final GlobalKey<FormState> formKeyScreen2;
 
-  late MoneyMaskedTextController nisbahInvestor;
-  late MoneyMaskedTextController equivalentRate;
-  late MoneyMaskedTextController pajak;
+  late XFile ktp;
+  late XFile ktpPasangan;
+  late XFile kk;
+  late XFile slipGaji1;
+  late XFile slipGaji2;
+  late XFile slipGaji3;
+  late XFile temp;
+
+  final ImagePicker _picker = ImagePicker();
 
   _FormInvestasi3State(this.investasi, this.formKeyScreen1, this.formKeyScreen2);
 
   @override
   void initState() {
-    this.nisbahInvestor = MoneyMaskedTextController(initialValue: this.investasi.nisbahInvestor.toDouble(), thousandSeparator: '.', leftSymbol: 'Rp ', precision: 0, decimalSeparator: '');
-    this.equivalentRate = MoneyMaskedTextController(initialValue: this.investasi.equivalentRate.toDouble(), precision: 2, decimalSeparator: ',', rightSymbol: '%');
-    this.pajak = MoneyMaskedTextController(initialValue: this.investasi.pajak.toDouble(), thousandSeparator: '.', leftSymbol: 'Rp ', precision: 0, decimalSeparator: '');
+    this.ktp = this.investasi.ktpFile;
+    this.ktpPasangan = this.investasi.ktpPasanganFile;
+    this.kk = this.investasi.kartuKeluargaFile;
+    this.slipGaji1 = this.investasi.slipGaji1File;
+    this.slipGaji2 = this.investasi.slipGaji2File;
+    this.slipGaji3 = this.investasi.slipGaji3File;
+
+    this.temp = XFile('');
 
     super.initState();
   }
 
   @override
   void dispose() {
-    this.nisbahInvestor.dispose();
-    this.equivalentRate.dispose();
-    this.pajak.dispose();
     super.dispose();
   }
 
-  void saveAllDataInvestasi(){
+  void uploadImageKTP() async {
+    // Pick an image
+    final XFile? image = await _picker.pickImage(
+      source: ImageSource.gallery,
+    );
     setState(() {
-      this.investasi.nisbahInvestor = this.nisbahInvestor.numberValue.toInt();
-      this.investasi.equivalentRate = this.equivalentRate.numberValue;
-      this.investasi.pajak = this.pajak.numberValue.toInt();
+      this.ktp = image!;
+      //this.pembiayaan.ktpFile = this.ktp;
     });
+  }
+
+  void uploadImageKTPPasangan() async {
+    // Pick an image
+    final XFile? image = await _picker.pickImage(
+      source: ImageSource.gallery,
+    );
+    setState(() {
+      this.ktpPasangan = image!;
+      //this.pembiayaan.ktpFile = this.ktp;
+    });
+  }
+
+  void uploadImageKartuKeluarga() async {
+    // Pick an image
+    final XFile? image = await _picker.pickImage(
+      source: ImageSource.gallery,
+    );
+    setState(() {
+      this.kk = image!;
+      //this.pembiayaan.ktpFile = this.ktp;
+    });
+  }
+
+  void uploadImageSlipGaji1() async {
+    // Pick an image
+    final XFile? image = await _picker.pickImage(
+      source: ImageSource.gallery,
+    );
+    setState(() {
+      this.slipGaji1 = image!;
+      //this.pembiayaan.ktpFile = this.ktp;
+    });
+  }
+
+  void uploadImageSlipGaji2() async {
+    // Pick an image
+    final XFile? image = await _picker.pickImage(
+      source: ImageSource.gallery,
+    );
+    setState(() {
+      this.slipGaji2 = image!;
+      //this.pembiayaan.ktpFile = this.ktp;
+    });
+  }
+
+  void uploadImageSlipGaji3() async {
+    // Pick an image
+    final XFile? image = await _picker.pickImage(
+      source: ImageSource.gallery,
+    );
+    setState(() {
+      this.slipGaji3 = image!;
+      //this.pembiayaan.ktpFile = this.ktp;
+    });
+  }
+
+  void setPopUpImageKTP(){
+    setState(() {
+      this.temp = this.ktp;
+    });
+  }
+
+  void setPopUpImageKTPPasangan(){
+    setState(() {
+      this.temp = this.ktpPasangan;
+    });
+  }
+
+  void setPopUpImageKartuKeluarga(){
+    setState(() {
+      this.temp = this.kk;
+    });
+  }
+
+  void setPopUpImageSlipGaji1(){
+    setState(() {
+      this.temp = this.slipGaji1;
+    });
+  }
+
+  void setPopUpImageSlipGaji2(){
+    setState(() {
+      this.temp = this.slipGaji2;
+    });
+  }
+
+  void setPopUpImageSlipGaji3(){
+    setState(() {
+      this.temp = this.slipGaji3;
+    });
+  }
+
+  void onClickUploadImage(setState) async {
+    // Pick an image
+    final XFile? image = await _picker.pickImage(
+      source: ImageSource.gallery,
+    );
+    setState(() {
+      this.temp = image!;
+    });
+  }
+
+  void onClickDeleteImage(setState){
+    setState(() {
+      this.temp = XFile('');
+    });
+  }
+
+  void onClickSaveImageKTP(){
+    setState(() {
+      this.ktp = this.temp;
+    });
+  }
+
+  void onClickSaveImageKTPPasangan(){
+    setState(() {
+      this.ktpPasangan = this.temp;
+    });
+  }
+
+  void onClickSaveImageKartuKeluarga(){
+    setState(() {
+      this.kk = this.temp;
+    });
+  }
+
+  void onClickSaveImageSlipGaji1(){
+    setState(() {
+      this.slipGaji1 = this.temp;
+    });
+  }
+
+  void onClickSaveImageSlipGaji2(){
+    setState(() {
+      this.slipGaji2 = this.temp;
+    });
+  }
+
+  void onClickSaveImageSlipGaji3(){
+    setState(() {
+      this.slipGaji3 = this.temp;
+    });
+  }
+
+  void saveAllImage(){
+    setState(() {
+      this.investasi.ktpFile = this.ktp;
+      this.investasi.ktpPasanganFile = this.ktpPasangan ;
+      this.investasi.kartuKeluargaFile = this.kk;
+      this.investasi.slipGaji1File = this.slipGaji1;
+      this.investasi.slipGaji2File = this.slipGaji2;
+      this.investasi.slipGaji3File = this.slipGaji3;
+    });
+  }
+
+  bool isAllImageUploaded(){
+    return this.investasi.ktpFile.path != "" &&
+        this.investasi.ktpPasanganFile.path != "" &&
+        this.investasi.kartuKeluargaFile.path != "" &&
+        this.investasi.slipGaji1File.path != "" &&
+        this.investasi.slipGaji2File.path != "" &&
+        this.investasi.slipGaji3File.path != "";
   }
 
   @override
@@ -66,245 +241,1358 @@ class _FormInvestasi3State extends State<FormInvestasi3> {
       key: this._formKey,
       child: Column(
         children: [
-          Container(
-              width: screenSize.width,
-              child: CustomText('Nisbah Investor', 15.0, false)
-          ),
-          SizedBox(height: 5.0,),
-          TextFormField(
-            controller: this.nisbahInvestor,
-            style: TextStyle(
-                color: Colors.white,
-                fontSize: 15.0,
-                fontFamily: "Comfortaa"
-            ),
-            cursorColor: Colors.white,
-            keyboardType: TextInputType.number,
-            inputFormatters: [WhitelistingTextInputFormatter.digitsOnly],
-            decoration: InputDecoration(
-              focusColor: Colors.white,
-              hintText: 'Masukkan Nisbah Investor',
-              hintStyle: TextStyle(
-                  color: Colors.white.withOpacity(0.5),
-                  fontSize: 15.0,
-                  fontFamily: "Comfortaa"
-              ),
-              enabledBorder: UnderlineInputBorder(
-                borderSide: BorderSide(
-                  color: Colors.white,
-                ),
-              ),
-              focusedBorder: UnderlineInputBorder(
-                borderSide: BorderSide(
-                    color: Colors.white
-                ),
-              ),
-            ),
-            validator: (String? value) {
-              if (value == '' || value!.trim() == '') {
-                return 'Nisbah Investor harus diisi';
-              }
-              return null;
-            },
-          ),
-          SizedBox(height: 15.0,),
-          Container(
-              width: screenSize.width,
-              child: CustomText('Equivalent Rate', 15.0, false)
-          ),
-          SizedBox(height: 5.0,),
-          TextFormField(
-            controller: this.equivalentRate,
-            style: TextStyle(
-                color: Colors.white,
-                fontSize: 15.0,
-                fontFamily: "Comfortaa"
-            ),
-            cursorColor: Colors.white,
-            keyboardType: TextInputType.number,
-            inputFormatters: [WhitelistingTextInputFormatter.digitsOnly],
-            decoration: InputDecoration(
-              focusColor: Colors.white,
-              hintText: 'Masukkan Equivalent Rate',
-              hintStyle: TextStyle(
-                  color: Colors.white.withOpacity(0.5),
-                  fontSize: 15.0,
-                  fontFamily: "Comfortaa"
-              ),
-              enabledBorder: UnderlineInputBorder(
-                borderSide: BorderSide(
-                  color: Colors.white,
-                ),
-              ),
-              focusedBorder: UnderlineInputBorder(
-                borderSide: BorderSide(
-                    color: Colors.white
-                ),
-              ),
-            ),
-            validator: (String? value) {
-              if (value == '' || value!.trim() == '') {
-                return 'Equivalent Rate harus diisi';
-              }
-              return null;
-            },
-          ),
-          SizedBox(height: 15.0,),
-          Container(
-              width: screenSize.width,
-              child: CustomText('Pajak', 15.0, false)
-          ),
-          SizedBox(height: 5.0,),
-          TextFormField(
-            controller: this.pajak,
-            style: TextStyle(
-                color: Colors.white,
-                fontSize: 15.0,
-                fontFamily: "Comfortaa"
-            ),
-            cursorColor: Colors.white,
-            keyboardType: TextInputType.number,
-            inputFormatters: [WhitelistingTextInputFormatter.digitsOnly],
-            decoration: InputDecoration(
-              focusColor: Colors.white,
-              hintText: 'Masukkan Pajak',
-              hintStyle: TextStyle(
-                  color: Colors.white.withOpacity(0.5),
-                  fontSize: 15.0,
-                  fontFamily: "Comfortaa"
-              ),
-              enabledBorder: UnderlineInputBorder(
-                borderSide: BorderSide(
-                  color: Colors.white,
-                ),
-              ),
-              focusedBorder: UnderlineInputBorder(
-                borderSide: BorderSide(
-                    color: Colors.white
-                ),
-              ),
-            ),
-            validator: (String? value) {
-              if (value == '' || value!.trim() == '') {
-                return 'Pajak harus diisi';
-              }
-              return null;
-            },
-          ),
-          SizedBox(height: 20.0,),
           Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Container(
-                width: 156,
-                child: ElevatedButton(
-                  onPressed: (){
-                    this.saveAllDataInvestasi();
-                    //..
-                    Navigator.pop(context);
-                  },
-                  style: ElevatedButton.styleFrom(
-                      elevation: 0,
-                      primary: Colors.transparent,
-                      padding: EdgeInsets.zero
-                  ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      CircleAvatar(
-                        child: Icon(
-                          Icons.arrow_back_rounded,
-                          size: 32.0,
-                          color: Colors.white,
-                        ),
-                        backgroundColor: HexColor("#F8B50F"),
+              Expanded(
+                child: Container(
+                  width: 170,
+                  child: Card(
+                    color: HexColor("#F8B50F"),
+                    elevation: 5.0,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12.0),
+                    ),
+                    child: Container(
+                      padding: EdgeInsets.all(10.0),
+                      child: Column(
+                        children: [
+                          this.ktp.path != '' ? InkWell(
+                              onTap: () {
+                                print("image clicked");
+
+                                this.setPopUpImageKTP();
+
+                                showDialog<String>(
+                                    barrierDismissible: false,
+                                    context: context,
+                                    builder: (BuildContext context) {
+                                      return StatefulBuilder(
+                                        builder: (context, StateSetter setState) {
+                                          return AlertDialog(
+                                            backgroundColor: Colors.white.withOpacity(0.5),
+                                            shape: RoundedRectangleBorder(
+                                              borderRadius: BorderRadius.all(
+                                                  Radius.circular(19.0)
+                                              ),
+                                            ),
+                                            elevation: 5.0,
+                                            title: Column(
+                                              children: [
+                                                CustomText("KTP", 15.0, false),
+                                                SizedBox(height: 10),
+                                                this.temp.path == "" ?
+                                                CustomText("Gambar Belum Di-upload", 15.0, true)
+                                                    : Image.file(
+                                                  File(this.temp.path),
+                                                  width: 315,
+                                                  height: 200,
+                                                ),
+                                                SizedBox(height: 20),
+                                                Container(
+                                                  width: 186,
+                                                  child: ElevatedButton(
+                                                      style: ElevatedButton.styleFrom(
+                                                          elevation: 10.0,
+                                                          primary: HexColor("#F8B50F"),
+                                                          shape: RoundedRectangleBorder(
+                                                              borderRadius: BorderRadius.circular(12.0)
+                                                          )
+                                                      ),
+                                                      onPressed: () {
+                                                        //fungsi unggah
+                                                        this.onClickUploadImage(setState);
+                                                      },
+                                                      child: Row(
+                                                        mainAxisAlignment: MainAxisAlignment.center,
+                                                        children: [
+                                                          Icon(
+                                                            Icons.arrow_circle_up,
+                                                            size: 32.0,
+                                                            color: Colors.white,
+                                                          ),
+                                                          SizedBox(width: 5.0,),
+                                                          CustomText("Unggah", 15.0, false)
+                                                        ],
+                                                      )
+                                                  ),
+                                                ),
+                                                SizedBox(height: 10),
+                                                Container(
+                                                  width: 186,
+                                                  child: ElevatedButton(
+                                                      style: ElevatedButton.styleFrom(
+                                                          elevation: 10.0,
+                                                          primary: HexColor("#FF0000"),
+                                                          shape: RoundedRectangleBorder(
+                                                              borderRadius: BorderRadius.circular(12.0)
+                                                          )
+                                                      ),
+                                                      onPressed: () {
+                                                        //fungsi hapus
+                                                        this.onClickDeleteImage(setState);
+                                                      },
+                                                      child: Row(
+                                                        mainAxisAlignment: MainAxisAlignment.center,
+                                                        children: [
+                                                          Icon(
+                                                            Icons.delete,
+                                                            size: 32.0,
+                                                            color: Colors.white,
+                                                          ),
+                                                          SizedBox(width: 5.0,),
+                                                          CustomText("Hapus", 15.0, false)
+                                                        ],
+                                                      )
+                                                  ),
+                                                ),
+                                                SizedBox(height: 20.0,),
+                                                Row(
+                                                  mainAxisAlignment: MainAxisAlignment.center,
+                                                  children: [
+                                                    Container(
+                                                      width: 100,
+                                                      child: ElevatedButton(
+                                                          style: ElevatedButton.styleFrom(
+                                                              elevation: 10.0,
+                                                              primary: HexColor("#24A0ED"),
+                                                              shape: RoundedRectangleBorder(
+                                                                  borderRadius: BorderRadius.circular(12.0)
+                                                              )
+                                                          ),
+                                                          onPressed: () {
+                                                            //fungsi simpan
+                                                            this.onClickSaveImageKTP();
+                                                            Navigator.pop(context, 'Simpan');
+                                                          },
+                                                          child: CustomText("Simpan", 15.0, false)
+                                                      ),
+                                                    ),
+                                                    SizedBox(width: 20.0,),
+                                                    Container(
+                                                      width: 100,
+                                                      child: ElevatedButton(
+                                                          style: ElevatedButton.styleFrom(
+                                                              elevation: 10.0,
+                                                              primary: Colors.white,
+                                                              shape: RoundedRectangleBorder(
+                                                                  borderRadius: BorderRadius.circular(12.0)
+                                                              )
+                                                          ),
+                                                          onPressed: () {
+                                                            //fungsi batal
+                                                            Navigator.pop(context, 'Batal');
+                                                          },
+                                                          child: Text(
+                                                            "Batal",
+                                                            style: TextStyle(
+                                                                fontSize: 15.0,
+                                                                color: Colors.black,
+                                                                fontFamily: 'Comfortaa'
+                                                            ),
+                                                          )
+                                                      ),
+                                                    ),
+                                                  ],
+                                                )
+                                              ],
+                                            ),
+                                          );
+                                        },
+                                      );
+                                    }
+                                );
+                              },
+                              child: Image.file(
+                                File(this.ktp.path),
+                                width: 138,
+                                height: 85,
+                              )
+                          )
+                              : InkWell(
+                            onTap: () {
+                              print('unggah KTP');
+                              this.uploadImageKTP();
+                            },
+                            child: DottedBorder(
+                              color: Colors.white.withOpacity(0.5),
+                              borderType: BorderType.RRect,
+                              radius: Radius.circular(10.0),
+                              padding: EdgeInsets.all(10.0),
+                              dashPattern: [10, 10,],
+                              child: Container(
+                                width: 138,
+                                height: 85,
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Icon(
+                                      Icons.arrow_circle_up,
+                                      size: 48.0,
+                                      color: Colors.white.withOpacity(0.5),
+                                    ),
+                                    SizedBox(height: 10.0,),
+                                    CustomText("Unggah", 15.0, true)
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ),
+                          SizedBox(height: 10.0,),
+                          CustomText("KTP", 15.0, false)
+                        ],
                       ),
-                      SizedBox(width: 5.0,),
-                      Text(
-                        "Sebelumnya",
-                        style: TextStyle(
-                            fontSize: 15.0,
-                            color: HexColor("#F8B50F"),
-                            fontFamily: 'Comfortaa',
-                            decoration: TextDecoration.underline
-                        ),
-                      ),
-                    ],
+                    ),
                   ),
                 ),
               ),
-              Container(
-                width: 150,
-                child: ElevatedButton(
-                  onPressed: (){
-                    this.saveAllDataInvestasi();
+              SizedBox(width: 10.0,),
+              Expanded(
+                child: Container(
+                  width: 170,
+                  child: Card(
+                    color: HexColor("#F8B50F"),
+                    elevation: 5.0,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12.0),
+                    ),
+                    child: Container(
+                      padding: EdgeInsets.all(10.0),
+                      child: Column(
+                        children: [
+                          this.ktpPasangan.path != '' ? InkWell(
+                              onTap: () {
+                                print("image clicked");
 
-                    if(this.formKeyScreen1.currentState!.validate() &&
-                        this.formKeyScreen2.currentState!.validate() &&
-                        this._formKey.currentState!.validate()){
-                      //.
-                      print(
-                        "nama anggota : ${this.investasi.namaAnggota}\n"
-                        "jenis investasi : ${this.investasi.jenisInvestasi}\n"
-                        "produk : ${this.investasi.produk}\n"
-                        "journal : ${this.investasi.journal}\n"
-                        "analytic acc : ${this.investasi.analyticAccount}\n"
-                        "ahli waris : ${this.investasi.ahliWaris}\n"
-                        "paket investasi : ${this.investasi.paketInvestasi}\n"
-                        "quantity : ${this.investasi.quantity}\n"
-                        "total investasi : ${this.investasi.totalInvestasi}\n"
-                        "jangka waktu : ${this.investasi.jangkaWaktu}\n"
-                        "tanggal mulai : ${this.investasi.tanggalMulai}\n"
-                        "tanggal akhir : ${this.investasi.tanggalAkhir}\n"
-                        "pengembalian : ${this.investasi.pengembalian}\n"
-                        "nisbah investor : ${this.investasi.nisbahInvestor}\n"
-                        "equivalent rate : ${this.investasi.equivalentRate}\n"
-                        "pajak : ${this.investasi.pajak}\n"
-                      );
-                      showDialog<String>(
-                          barrierDismissible: false,
-                          context: context,
-                          builder: (BuildContext context) =>
-                              ConfirmationDialog(context, investasi)
-                      );
-                    } else {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                          FailedInformation(context, "Data masih belum terisi semua, silakan periksa kembali")
-                      );
-                    }
-                  },
-                  style: ElevatedButton.styleFrom(
-                      elevation: 0,
-                      primary: Colors.transparent,
-                      padding: EdgeInsets.zero
-                  ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      Text(
-                        "Ajukan",
-                        style: TextStyle(
-                            fontSize: 15.0,
-                            color: HexColor("#F8B50F"),
-                            fontFamily: 'Comfortaa',
-                            decoration: TextDecoration.underline
-                        ),
+                                this.setPopUpImageKTPPasangan();
+
+                                showDialog<String>(
+                                    barrierDismissible: false,
+                                    context: context,
+                                    builder: (BuildContext context) {
+                                      return StatefulBuilder(
+                                        builder: (context, StateSetter setState) {
+                                          return AlertDialog(
+                                            backgroundColor: Colors.white.withOpacity(0.5),
+                                            shape: RoundedRectangleBorder(
+                                              borderRadius: BorderRadius.all(
+                                                  Radius.circular(19.0)
+                                              ),
+                                            ),
+                                            elevation: 5.0,
+                                            title: Column(
+                                              children: [
+                                                CustomText("KTP Pasangan", 15.0, false),
+                                                SizedBox(height: 10),
+                                                this.temp.path == "" ?
+                                                CustomText("Gambar Belum Di-upload", 15.0, true)
+                                                    : Image.file(
+                                                  File(this.temp.path),
+                                                  width: 315,
+                                                  height: 200,
+                                                ),
+                                                SizedBox(height: 20),
+                                                Container(
+                                                  width: 186,
+                                                  child: ElevatedButton(
+                                                      style: ElevatedButton.styleFrom(
+                                                          elevation: 10.0,
+                                                          primary: HexColor("#F8B50F"),
+                                                          shape: RoundedRectangleBorder(
+                                                              borderRadius: BorderRadius.circular(12.0)
+                                                          )
+                                                      ),
+                                                      onPressed: () {
+                                                        //fungsi unggah
+                                                        this.onClickUploadImage(setState);
+                                                      },
+                                                      child: Row(
+                                                        mainAxisAlignment: MainAxisAlignment.center,
+                                                        children: [
+                                                          Icon(
+                                                            Icons.arrow_circle_up,
+                                                            size: 32.0,
+                                                            color: Colors.white,
+                                                          ),
+                                                          SizedBox(width: 5.0,),
+                                                          CustomText("Unggah", 15.0, false)
+                                                        ],
+                                                      )
+                                                  ),
+                                                ),
+                                                SizedBox(height: 10),
+                                                Container(
+                                                  width: 186,
+                                                  child: ElevatedButton(
+                                                      style: ElevatedButton.styleFrom(
+                                                          elevation: 10.0,
+                                                          primary: HexColor("#FF0000"),
+                                                          shape: RoundedRectangleBorder(
+                                                              borderRadius: BorderRadius.circular(12.0)
+                                                          )
+                                                      ),
+                                                      onPressed: () {
+                                                        //fungsi hapus
+                                                        this.onClickDeleteImage(setState);
+                                                      },
+                                                      child: Row(
+                                                        mainAxisAlignment: MainAxisAlignment.center,
+                                                        children: [
+                                                          Icon(
+                                                            Icons.delete,
+                                                            size: 32.0,
+                                                            color: Colors.white,
+                                                          ),
+                                                          SizedBox(width: 5.0,),
+                                                          CustomText("Hapus", 15.0, false)
+                                                        ],
+                                                      )
+                                                  ),
+                                                ),
+                                                SizedBox(height: 20.0,),
+                                                Row(
+                                                  mainAxisAlignment: MainAxisAlignment.center,
+                                                  children: [
+                                                    Container(
+                                                      width: 100,
+                                                      child: ElevatedButton(
+                                                          style: ElevatedButton.styleFrom(
+                                                              elevation: 10.0,
+                                                              primary: HexColor("#24A0ED"),
+                                                              shape: RoundedRectangleBorder(
+                                                                  borderRadius: BorderRadius.circular(12.0)
+                                                              )
+                                                          ),
+                                                          onPressed: () {
+                                                            //fungsi simpan
+                                                            this.onClickSaveImageKTPPasangan();
+                                                            Navigator.pop(context, 'Simpan');
+                                                          },
+                                                          child: CustomText("Simpan", 15.0, false)
+                                                      ),
+                                                    ),
+                                                    SizedBox(width: 20.0,),
+                                                    Container(
+                                                      width: 100,
+                                                      child: ElevatedButton(
+                                                          style: ElevatedButton.styleFrom(
+                                                              elevation: 10.0,
+                                                              primary: Colors.white,
+                                                              shape: RoundedRectangleBorder(
+                                                                  borderRadius: BorderRadius.circular(12.0)
+                                                              )
+                                                          ),
+                                                          onPressed: () {
+                                                            //fungsi batal
+                                                            Navigator.pop(context, 'Batal');
+                                                          },
+                                                          child: Text(
+                                                            "Batal",
+                                                            style: TextStyle(
+                                                                fontSize: 15.0,
+                                                                color: Colors.black,
+                                                                fontFamily: 'Comfortaa'
+                                                            ),
+                                                          )
+                                                      ),
+                                                    ),
+                                                  ],
+                                                )
+                                              ],
+                                            ),
+                                          );
+                                        },
+                                      );
+                                    }
+                                );
+                              },
+                              child: Image.file(
+                                File(this.ktpPasangan.path),
+                                width: 138,
+                                height: 85,
+                              )
+                          )
+                              : InkWell(
+                            onTap: () {
+                              print('unggah KTP Pasangan');
+                              this.uploadImageKTPPasangan();
+                            },
+                            child: DottedBorder(
+                              color: Colors.white.withOpacity(0.5),
+                              borderType: BorderType.RRect,
+                              radius: Radius.circular(10.0),
+                              padding: EdgeInsets.all(10.0),
+                              dashPattern: [10, 10,],
+                              child: Container(
+                                width: 138,
+                                height: 85,
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Icon(
+                                      Icons.arrow_circle_up,
+                                      size: 48.0,
+                                      color: Colors.white.withOpacity(0.5),
+                                    ),
+                                    SizedBox(height: 10.0,),
+                                    CustomText("Unggah", 15.0, true)
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ),
+                          SizedBox(height: 10.0,),
+                          CustomText("KTP Pasangan", 15.0, false)
+                        ],
                       ),
-                      SizedBox(width: 5.0,),
-                      CircleAvatar(
-                        child: Icon(
-                          Icons.check_rounded,
-                          size: 32.0,
-                          color: Colors.white,
-                        ),
-                        backgroundColor: HexColor("#F8B50F"),
-                      ),
-                    ],
+                    ),
                   ),
                 ),
               ),
             ],
-          )
+          ),
+          SizedBox(height: 10.0,),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Expanded(
+                child: Container(
+                  width: 170,
+                  child: Card(
+                    color: HexColor("#F8B50F"),
+                    elevation: 5.0,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12.0),
+                    ),
+                    child: Container(
+                      padding: EdgeInsets.all(10.0),
+                      child: Column(
+                        children: [
+                          this.kk.path != '' ? InkWell(
+                              onTap: () {
+                                print("image clicked");
+
+                                this.setPopUpImageKartuKeluarga();
+
+                                showDialog<String>(
+                                    barrierDismissible: false,
+                                    context: context,
+                                    builder: (BuildContext context) {
+                                      return StatefulBuilder(
+                                        builder: (context, StateSetter setState) {
+                                          return AlertDialog(
+                                            backgroundColor: Colors.white.withOpacity(0.5),
+                                            shape: RoundedRectangleBorder(
+                                              borderRadius: BorderRadius.all(
+                                                  Radius.circular(19.0)
+                                              ),
+                                            ),
+                                            elevation: 5.0,
+                                            title: Column(
+                                              children: [
+                                                CustomText("Kartu Keluarga", 15.0, false),
+                                                SizedBox(height: 10),
+                                                this.temp.path == "" ?
+                                                CustomText("Gambar Belum Di-upload", 15.0, true)
+                                                    : Image.file(
+                                                  File(this.temp.path),
+                                                  width: 315,
+                                                  height: 200,
+                                                ),
+                                                SizedBox(height: 20),
+                                                Container(
+                                                  width: 186,
+                                                  child: ElevatedButton(
+                                                      style: ElevatedButton.styleFrom(
+                                                          elevation: 10.0,
+                                                          primary: HexColor("#F8B50F"),
+                                                          shape: RoundedRectangleBorder(
+                                                              borderRadius: BorderRadius.circular(12.0)
+                                                          )
+                                                      ),
+                                                      onPressed: () {
+                                                        //fungsi unggah
+                                                        this.onClickUploadImage(setState);
+                                                      },
+                                                      child: Row(
+                                                        mainAxisAlignment: MainAxisAlignment.center,
+                                                        children: [
+                                                          Icon(
+                                                            Icons.arrow_circle_up,
+                                                            size: 32.0,
+                                                            color: Colors.white,
+                                                          ),
+                                                          SizedBox(width: 5.0,),
+                                                          CustomText("Unggah", 15.0, false)
+                                                        ],
+                                                      )
+                                                  ),
+                                                ),
+                                                SizedBox(height: 10),
+                                                Container(
+                                                  width: 186,
+                                                  child: ElevatedButton(
+                                                      style: ElevatedButton.styleFrom(
+                                                          elevation: 10.0,
+                                                          primary: HexColor("#FF0000"),
+                                                          shape: RoundedRectangleBorder(
+                                                              borderRadius: BorderRadius.circular(12.0)
+                                                          )
+                                                      ),
+                                                      onPressed: () {
+                                                        //fungsi hapus
+                                                        this.onClickDeleteImage(setState);
+                                                      },
+                                                      child: Row(
+                                                        mainAxisAlignment: MainAxisAlignment.center,
+                                                        children: [
+                                                          Icon(
+                                                            Icons.delete,
+                                                            size: 32.0,
+                                                            color: Colors.white,
+                                                          ),
+                                                          SizedBox(width: 5.0,),
+                                                          CustomText("Hapus", 15.0, false)
+                                                        ],
+                                                      )
+                                                  ),
+                                                ),
+                                                SizedBox(height: 20.0,),
+                                                Row(
+                                                  mainAxisAlignment: MainAxisAlignment.center,
+                                                  children: [
+                                                    Container(
+                                                      width: 100,
+                                                      child: ElevatedButton(
+                                                          style: ElevatedButton.styleFrom(
+                                                              elevation: 10.0,
+                                                              primary: HexColor("#24A0ED"),
+                                                              shape: RoundedRectangleBorder(
+                                                                  borderRadius: BorderRadius.circular(12.0)
+                                                              )
+                                                          ),
+                                                          onPressed: () {
+                                                            //fungsi simpan
+                                                            this.onClickSaveImageKartuKeluarga();
+                                                            Navigator.pop(context, 'Simpan');
+                                                          },
+                                                          child: CustomText("Simpan", 15.0, false)
+                                                      ),
+                                                    ),
+                                                    SizedBox(width: 20.0,),
+                                                    Container(
+                                                      width: 100,
+                                                      child: ElevatedButton(
+                                                          style: ElevatedButton.styleFrom(
+                                                              elevation: 10.0,
+                                                              primary: Colors.white,
+                                                              shape: RoundedRectangleBorder(
+                                                                  borderRadius: BorderRadius.circular(12.0)
+                                                              )
+                                                          ),
+                                                          onPressed: () {
+                                                            //fungsi batal
+                                                            Navigator.pop(context, 'Batal');
+                                                          },
+                                                          child: Text(
+                                                            "Batal",
+                                                            style: TextStyle(
+                                                                fontSize: 15.0,
+                                                                color: Colors.black,
+                                                                fontFamily: 'Comfortaa'
+                                                            ),
+                                                          )
+                                                      ),
+                                                    ),
+                                                  ],
+                                                )
+                                              ],
+                                            ),
+                                          );
+                                        },
+                                      );
+                                    }
+                                );
+                              },
+                              child: Image.file(
+                                File(this.kk.path),
+                                width: 138,
+                                height: 85,
+                              )
+                          )
+                              : InkWell(
+                            onTap: () {
+                              print('unggah Kartu Keluarga');
+                              this.uploadImageKartuKeluarga();
+                            },
+                            child: DottedBorder(
+                              color: Colors.white.withOpacity(0.5),
+                              borderType: BorderType.RRect,
+                              radius: Radius.circular(10.0),
+                              padding: EdgeInsets.all(10.0),
+                              dashPattern: [10, 10,],
+                              child: Container(
+                                width: 138,
+                                height: 85,
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Icon(
+                                      Icons.arrow_circle_up,
+                                      size: 48.0,
+                                      color: Colors.white.withOpacity(0.5),
+                                    ),
+                                    SizedBox(height: 10.0,),
+                                    CustomText("Unggah", 15.0, true)
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ),
+                          SizedBox(height: 10.0,),
+                          CustomText("Kartu Keluarga", 15.0, false)
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              SizedBox(width: 10.0,),
+              Expanded(
+                child: Container(
+                  width: 170,
+                  child: Card(
+                    color: HexColor("#F8B50F"),
+                    elevation: 5.0,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12.0),
+                    ),
+                    child: Container(
+                      padding: EdgeInsets.all(10.0),
+                      child: Column(
+                        children: [
+                          this.slipGaji1.path != '' ? InkWell(
+                              onTap: () {
+                                print("image clicked");
+
+                                this.setPopUpImageSlipGaji1();
+
+                                showDialog<String>(
+                                    barrierDismissible: false,
+                                    context: context,
+                                    builder: (BuildContext context) {
+                                      return StatefulBuilder(
+                                        builder: (context, StateSetter setState) {
+                                          return AlertDialog(
+                                            backgroundColor: Colors.white.withOpacity(0.5),
+                                            shape: RoundedRectangleBorder(
+                                              borderRadius: BorderRadius.all(
+                                                  Radius.circular(19.0)
+                                              ),
+                                            ),
+                                            elevation: 5.0,
+                                            title: Column(
+                                              children: [
+                                                CustomText("Slip Gaji #1", 15.0, false),
+                                                SizedBox(height: 10),
+                                                this.temp.path == "" ?
+                                                CustomText("Gambar Belum Di-upload", 15.0, true)
+                                                    : Image.file(
+                                                  File(this.temp.path),
+                                                  width: 315,
+                                                  height: 200,
+                                                ),
+                                                SizedBox(height: 20),
+                                                Container(
+                                                  width: 186,
+                                                  child: ElevatedButton(
+                                                      style: ElevatedButton.styleFrom(
+                                                          elevation: 10.0,
+                                                          primary: HexColor("#F8B50F"),
+                                                          shape: RoundedRectangleBorder(
+                                                              borderRadius: BorderRadius.circular(12.0)
+                                                          )
+                                                      ),
+                                                      onPressed: () {
+                                                        //fungsi unggah
+                                                        this.onClickUploadImage(setState);
+                                                      },
+                                                      child: Row(
+                                                        mainAxisAlignment: MainAxisAlignment.center,
+                                                        children: [
+                                                          Icon(
+                                                            Icons.arrow_circle_up,
+                                                            size: 32.0,
+                                                            color: Colors.white,
+                                                          ),
+                                                          SizedBox(width: 5.0,),
+                                                          CustomText("Unggah", 15.0, false)
+                                                        ],
+                                                      )
+                                                  ),
+                                                ),
+                                                SizedBox(height: 10),
+                                                Container(
+                                                  width: 186,
+                                                  child: ElevatedButton(
+                                                      style: ElevatedButton.styleFrom(
+                                                          elevation: 10.0,
+                                                          primary: HexColor("#FF0000"),
+                                                          shape: RoundedRectangleBorder(
+                                                              borderRadius: BorderRadius.circular(12.0)
+                                                          )
+                                                      ),
+                                                      onPressed: () {
+                                                        //fungsi hapus
+                                                        this.onClickDeleteImage(setState);
+                                                      },
+                                                      child: Row(
+                                                        mainAxisAlignment: MainAxisAlignment.center,
+                                                        children: [
+                                                          Icon(
+                                                            Icons.delete,
+                                                            size: 32.0,
+                                                            color: Colors.white,
+                                                          ),
+                                                          SizedBox(width: 5.0,),
+                                                          CustomText("Hapus", 15.0, false)
+                                                        ],
+                                                      )
+                                                  ),
+                                                ),
+                                                SizedBox(height: 20.0,),
+                                                Row(
+                                                  mainAxisAlignment: MainAxisAlignment.center,
+                                                  children: [
+                                                    Container(
+                                                      width: 100,
+                                                      child: ElevatedButton(
+                                                          style: ElevatedButton.styleFrom(
+                                                              elevation: 10.0,
+                                                              primary: HexColor("#24A0ED"),
+                                                              shape: RoundedRectangleBorder(
+                                                                  borderRadius: BorderRadius.circular(12.0)
+                                                              )
+                                                          ),
+                                                          onPressed: () {
+                                                            //fungsi simpan
+                                                            this.onClickSaveImageSlipGaji1();
+                                                            Navigator.pop(context, 'Simpan');
+                                                          },
+                                                          child: CustomText("Simpan", 15.0, false)
+                                                      ),
+                                                    ),
+                                                    SizedBox(width: 20.0,),
+                                                    Container(
+                                                      width: 100,
+                                                      child: ElevatedButton(
+                                                          style: ElevatedButton.styleFrom(
+                                                              elevation: 10.0,
+                                                              primary: Colors.white,
+                                                              shape: RoundedRectangleBorder(
+                                                                  borderRadius: BorderRadius.circular(12.0)
+                                                              )
+                                                          ),
+                                                          onPressed: () {
+                                                            //fungsi batal
+                                                            Navigator.pop(context, 'Batal');
+                                                          },
+                                                          child: Text(
+                                                            "Batal",
+                                                            style: TextStyle(
+                                                                fontSize: 15.0,
+                                                                color: Colors.black,
+                                                                fontFamily: 'Comfortaa'
+                                                            ),
+                                                          )
+                                                      ),
+                                                    ),
+                                                  ],
+                                                )
+                                              ],
+                                            ),
+                                          );
+                                        },
+                                      );
+                                    }
+                                );
+                              },
+                              child: Image.file(
+                                File(this.slipGaji1.path),
+                                width: 138,
+                                height: 85,
+                              )
+                          )
+                              : InkWell(
+                            onTap: () {
+                              print('unggah KTP');
+                              this.uploadImageSlipGaji1();
+                            },
+                            child: DottedBorder(
+                              color: Colors.white.withOpacity(0.5),
+                              borderType: BorderType.RRect,
+                              radius: Radius.circular(10.0),
+                              padding: EdgeInsets.all(10.0),
+                              dashPattern: [10, 10,],
+                              child: Container(
+                                width: 138,
+                                height: 85,
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Icon(
+                                      Icons.arrow_circle_up,
+                                      size: 48.0,
+                                      color: Colors.white.withOpacity(0.5),
+                                    ),
+                                    SizedBox(height: 10.0,),
+                                    CustomText("Unggah", 15.0, true)
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ),
+                          SizedBox(height: 10.0,),
+                          CustomText("Slip Gaji #1", 15.0, false)
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+          SizedBox(height: 10.0,),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Expanded(
+                child: Container(
+                  width: 170,
+                  child: Card(
+                    color: HexColor("#F8B50F"),
+                    elevation: 5.0,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12.0),
+                    ),
+                    child: Container(
+                      padding: EdgeInsets.all(10.0),
+                      child: Column(
+                        children: [
+                          this.slipGaji2.path != '' ? InkWell(
+                              onTap: () {
+                                print("image clicked");
+
+                                this.setPopUpImageSlipGaji2();
+
+                                showDialog<String>(
+                                    barrierDismissible: false,
+                                    context: context,
+                                    builder: (BuildContext context) {
+                                      return StatefulBuilder(
+                                        builder: (context, StateSetter setState) {
+                                          return AlertDialog(
+                                            backgroundColor: Colors.white.withOpacity(0.5),
+                                            shape: RoundedRectangleBorder(
+                                              borderRadius: BorderRadius.all(
+                                                  Radius.circular(19.0)
+                                              ),
+                                            ),
+                                            elevation: 5.0,
+                                            title: Column(
+                                              children: [
+                                                CustomText("Slip Gaji #2", 15.0, false),
+                                                SizedBox(height: 10),
+                                                this.temp.path == "" ?
+                                                CustomText("Gambar Belum Di-upload", 15.0, true)
+                                                    : Image.file(
+                                                  File(this.temp.path),
+                                                  width: 315,
+                                                  height: 200,
+                                                ),
+                                                SizedBox(height: 20),
+                                                Container(
+                                                  width: 186,
+                                                  child: ElevatedButton(
+                                                      style: ElevatedButton.styleFrom(
+                                                          elevation: 10.0,
+                                                          primary: HexColor("#F8B50F"),
+                                                          shape: RoundedRectangleBorder(
+                                                              borderRadius: BorderRadius.circular(12.0)
+                                                          )
+                                                      ),
+                                                      onPressed: () {
+                                                        //fungsi unggah
+                                                        this.onClickUploadImage(setState);
+                                                      },
+                                                      child: Row(
+                                                        mainAxisAlignment: MainAxisAlignment.center,
+                                                        children: [
+                                                          Icon(
+                                                            Icons.arrow_circle_up,
+                                                            size: 32.0,
+                                                            color: Colors.white,
+                                                          ),
+                                                          SizedBox(width: 5.0,),
+                                                          CustomText("Unggah", 15.0, false)
+                                                        ],
+                                                      )
+                                                  ),
+                                                ),
+                                                SizedBox(height: 10),
+                                                Container(
+                                                  width: 186,
+                                                  child: ElevatedButton(
+                                                      style: ElevatedButton.styleFrom(
+                                                          elevation: 10.0,
+                                                          primary: HexColor("#FF0000"),
+                                                          shape: RoundedRectangleBorder(
+                                                              borderRadius: BorderRadius.circular(12.0)
+                                                          )
+                                                      ),
+                                                      onPressed: () {
+                                                        //fungsi hapus
+                                                        this.onClickDeleteImage(setState);
+                                                      },
+                                                      child: Row(
+                                                        mainAxisAlignment: MainAxisAlignment.center,
+                                                        children: [
+                                                          Icon(
+                                                            Icons.delete,
+                                                            size: 32.0,
+                                                            color: Colors.white,
+                                                          ),
+                                                          SizedBox(width: 5.0,),
+                                                          CustomText("Hapus", 15.0, false)
+                                                        ],
+                                                      )
+                                                  ),
+                                                ),
+                                                SizedBox(height: 20.0,),
+                                                Row(
+                                                  mainAxisAlignment: MainAxisAlignment.center,
+                                                  children: [
+                                                    Container(
+                                                      width: 100,
+                                                      child: ElevatedButton(
+                                                          style: ElevatedButton.styleFrom(
+                                                              elevation: 10.0,
+                                                              primary: HexColor("#24A0ED"),
+                                                              shape: RoundedRectangleBorder(
+                                                                  borderRadius: BorderRadius.circular(12.0)
+                                                              )
+                                                          ),
+                                                          onPressed: () {
+                                                            //fungsi simpan
+                                                            this.onClickSaveImageSlipGaji2();
+                                                            Navigator.pop(context, 'Simpan');
+                                                          },
+                                                          child: CustomText("Simpan", 15.0, false)
+                                                      ),
+                                                    ),
+                                                    SizedBox(width: 20.0,),
+                                                    Container(
+                                                      width: 100,
+                                                      child: ElevatedButton(
+                                                          style: ElevatedButton.styleFrom(
+                                                              elevation: 10.0,
+                                                              primary: Colors.white,
+                                                              shape: RoundedRectangleBorder(
+                                                                  borderRadius: BorderRadius.circular(12.0)
+                                                              )
+                                                          ),
+                                                          onPressed: () {
+                                                            //fungsi batal
+                                                            Navigator.pop(context, 'Batal');
+                                                          },
+                                                          child: Text(
+                                                            "Batal",
+                                                            style: TextStyle(
+                                                                fontSize: 15.0,
+                                                                color: Colors.black,
+                                                                fontFamily: 'Comfortaa'
+                                                            ),
+                                                          )
+                                                      ),
+                                                    ),
+                                                  ],
+                                                )
+                                              ],
+                                            ),
+                                          );
+                                        },
+                                      );
+                                    }
+                                );
+                              },
+                              child: Image.file(
+                                File(this.slipGaji2.path),
+                                width: 138,
+                                height: 85,
+                              )
+                          )
+                              : InkWell(
+                            onTap: () {
+                              print('unggah Slip Gaji #2');
+                              this.uploadImageSlipGaji2();
+                            },
+                            child: DottedBorder(
+                              color: Colors.white.withOpacity(0.5),
+                              borderType: BorderType.RRect,
+                              radius: Radius.circular(10.0),
+                              padding: EdgeInsets.all(10.0),
+                              dashPattern: [10, 10,],
+                              child: Container(
+                                width: 138,
+                                height: 85,
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Icon(
+                                      Icons.arrow_circle_up,
+                                      size: 48.0,
+                                      color: Colors.white.withOpacity(0.5),
+                                    ),
+                                    SizedBox(height: 10.0,),
+                                    CustomText("Unggah", 15.0, true)
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ),
+                          SizedBox(height: 10.0,),
+                          CustomText("Slip Gaji #2", 15.0, false)
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              SizedBox(width: 10.0,),
+              Expanded(
+                child: Container(
+                  width: 170,
+                  child: Card(
+                    color: HexColor("#F8B50F"),
+                    elevation: 5.0,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12.0),
+                    ),
+                    child: Container(
+                      padding: EdgeInsets.all(10.0),
+                      child: Column(
+                        children: [
+                          this.slipGaji3.path != '' ? InkWell(
+                              onTap: () {
+                                print("image clicked");
+
+                                this.setPopUpImageSlipGaji3();
+
+                                showDialog<String>(
+                                    barrierDismissible: false,
+                                    context: context,
+                                    builder: (BuildContext context) {
+                                      return StatefulBuilder(
+                                        builder: (context, StateSetter setState) {
+                                          return AlertDialog(
+                                            backgroundColor: Colors.white.withOpacity(0.5),
+                                            shape: RoundedRectangleBorder(
+                                              borderRadius: BorderRadius.all(
+                                                  Radius.circular(19.0)
+                                              ),
+                                            ),
+                                            elevation: 5.0,
+                                            title: Column(
+                                              children: [
+                                                CustomText("Slip Gaji #3", 15.0, false),
+                                                SizedBox(height: 10),
+                                                this.temp.path == "" ?
+                                                CustomText("Gambar Belum Di-upload", 15.0, true)
+                                                    : Image.file(
+                                                  File(this.temp.path),
+                                                  width: 315,
+                                                  height: 200,
+                                                ),
+                                                SizedBox(height: 20),
+                                                Container(
+                                                  width: 186,
+                                                  child: ElevatedButton(
+                                                      style: ElevatedButton.styleFrom(
+                                                          elevation: 10.0,
+                                                          primary: HexColor("#F8B50F"),
+                                                          shape: RoundedRectangleBorder(
+                                                              borderRadius: BorderRadius.circular(12.0)
+                                                          )
+                                                      ),
+                                                      onPressed: () {
+                                                        //fungsi unggah
+                                                        this.onClickUploadImage(setState);
+                                                      },
+                                                      child: Row(
+                                                        mainAxisAlignment: MainAxisAlignment.center,
+                                                        children: [
+                                                          Icon(
+                                                            Icons.arrow_circle_up,
+                                                            size: 32.0,
+                                                            color: Colors.white,
+                                                          ),
+                                                          SizedBox(width: 5.0,),
+                                                          CustomText("Unggah", 15.0, false)
+                                                        ],
+                                                      )
+                                                  ),
+                                                ),
+                                                SizedBox(height: 10),
+                                                Container(
+                                                  width: 186,
+                                                  child: ElevatedButton(
+                                                      style: ElevatedButton.styleFrom(
+                                                          elevation: 10.0,
+                                                          primary: HexColor("#FF0000"),
+                                                          shape: RoundedRectangleBorder(
+                                                              borderRadius: BorderRadius.circular(12.0)
+                                                          )
+                                                      ),
+                                                      onPressed: () {
+                                                        //fungsi hapus
+                                                        this.onClickDeleteImage(setState);
+                                                      },
+                                                      child: Row(
+                                                        mainAxisAlignment: MainAxisAlignment.center,
+                                                        children: [
+                                                          Icon(
+                                                            Icons.delete,
+                                                            size: 32.0,
+                                                            color: Colors.white,
+                                                          ),
+                                                          SizedBox(width: 5.0,),
+                                                          CustomText("Hapus", 15.0, false)
+                                                        ],
+                                                      )
+                                                  ),
+                                                ),
+                                                SizedBox(height: 20.0,),
+                                                Row(
+                                                  mainAxisAlignment: MainAxisAlignment.center,
+                                                  children: [
+                                                    Container(
+                                                      width: 100,
+                                                      child: ElevatedButton(
+                                                          style: ElevatedButton.styleFrom(
+                                                              elevation: 10.0,
+                                                              primary: HexColor("#24A0ED"),
+                                                              shape: RoundedRectangleBorder(
+                                                                  borderRadius: BorderRadius.circular(12.0)
+                                                              )
+                                                          ),
+                                                          onPressed: () {
+                                                            //fungsi simpan
+                                                            this.onClickSaveImageSlipGaji3();
+                                                            Navigator.pop(context, 'Simpan');
+                                                          },
+                                                          child: CustomText("Simpan", 15.0, false)
+                                                      ),
+                                                    ),
+                                                    SizedBox(width: 20.0,),
+                                                    Container(
+                                                      width: 100,
+                                                      child: ElevatedButton(
+                                                          style: ElevatedButton.styleFrom(
+                                                              elevation: 10.0,
+                                                              primary: Colors.white,
+                                                              shape: RoundedRectangleBorder(
+                                                                  borderRadius: BorderRadius.circular(12.0)
+                                                              )
+                                                          ),
+                                                          onPressed: () {
+                                                            //fungsi batal
+                                                            Navigator.pop(context, 'Batal');
+                                                          },
+                                                          child: Text(
+                                                            "Batal",
+                                                            style: TextStyle(
+                                                                fontSize: 15.0,
+                                                                color: Colors.black,
+                                                                fontFamily: 'Comfortaa'
+                                                            ),
+                                                          )
+                                                      ),
+                                                    ),
+                                                  ],
+                                                )
+                                              ],
+                                            ),
+                                          );
+                                        },
+                                      );
+                                    }
+                                );
+                              },
+                              child: Image.file(
+                                File(this.slipGaji3.path),
+                                width: 138,
+                                height: 85,
+                              )
+                          )
+                              : InkWell(
+                            onTap: () {
+                              print('unggah Slip Gaji #3');
+                              this.uploadImageSlipGaji3();
+                            },
+                            child: DottedBorder(
+                              color: Colors.white.withOpacity(0.5),
+                              borderType: BorderType.RRect,
+                              radius: Radius.circular(10.0),
+                              padding: EdgeInsets.all(10.0),
+                              dashPattern: [10, 10,],
+                              child: Container(
+                                width: 138,
+                                height: 85,
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Icon(
+                                      Icons.arrow_circle_up,
+                                      size: 48.0,
+                                      color: Colors.white.withOpacity(0.5),
+                                    ),
+                                    SizedBox(height: 10.0,),
+                                    CustomText("Unggah", 15.0, true)
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ),
+                          SizedBox(height: 10.0,),
+                          CustomText("Slip Gaji #3", 15.0, false)
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+          SizedBox(height: 30.0,),
+          Container(
+            height: 57,
+            child: ElevatedButton(
+              onPressed: (){
+                this.saveAllImage();
+                print(
+                    "ktp : ${this.investasi.ktpFile.path}\n"
+                    "ktp pasangan : ${this.investasi.ktpPasanganFile.path}\n"
+                    "kk : ${this.investasi.kartuKeluargaFile.path}\n"
+                    "slip gaji #1 : ${this.investasi.slipGaji1File.path}\n"
+                    "slip gaji #2 : ${this.investasi.slipGaji2File.path}\n"
+                    "slip gaji #3 : ${this.investasi.slipGaji3File.path}\n"
+                );
+                Navigator.pop(context);
+              },
+              style: ElevatedButton.styleFrom(
+                  elevation: 10,
+                  primary: Colors.white.withOpacity(0.5),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12.0),
+                  ),
+                  padding: EdgeInsets.all(5.0)
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Icon(
+                    Icons.arrow_back_rounded,
+                    size: 32.0,
+                    color: Colors.white,
+                  ),
+                  SizedBox(width: 5.0,),
+                  Text(
+                    "SEBELUMNYA",
+                    style: TextStyle(
+                      fontSize: 15.0,
+                      color: Colors.white,
+                      fontFamily: 'Comfortaa',
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+          SizedBox(height: 20.0,),
+          Container(
+            height: 57,
+            child: ElevatedButton(
+              onPressed: (){
+                this.saveAllImage();
+
+                if(this.formKeyScreen1.currentState!.validate() &&
+                    this.formKeyScreen2.currentState!.validate() &&
+                    this.isAllImageUploaded()){
+                  print(
+                      "nama anggota : ${this.investasi.namaAnggota}\n"
+                      "jenis investasi : ${this.investasi.jenisInvestasi}\n"
+                      "produk : ${this.investasi.produk}\n"
+                      "journal : ${this.investasi.journal}\n"
+                      "analytic acc : ${this.investasi.analyticAccount}\n"
+                      "ahli waris : ${this.investasi.ahliWaris}\n"
+                      "paket investasi : ${this.investasi.paketInvestasi}\n"
+                      "quantity : ${this.investasi.quantity}\n"
+                      "total investasi : ${this.investasi.totalInvestasi}\n"
+                      "jangka waktu : ${this.investasi.jangkaWaktu}\n"
+                      "tanggal mulai : ${this.investasi.tanggalMulai}\n"
+                      "tanggal akhir : ${this.investasi.tanggalAkhir}\n"
+                      "pengembalian : ${this.investasi.pengembalian}\n"
+                      "nisbah investor : ${this.investasi.nisbahInvestor}\n"
+                      "equivalent rate : ${this.investasi.equivalentRate}\n"
+                      "pajak : ${this.investasi.pajak}\n"
+                      "ktp : ${this.investasi.ktpFile.path}\n"
+                      "ktp pasangan : ${this.investasi.ktpPasanganFile.path}\n"
+                      "kk : ${this.investasi.kartuKeluargaFile.path}\n"
+                      "slip gaji #1 : ${this.investasi.slipGaji1File.path}\n"
+                      "slip gaji #2 : ${this.investasi.slipGaji2File.path}\n"
+                      "slip gaji #3 : ${this.investasi.slipGaji3File.path}\n"
+                  );
+                  showDialog<String>(
+                      barrierDismissible: false,
+                      context: context,
+                      builder: (BuildContext context) =>
+                          ConfirmationDialog(context, this.investasi)
+                  );
+                } else {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                      FailedInformation(context, "Data masih belum terisi semua, silakan periksa kembali")
+                  );
+                }
+              },
+              style: ElevatedButton.styleFrom(
+                  elevation: 10,
+                  primary: HexColor("#F8B50F"),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12.0),
+                  ),
+                  padding: EdgeInsets.all(5.0)
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    "AJUKAN",
+                    style: TextStyle(
+                      fontSize: 15.0,
+                      color: Colors.white,
+                      fontFamily: 'Comfortaa',
+                    ),
+                  ),
+                  SizedBox(width: 5.0,),
+                  Icon(
+                    Icons.check_rounded,
+                    size: 32.0,
+                    color: Colors.white,
+                  ),
+                ],
+              ),
+            ),
+          ),
         ],
       ),
     );

@@ -29,6 +29,7 @@ class _FormInvestasi1State extends State<FormInvestasi1> {
   late String analyticAcc;
   late String ahliWaris;
   late String paketInvestasi;
+  late String quantity;
 
   _FormInvestasi1State(this.investasi);
 
@@ -43,6 +44,7 @@ class _FormInvestasi1State extends State<FormInvestasi1> {
     this.analyticAcc = this.investasi.analyticAccount;
     this.ahliWaris = this.investasi.ahliWaris;
     this.paketInvestasi = this.investasi.paketInvestasi;
+    this.quantity = this.investasi.quantity;
 
     super.initState();
   }
@@ -62,6 +64,7 @@ class _FormInvestasi1State extends State<FormInvestasi1> {
       this.investasi.analyticAccount = this.analyticAcc;
       this.investasi.ahliWaris = this.ahliWaris;
       this.investasi.paketInvestasi = this.paketInvestasi;
+      this.investasi.quantity = this.quantity;
     });
   }
 
@@ -275,7 +278,7 @@ class _FormInvestasi1State extends State<FormInvestasi1> {
             ),
             icon: Icon(
               Icons.arrow_drop_down,
-              color: Colors.white,
+              color: Colors.white.withOpacity(0.5),
               size: 24.0,
             ),
             style: TextStyle(
@@ -283,17 +286,13 @@ class _FormInvestasi1State extends State<FormInvestasi1> {
                 color: Colors.white,
                 fontFamily: "Comfortaa"
             ),
-            onChanged: (String? newValue) {
-              setState(() {
-                this.journal = newValue!;
-              });
-            },
-            validator: (String? value){
-              if(value == null){
-                return "harus diisi";
-              }
-              return null;
-            },
+            onChanged: null,
+            // validator: (String? value){
+            //   if(value == null){
+            //     return "harus diisi";
+            //   }
+            //   return null;
+            // },
             items: datas.dataDropDownJournal().map<DropdownMenuItem<String>>((String value) {
               return DropdownMenuItem<String>(
                 value: value,
@@ -340,7 +339,7 @@ class _FormInvestasi1State extends State<FormInvestasi1> {
             ),
             icon: Icon(
               Icons.arrow_drop_down,
-              color: Colors.white,
+              color: Colors.white.withOpacity(0.5),
               size: 24.0,
             ),
             style: TextStyle(
@@ -348,17 +347,13 @@ class _FormInvestasi1State extends State<FormInvestasi1> {
                 color: Colors.white,
                 fontFamily: "Comfortaa"
             ),
-            onChanged: (String? newValue) {
-              setState(() {
-                this.analyticAcc = newValue!;
-              });
-            },
-            validator: (String? value){
-              if(value == null){
-                return "harus diisi";
-              }
-              return null;
-            },
+            onChanged: null,
+            // validator: (String? value){
+            //   if(value == null){
+            //     return "harus diisi";
+            //   }
+            //   return null;
+            // },
             items: datas.dataDropDownAnalyticAccount().map<DropdownMenuItem<String>>((String value) {
               return DropdownMenuItem<String>(
                 value: value,
@@ -503,11 +498,77 @@ class _FormInvestasi1State extends State<FormInvestasi1> {
               );
             }).toList(),
           ),
-          SizedBox(height: 20.0,),
+          SizedBox(height: 15.0,),
+          Container(
+              width: screenSize.width,
+              child: CustomText('Quantity', 15.0, false)
+          ),
+          SizedBox(height: 5.0,),
+          DropdownButtonFormField(
+            elevation: 5,
+            decoration: InputDecoration(
+              hintText: 'Pilih Quantity',
+              hintStyle: TextStyle(
+                  color: Colors.white.withOpacity(0.5),
+                  fontSize: 15.0,
+                  fontFamily: 'Comfortaa'
+              ),
+              fillColor: Colors.white.withOpacity(0.5),
+              filled: true,
+              enabledBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(10.0),
+                  borderSide: BorderSide(
+                      color: Colors.transparent
+                  )
+              ),
+              errorBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(10.0),
+                  borderSide: BorderSide(
+                      color: Colors.red
+                  )
+              ),
+            ),
+            icon: Icon(
+              Icons.arrow_drop_down,
+              color: Colors.white,
+              size: 24.0,
+            ),
+            style: TextStyle(
+                fontSize: 15.0,
+                color: Colors.white,
+                fontFamily: "Comfortaa"
+            ),
+            onChanged: (String? newValue) {
+              setState(() {
+                this.quantity = newValue!;
+              });
+            },
+            validator: (String? value){
+              if(value == null){
+                return "harus diisi";
+              }
+              return null;
+            },
+            items: datas.dataDropDownQuantity().map<DropdownMenuItem<String>>((String value) {
+              return DropdownMenuItem<String>(
+                value: value,
+                child: Text(
+                  value,
+                  style: TextStyle(
+                      fontSize: 15.0,
+                      color: Colors.black,
+                      fontFamily: 'Comfortaa'
+                  ),
+                ),
+              );
+            }).toList(),
+          ),
+          SizedBox(height: 30.0,),
           Align(
             alignment: Alignment.centerRight,
             child: Container(
-              width: 150,
+              width: 180,
+              height: 57,
               child: ElevatedButton(
                 onPressed: (){
                   this.saveAllDataInvestasi();
@@ -519,6 +580,7 @@ class _FormInvestasi1State extends State<FormInvestasi1> {
                       "analytic acc : ${this.investasi.analyticAccount}\n"
                       "ahli waris : ${this.investasi.ahliWaris}\n"
                       "paket investasi : ${this.investasi.paketInvestasi}\n"
+                      "quantity : ${this.investasi.quantity}\n"
                   );
                   Navigator.push(
                       context,
@@ -526,30 +588,29 @@ class _FormInvestasi1State extends State<FormInvestasi1> {
                   );
                 },
                 style: ElevatedButton.styleFrom(
-                    elevation: 0,
-                    primary: Colors.transparent,
-                    padding: EdgeInsets.zero
+                    elevation: 10,
+                    primary: Colors.white.withOpacity(0.5),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12.0),
+                    ),
+                    padding: EdgeInsets.all(5.0)
                 ),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
                     Text(
-                      "Selanjutnya",
+                      "SELANJUTNYA",
                       style: TextStyle(
-                          fontSize: 15.0,
-                          color: HexColor("#F8B50F"),
-                          fontFamily: 'Comfortaa',
-                          decoration: TextDecoration.underline
+                        fontSize: 15.0,
+                        color: Colors.white,
+                        fontFamily: 'Comfortaa',
                       ),
                     ),
                     SizedBox(width: 5.0,),
-                    CircleAvatar(
-                      child: Icon(
-                        Icons.arrow_forward_rounded,
-                        size: 32.0,
-                        color: Colors.white,
-                      ),
-                      backgroundColor: HexColor("#F8B50F"),
+                    Icon(
+                      Icons.arrow_forward_rounded,
+                      size: 32.0,
+                      color: Colors.white,
                     ),
                   ],
                 ),

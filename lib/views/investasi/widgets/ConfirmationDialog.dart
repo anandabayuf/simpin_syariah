@@ -61,7 +61,7 @@ class ConfirmationDialog extends AlertDialog {
             ),
             onPressed: () {
               //cuma dummy check
-              if(investasi.nisbahInvestor != 0){
+              if(investasi.totalInvestasi != 0){
                 //data pembiayaan masuk ke backend
 
                 //...

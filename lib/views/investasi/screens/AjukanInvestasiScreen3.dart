@@ -37,6 +37,11 @@ class AjukanInvestasiScreen3 extends StatelessWidget{
                     child: CustomText('Form Investasi', 24.0, false),
                     alignment: Alignment.center,
                   ),
+                  SizedBox(height: 10.0,),
+                  Align(
+                    child: CustomText('Upload Investasi', 15.0, true),
+                    alignment: Alignment.center,
+                  ),
                   SizedBox(height: 30.0,),
                   FormInvestasi3(investasi: this.investasi, formKeyScreen1: this.formKeyScreen1, formKeyScreen2: this.formKeyScreen2,),
                 ],
@@ -45,7 +50,6 @@ class AjukanInvestasiScreen3 extends StatelessWidget{
           ),
         ),
       ),
-      bottomNavigationBar: BottomNav(),
     );
   }
 }

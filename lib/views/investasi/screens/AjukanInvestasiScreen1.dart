@@ -41,7 +41,6 @@ class AjukanInvestasiScreen1 extends StatelessWidget{
           ),
         ),
       ),
-      bottomNavigationBar: BottomNav(),
     );
   }
 }
