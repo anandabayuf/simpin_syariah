@@ -493,7 +493,7 @@ class _FormPembiayaan1State extends State<FormPembiayaan1> {
             ),
             icon: Icon(
               Icons.arrow_drop_down,
-              color: Colors.white,
+              color: Colors.white.withOpacity(0.5),
               size: 24.0,
             ),
             style: TextStyle(
@@ -501,17 +501,18 @@ class _FormPembiayaan1State extends State<FormPembiayaan1> {
                 color: Colors.white,
                 fontFamily: "Comfortaa"
             ),
-            onChanged: (String? newValue) {
-              setState(() {
-                this.analyticAcc = newValue!;
-              });
-            },
-            validator: (String? value){
-              if(value == null){
-                return "harus diisi";
-              }
-              return null;
-            },
+            // onChanged: (String? newValue) {
+            //   setState(() {
+            //     this.analyticAcc = newValue!;
+            //   });
+            // },
+            onChanged: null,
+            // validator: (String? value){
+            //   if(value == null){
+            //     return "harus diisi";
+            //   }
+            //   return null;
+            // },
             items: datas.getDataAnalyticAccount().map<DropdownMenuItem<String>>((String value) {
               return DropdownMenuItem<String>(
                 value: value,
@@ -526,53 +527,53 @@ class _FormPembiayaan1State extends State<FormPembiayaan1> {
               );
             }).toList(),
           ),
-          SizedBox(height: 20.0,),
+          SizedBox(height: 30.0,),
           Align(
             alignment: Alignment.centerRight,
             child: Container(
-              width: 150,
+              width: 180,
+              height: 57,
               child: ElevatedButton(
                 onPressed: (){
                   this.saveAllDataPembiayaan();
                   print(
-                      "peruntukkan 1 : ${this.pembiayaan.peruntukkan1}\n"
-                          "peruntukkan 2 : ${this.pembiayaan.peruntukkan2}\n"
-                          "jenis akad : ${this.pembiayaan.jenisAkad}\n"
-                          "pemindahan hak : ${this.pembiayaan.pemindahanHak}\n"
-                          "vendor : ${this.pembiayaan.vendor}\n"
-                          "rek pihak ketiga : ${this.pembiayaan.rekPihakKetiga}\n"
-                          "analytic acc : ${this.pembiayaan.analyticAcc}\n"
+                    "peruntukkan 1 : ${this.pembiayaan.peruntukkan1}\n"
+                    "peruntukkan 2 : ${this.pembiayaan.peruntukkan2}\n"
+                    "jenis akad : ${this.pembiayaan.jenisAkad}\n"
+                    "pemindahan hak : ${this.pembiayaan.pemindahanHak}\n"
+                    "vendor : ${this.pembiayaan.vendor}\n"
+                    "rek pihak ketiga : ${this.pembiayaan.rekPihakKetiga}\n"
+                    "analytic acc : ${this.pembiayaan.analyticAcc}\n"
                   );
                   Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => AjukanPembiayaanScreen2(pembiayaan: pembiayaan, formKeyScreen1: formKeyScreen1,))
+                    context,
+                    MaterialPageRoute(builder: (context) => AjukanPembiayaanScreen2(pembiayaan: pembiayaan, formKeyScreen1: formKeyScreen1,))
                   );
                 },
                 style: ElevatedButton.styleFrom(
-                    elevation: 0,
-                    primary: Colors.transparent,
-                    padding: EdgeInsets.zero
+                  elevation: 10,
+                  primary: Colors.white.withOpacity(0.5),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12.0),
+                  ),
+                  padding: EdgeInsets.all(5.0)
                 ),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
                     Text(
-                      "Selanjutnya",
+                      "SELANJUTNYA",
                       style: TextStyle(
-                          fontSize: 15.0,
-                          color: HexColor("#F8B50F"),
-                          fontFamily: 'Comfortaa',
-                          decoration: TextDecoration.underline
+                        fontSize: 15.0,
+                        color: Colors.white,
+                        fontFamily: 'Comfortaa',
                       ),
                     ),
                     SizedBox(width: 5.0,),
-                    CircleAvatar(
-                      child: Icon(
-                        Icons.arrow_forward_rounded,
-                        size: 32.0,
-                        color: Colors.white,
-                      ),
-                      backgroundColor: HexColor("#F8B50F"),
+                    Icon(
+                      Icons.arrow_forward_rounded,
+                      size: 32.0,
+                      color: Colors.white,
                     ),
                   ],
                 ),

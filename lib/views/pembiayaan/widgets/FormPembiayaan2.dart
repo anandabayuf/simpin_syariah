@@ -131,7 +131,7 @@ class _FormPembiayaan2State extends State<FormPembiayaan2> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  CustomText("${this.dateFormat.format(this.pembiayaan.tanggalAkad)}", 15.0, false),
+                  CustomText("${this.dateFormat.format(this.tanggalAkad)}", 15.0, false),
                   Icon(
                     Icons.calendar_today_rounded,
                     size: 32.0,
@@ -356,105 +356,108 @@ class _FormPembiayaan2State extends State<FormPembiayaan2> {
               return null;
             },
           ),
-          SizedBox(height: 20.0,),
+          SizedBox(height: 30.0,),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Container(
-                width: 156,
-                child: ElevatedButton(
-                  onPressed: (){
-                    this.saveAllDataPembiayaan();
+              Expanded(
+                child: Container(
+                  height: 57,
+                  child: ElevatedButton(
+                    onPressed: (){
+                      this.saveAllDataPembiayaan();
 
-                    print(
-                      "tanggal akad : ${this.pembiayaan.tanggalAkad}\n"
-                      "nilai PPA : ${this.pembiayaan.nilaiPPA}\n"
-                      "harga jual : ${this.pembiayaan.hargaJual}\n"
-                      "angsuran : ${this.pembiayaan.angsuran}\n"
-                      "thp gaji terakhir : ${this.pembiayaan.tHPGajiTerakhir}\n"
-                      "cash ratio : ${this.pembiayaan.cashRatio}\n"
-                    );
+                      print(
+                        "tanggal akad : ${this.pembiayaan.tanggalAkad}\n"
+                        "nilai PPA : ${this.pembiayaan.nilaiPPA}\n"
+                        "harga jual : ${this.pembiayaan.hargaJual}\n"
+                        "angsuran : ${this.pembiayaan.angsuran}\n"
+                        "thp gaji terakhir : ${this.pembiayaan.tHPGajiTerakhir}\n"
+                        "cash ratio : ${this.pembiayaan.cashRatio}\n"
+                      );
 
-                    Navigator.pop(context);
-                  },
-                  style: ElevatedButton.styleFrom(
-                      elevation: 0,
-                      primary: Colors.transparent,
-                      padding: EdgeInsets.zero
-                  ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      CircleAvatar(
-                        child: Icon(
+                      Navigator.pop(context);
+                    },
+                    style: ElevatedButton.styleFrom(
+                        elevation: 10,
+                        primary: Colors.white.withOpacity(0.5),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(12.0),
+                        ),
+                        padding: EdgeInsets.all(5.0)
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Icon(
                           Icons.arrow_back_rounded,
                           size: 32.0,
                           color: Colors.white,
                         ),
-                        backgroundColor: HexColor("#F8B50F"),
-                      ),
-                      SizedBox(width: 5.0,),
-                      Text(
-                        "Sebelumnya",
-                        style: TextStyle(
+                        SizedBox(width: 5.0,),
+                        Text(
+                          "SEBELUMNYA",
+                          style: TextStyle(
                             fontSize: 15.0,
-                            color: HexColor("#F8B50F"),
+                            color: Colors.white,
                             fontFamily: 'Comfortaa',
-                            decoration: TextDecoration.underline
+                          ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
               ),
-              Container(
-                width: 150,
-                child: ElevatedButton(
-                  onPressed: (){
-                    this.saveAllDataPembiayaan();
+              SizedBox(width: 10.0,),
+              Expanded(
+                child: Container(
+                  height: 57,
+                  child: ElevatedButton(
+                    onPressed: (){
+                      this.saveAllDataPembiayaan();
 
-                    print(
-                        "tanggal akad : ${this.pembiayaan.tanggalAkad}\n"
-                            "nilai PPA : ${this.pembiayaan.nilaiPPA}\n"
-                            "harga jual : ${this.pembiayaan.hargaJual}\n"
-                            "angsuran : ${this.pembiayaan.angsuran}\n"
-                            "thp gaji terakhir : ${this.pembiayaan.tHPGajiTerakhir}\n"
-                            "cash ratio : ${this.pembiayaan.cashRatio}\n"
-                    );
+                      print(
+                          "tanggal akad : ${this.pembiayaan.tanggalAkad}\n"
+                              "nilai PPA : ${this.pembiayaan.nilaiPPA}\n"
+                              "harga jual : ${this.pembiayaan.hargaJual}\n"
+                              "angsuran : ${this.pembiayaan.angsuran}\n"
+                              "thp gaji terakhir : ${this.pembiayaan.tHPGajiTerakhir}\n"
+                              "cash ratio : ${this.pembiayaan.cashRatio}\n"
+                      );
 
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => AjukanPembiayaanScreen3(pembiayaan: pembiayaan,
-                          formKeyScreen1: this.formKeyScreen1, formKeyScreen2: this.formKeyScreen2,))
-                    );
-                  },
-                  style: ElevatedButton.styleFrom(
-                      elevation: 0,
-                      primary: Colors.transparent,
-                      padding: EdgeInsets.zero
-                  ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      Text(
-                        "Selanjutnya",
-                        style: TextStyle(
-                            fontSize: 15.0,
-                            color: HexColor("#F8B50F"),
-                            fontFamily: 'Comfortaa',
-                            decoration: TextDecoration.underline
-                        ),
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => AjukanPembiayaanScreen3(pembiayaan: pembiayaan,
+                            formKeyScreen1: this.formKeyScreen1, formKeyScreen2: this.formKeyScreen2,))
+                      );
+                    },
+                    style: ElevatedButton.styleFrom(
+                      elevation: 10,
+                      primary: Colors.white.withOpacity(0.5),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(12.0),
                       ),
-                      SizedBox(width: 5.0,),
-                      CircleAvatar(
-                        child: Icon(
+                      padding: EdgeInsets.all(5.0),
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        Text(
+                          "SELANJUTNYA",
+                          style: TextStyle(
+                            fontSize: 15.0,
+                            color: Colors.white,
+                            fontFamily: 'Comfortaa',
+                          ),
+                        ),
+                        SizedBox(width: 5.0,),
+                        Icon(
                           Icons.arrow_forward_rounded,
                           size: 32.0,
                           color: Colors.white,
                         ),
-                        backgroundColor: HexColor("#F8B50F"),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
               ),

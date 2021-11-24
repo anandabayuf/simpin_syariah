@@ -43,7 +43,6 @@ class AjukanPembiayaanScreen2 extends StatelessWidget{
           ),
         ),
       ),
-      bottomNavigationBar: BottomNav(),
     );
   }
 }

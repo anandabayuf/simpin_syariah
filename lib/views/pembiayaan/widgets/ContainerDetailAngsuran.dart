@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:project_simpin_syariah/models/pembiayaan/DetailRiwayatPembiayaan.dart';
+import 'package:hexcolor/hexcolor.dart';
+import 'package:project_simpin_syariah/models/pembiayaan/DetailAngsuran.dart';
 import 'package:project_simpin_syariah/models/pembiayaan/RiwayatPembiayaan.dart';
 import 'package:project_simpin_syariah/views/customwidgets/CustomText.dart';
 import 'package:intl/intl.dart';
@@ -16,8 +17,8 @@ class ContainerDetailRiwayatPembiayaan extends StatefulWidget{
 }
 
 class _ContainerDetailRiwayatPembiayaanState extends State<ContainerDetailRiwayatPembiayaan> {
-  late DetailRiwayatPembiayaan datas;
-  late List<DetailRiwayatPembiayaan> listDatas;
+  late DetailAngsuran datas;
+  late List<DetailAngsuran> listDatas;
   late DateFormat dateFormat;
   final int idRiwayatPembiayaan;
 
@@ -26,7 +27,7 @@ class _ContainerDetailRiwayatPembiayaanState extends State<ContainerDetailRiwaya
   @override
   void initState() {
     super.initState();
-    datas = DetailRiwayatPembiayaan(0, new RiwayatPembiayaan(0, 0, "", "", ""), DateTime.now(), 0, 0);
+    datas = DetailAngsuran(0, new RiwayatPembiayaan(0, 0, "", "", ""), DateTime.now(), 0, 0, "");
     this.listDatas = datas.getDataDetailRiwayatPembiayaan(this.idRiwayatPembiayaan);
     initializeDateFormatting();
     dateFormat = new DateFormat.yMMMMd('id');
@@ -115,6 +116,30 @@ class _ContainerDetailRiwayatPembiayaanState extends State<ContainerDetailRiwaya
                     Align(
                       alignment: Alignment.centerLeft,
                       child: CustomText("${item[index].sisaCicilan}", 15.0, false),
+                    ),
+                    SizedBox(height: 15.0,),
+                    Align(
+                      alignment: Alignment.centerLeft,
+                      child: CustomText("Status", 15.0, true),
+                    ),
+                    SizedBox(height: 5.0,),
+                    Align(
+                      alignment: Alignment.centerLeft,
+                      child: Container(
+                        height: 30.0,
+                        width: item[index].status == "Terbayar" ? 100 : 140 ,
+                        child: Card(
+                          elevation: 5.0,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(12.0),
+                          ),
+                          color: item[index].status == "Terbayar" ? HexColor("#00C851") : Colors.orange,
+                          child: Align(
+                            child: CustomText("${item[index].status}", 15.0, false),
+                            alignment: Alignment.center,
+                          ),
+                        ),
+                      ),
                     ),
                   ],
                 ),

@@ -20,7 +20,17 @@ class AjukanPembiayaanScreen1 extends StatelessWidget{
     return Scaffold(
       extendBody: true,
       appBar: AppBar(
-        leading: ButtonBack(),
+        leading: IconButton(
+            onPressed: () {
+              print("back");
+              Navigator.popUntil(context, ModalRoute.withName('/pembiayaan/riwayat'));
+            },
+            icon: Icon(
+              Icons.arrow_back_rounded,
+              size: 32.0,
+              color: Colors.white,
+            )
+        ),
         title: CustomText('Form Pembiayaan', 24.0, false),
         centerTitle: true,
         elevation: 0,
@@ -41,7 +51,6 @@ class AjukanPembiayaanScreen1 extends StatelessWidget{
           ),
         ),
       ),
-      bottomNavigationBar: BottomNav(),
     );
   }
 }

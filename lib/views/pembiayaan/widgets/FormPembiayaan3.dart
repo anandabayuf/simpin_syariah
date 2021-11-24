@@ -1473,66 +1473,63 @@ class _FormPembiayaan3State extends State<FormPembiayaan3> {
               ),
             ],
           ),
-          SizedBox(height: 20.0,),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Container(
-                width: 156,
-                child: ElevatedButton(
-                  onPressed: (){
-                    this.saveAllImage();
-                    print(
-                      "ktp : ${this.pembiayaan.ktpFile.path}\n"
-                      "ktp pasangan : ${this.pembiayaan.ktpPasanganFile.path}\n"
-                      "kk : ${this.pembiayaan.kartuKeluargaFile.path}\n"
-                      "slip gaji #1 : ${this.pembiayaan.slipGaji1File.path}\n"
-                      "slip gaji #2 : ${this.pembiayaan.slipGaji2File.path}\n"
-                      "slip gaji #3 : ${this.pembiayaan.slipGaji3File.path}\n"
-                    );
-                    Navigator.pop(context);
-                  },
-                  style: ElevatedButton.styleFrom(
-                      elevation: 0,
-                      primary: Colors.transparent,
-                      padding: EdgeInsets.zero
+          SizedBox(height: 30.0,),
+          Container(
+            height: 57,
+            child: ElevatedButton(
+              onPressed: (){
+                this.saveAllImage();
+                print(
+                    "ktp : ${this.pembiayaan.ktpFile.path}\n"
+                        "ktp pasangan : ${this.pembiayaan.ktpPasanganFile.path}\n"
+                        "kk : ${this.pembiayaan.kartuKeluargaFile.path}\n"
+                        "slip gaji #1 : ${this.pembiayaan.slipGaji1File.path}\n"
+                        "slip gaji #2 : ${this.pembiayaan.slipGaji2File.path}\n"
+                        "slip gaji #3 : ${this.pembiayaan.slipGaji3File.path}\n"
+                );
+                Navigator.pop(context);
+              },
+              style: ElevatedButton.styleFrom(
+                  elevation: 10,
+                  primary: Colors.white.withOpacity(0.5),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12.0),
                   ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      CircleAvatar(
-                        child: Icon(
-                          Icons.arrow_back_rounded,
-                          size: 32.0,
-                          color: Colors.white,
-                        ),
-                        backgroundColor: HexColor("#F8B50F"),
-                      ),
-                      SizedBox(width: 5.0,),
-                      Text(
-                        "Sebelumnya",
-                        style: TextStyle(
-                            fontSize: 15.0,
-                            color: HexColor("#F8B50F"),
-                            fontFamily: 'Comfortaa',
-                            decoration: TextDecoration.underline
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
+                  padding: EdgeInsets.all(5.0)
               ),
-              Container(
-                width: 150,
-                child: ElevatedButton(
-                  onPressed: (){
-                    this.saveAllImage();
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Icon(
+                    Icons.arrow_back_rounded,
+                    size: 32.0,
+                    color: Colors.white,
+                  ),
+                  SizedBox(width: 5.0,),
+                  Text(
+                    "SEBELUMNYA",
+                    style: TextStyle(
+                      fontSize: 15.0,
+                      color: Colors.white,
+                      fontFamily: 'Comfortaa',
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+          SizedBox(height: 20.0,),
+          Container(
+            height: 57,
+            child: ElevatedButton(
+              onPressed: (){
+                this.saveAllImage();
 
-                    if(this.formKeyScreen1.currentState!.validate() &&
-                        this.formKeyScreen2.currentState!.validate() &&
-                        this.isAllImageUploaded()){
-                      print(
-                          "peruntukkan 1 : ${this.pembiayaan.peruntukkan1}\n"
+                if(this.formKeyScreen1.currentState!.validate() &&
+                    this.formKeyScreen2.currentState!.validate() &&
+                    this.isAllImageUploaded()){
+                  print(
+                      "peruntukkan 1 : ${this.pembiayaan.peruntukkan1}\n"
                           "peruntukkan 2 : ${this.pembiayaan.peruntukkan2}\n"
                           "jenis akad : ${this.pembiayaan.jenisAkad}\n"
                           "pemindahan hak : ${this.pembiayaan.pemindahanHak}\n"
@@ -1551,51 +1548,48 @@ class _FormPembiayaan3State extends State<FormPembiayaan3> {
                           "slip gaji #1 : ${this.pembiayaan.slipGaji1File.path}\n"
                           "slip gaji #2 : ${this.pembiayaan.slipGaji2File.path}\n"
                           "slip gaji #3 : ${this.pembiayaan.slipGaji3File.path}\n"
-                      );
-                      showDialog<String>(
-                        barrierDismissible: false,
-                        context: context,
-                        builder: (BuildContext context) =>
+                  );
+                  showDialog<String>(
+                      barrierDismissible: false,
+                      context: context,
+                      builder: (BuildContext context) =>
                           ConfirmationDialog(context, this.pembiayaan)
-                      );
-                    } else {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        FailedInformation(context, "Data masih belum terisi semua, silakan periksa kembali")
-                      );
-                    }
-                  },
-                  style: ElevatedButton.styleFrom(
-                      elevation: 0,
-                      primary: Colors.transparent,
-                      padding: EdgeInsets.zero
+                  );
+                } else {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                      FailedInformation(context, "Data masih belum terisi semua, silakan periksa kembali")
+                  );
+                }
+              },
+              style: ElevatedButton.styleFrom(
+                  elevation: 10,
+                  primary: HexColor("#F8B50F"),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12.0),
                   ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      Text(
-                        "Ajukan",
-                        style: TextStyle(
-                            fontSize: 15.0,
-                            color: HexColor("#F8B50F"),
-                            fontFamily: 'Comfortaa',
-                            decoration: TextDecoration.underline
-                        ),
-                      ),
-                      SizedBox(width: 5.0,),
-                      CircleAvatar(
-                        child: Icon(
-                          Icons.check_rounded,
-                          size: 32.0,
-                          color: Colors.white,
-                        ),
-                        backgroundColor: HexColor("#F8B50F"),
-                      ),
-                    ],
-                  ),
-                ),
+                  padding: EdgeInsets.all(5.0)
               ),
-            ],
-          )
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    "AJUKAN",
+                    style: TextStyle(
+                      fontSize: 15.0,
+                      color: Colors.white,
+                      fontFamily: 'Comfortaa',
+                    ),
+                  ),
+                  SizedBox(width: 5.0,),
+                  Icon(
+                    Icons.check_rounded,
+                    size: 32.0,
+                    color: Colors.white,
+                  ),
+                ],
+              ),
+            ),
+          ),
         ],
       ),
     );

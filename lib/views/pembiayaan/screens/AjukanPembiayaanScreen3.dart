@@ -50,7 +50,6 @@ class AjukanPembiayaanScreen3 extends StatelessWidget{
           ),
         ),
       ),
-      bottomNavigationBar: BottomNav(),
     );
   }
 }

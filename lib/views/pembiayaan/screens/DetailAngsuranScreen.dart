@@ -5,12 +5,12 @@ import 'package:hexcolor/hexcolor.dart';
 import 'package:project_simpin_syariah/views/customwidgets/ButtonBack.dart';
 import 'package:project_simpin_syariah/views/customwidgets/BottomNav.dart';
 import 'package:project_simpin_syariah/views/customwidgets/CustomText.dart';
-import 'package:project_simpin_syariah/views/pembiayaan/widgets/ContainerDetailRiwayatPembiayaan.dart';
+import 'package:project_simpin_syariah/views/pembiayaan/widgets/ContainerDetailAngsuran.dart';
 
-class DetailRiwayatPembiayaanScreen extends StatelessWidget{
+class DetailAngsuranScreen extends StatelessWidget{
   final int idRiwayatPembiayaan;
 
-  DetailRiwayatPembiayaanScreen({Key? key, required this.idRiwayatPembiayaan}) : super(key: key);
+  DetailAngsuranScreen({Key? key, required this.idRiwayatPembiayaan}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +20,8 @@ class DetailRiwayatPembiayaanScreen extends StatelessWidget{
       extendBody: true,
       appBar: AppBar(
         leading: ButtonBack(),
-        title: CustomText('Detail Riwayat Pembiayaan', 20.0, false),
+        title: CustomText('Detail Angsuran', 24.0, false),
+        centerTitle: true,
         elevation: 0,
         backgroundColor: HexColor("#50AEA7"),
       ),
@@ -40,7 +41,6 @@ class DetailRiwayatPembiayaanScreen extends StatelessWidget{
           ),
         ),
       ),
-      bottomNavigationBar: BottomNav(),
     );
   }
 }
