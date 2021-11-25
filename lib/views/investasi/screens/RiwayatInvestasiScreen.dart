@@ -2,10 +2,13 @@ import 'package:colorful_safe_area/colorful_safe_area.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:project_simpin_syariah/models/investasi/Investasi.dart';
 import 'package:project_simpin_syariah/views/customwidgets/BottomNav.dart';
+import 'package:project_simpin_syariah/views/customwidgets/ButtonBack.dart';
 import 'package:project_simpin_syariah/views/customwidgets/CustomText.dart';
 import 'package:project_simpin_syariah/views/investasi/screens/AjukanInvestasiScreen1.dart';
+import 'package:project_simpin_syariah/views/investasi/screens/InformasiPengajuanInvestasiScreen.dart';
 import 'package:project_simpin_syariah/views/investasi/widgets/ContainerRiwayatInvestasi.dart';
 
 class RiwayatInvestasiScreen extends StatelessWidget{
@@ -15,6 +18,13 @@ class RiwayatInvestasiScreen extends StatelessWidget{
 
     return Scaffold(
       extendBody: true,
+      appBar: AppBar(
+        leading: ButtonBack(),
+        title: CustomText('Riwayat Investasi', 24.0, false),
+        centerTitle: true,
+        elevation: 0,
+        backgroundColor: HexColor("#50AEA7"),
+      ),
       body: ColorfulSafeArea(
         color: HexColor("#50AEA7"),
         child: Container(
@@ -24,56 +34,37 @@ class RiwayatInvestasiScreen extends StatelessWidget{
           child: SingleChildScrollView(
             physics: AlwaysScrollableScrollPhysics(),
             child: Container(
-              padding: EdgeInsets.all(20.0),
-              child: Column(
-                children: [
-                  Align(
-                    child: CustomText('Riwayat Investasi', 24.0, false),
-                    alignment: Alignment.centerLeft,
-                  ),
-                  ContainerRiwayatInvestasi()
-                ],
-              ),
+                padding: EdgeInsets.only(left: 20.0, right: 20.0, bottom: 20.0,),
+              child: ContainerRiwayatInvestasi()
             ),
           ),
         ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: Container(
-        width: 240,
+        width: screenSize.width-40,
         child: FloatingActionButton(
           onPressed: (){
             print("Ajukan Investasi");
             final investasi = new Investasi("", "", "", "", "", "", "", "", 0,
-                "", DateTime.now(), DateTime.now().add(Duration(days: 1)), "", 0, 0, 0);
+                "", DateTime.now(), DateTime.now().add(Duration(days: 1)), "", 0, 0, 0,
+                new XFile(""), new XFile(""), new XFile(""), new XFile(""), new XFile(""), new XFile(""));
             Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => AjukanInvestasiScreen1(investasi: investasi))
+                MaterialPageRoute(builder: (context) => InformasiPengajuanInvestasiScreen(investasi))
             );
           },
           elevation: 5.0,
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(29.0),
+            borderRadius: BorderRadius.circular(12.0),
           ),
           backgroundColor: HexColor("#F8B50F"),
           child: Padding(
             padding: const EdgeInsets.all(5.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Icon(
-                  Icons.add_circle_outline,
-                  size: 32.0,
-                  color: Colors.white,
-                ),
-                SizedBox(width: 5.0,),
-                CustomText("Ajukan Investasi", 15.0, false),
-              ],
-            ),
+            child: CustomText("AJUKAN INVESTASI", 20.0, false),
           ),
         ),
       ),
-      bottomNavigationBar: BottomNav(),
     );
   }
 }
