@@ -15,6 +15,7 @@ class ConfirmationDialog extends AlertDialog {
             Radius.circular(32.0)
         )
     ),
+    actionsPadding: EdgeInsets.all(10.0),
     title: Column(
       children: [
         Image.asset(
@@ -51,53 +52,57 @@ class ConfirmationDialog extends AlertDialog {
       Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          ElevatedButton(
-            style: ElevatedButton.styleFrom(
-              elevation: 10.0,
-              primary: HexColor("#F8B50F"),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(12.0),
-              ),
-            ),
-            onPressed: () {
-              //cuma dummy check
-              if(investasi.totalInvestasi != 0){
-                //data pembiayaan masuk ke backend
-
-                //...
-                Navigator.popUntil(context, ModalRoute.withName('/investasi/riwayat'));
-                ScaffoldMessenger.of(context).showSnackBar(
-                    SuccessInformation(context, 'Investasi berhasil diajukan')
-                );
-              } else{
-                Navigator.pop(context);
-                ScaffoldMessenger.of(context).showSnackBar(
-                    FailedInformation(context, 'Investasi gagal diajukan, periksa kembali data yang anda masukkan')
-                );
-              }
-            },
-            child: CustomText("Ajukan", 15.0, false),
-          ),
-          SizedBox(width: 20.0),
-          ElevatedButton(
+          Expanded(
+            child: ElevatedButton(
               style: ElevatedButton.styleFrom(
                 elevation: 10.0,
-                primary: Colors.white,
+                primary: HexColor("#F8B50F"),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(12.0),
                 ),
               ),
-              onPressed: (){
-                Navigator.of(context).pop();
+              onPressed: () {
+                //cuma dummy check
+                if(investasi.totalInvestasi != 0){
+                  //data pembiayaan masuk ke backend
+
+                  //...
+                  Navigator.popUntil(context, ModalRoute.withName('/investasi/riwayat'));
+                  ScaffoldMessenger.of(context).showSnackBar(
+                      SuccessInformation(context, 'Investasi berhasil diajukan')
+                  );
+                } else{
+                  Navigator.pop(context);
+                  ScaffoldMessenger.of(context).showSnackBar(
+                      FailedInformation(context, 'Investasi gagal diajukan, periksa kembali data yang anda masukkan')
+                  );
+                }
               },
-              child: Text(
-                "Batal",
-                style: TextStyle(
-                    fontSize: 15.0,
-                    color: Colors.black,
-                    fontFamily: 'Comfortaa'
+              child: CustomText("Ajukan", 15.0, false),
+            ),
+          ),
+          SizedBox(width: 10.0),
+          Expanded(
+            child: ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  elevation: 10.0,
+                  primary: Colors.white.withOpacity(0.5),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12.0),
+                  ),
                 ),
-              )
+                onPressed: (){
+                  Navigator.of(context).pop();
+                },
+                child: Text(
+                  "Batal",
+                  style: TextStyle(
+                      fontSize: 15.0,
+                      color: Colors.white,
+                      fontFamily: 'Comfortaa'
+                  ),
+                )
+            ),
           ),
         ],
       )
