@@ -14,7 +14,7 @@ class AppVersionDialog extends AlertDialog {
     title: Column(
       children: [
         Align(
-          alignment: Alignment.centerRight,
+          alignment: Alignment.topRight,
           child: IconButton(
             padding: EdgeInsets.zero,
             onPressed: (){
