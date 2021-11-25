@@ -34,7 +34,6 @@ class _FormInvestasi3State extends State<FormInvestasi3> {
   late XFile slipGaji1;
   late XFile slipGaji2;
   late XFile slipGaji3;
-  late XFile temp;
 
   final ImagePicker _picker = ImagePicker();
 
@@ -48,8 +47,6 @@ class _FormInvestasi3State extends State<FormInvestasi3> {
     this.slipGaji1 = this.investasi.slipGaji1File;
     this.slipGaji2 = this.investasi.slipGaji2File;
     this.slipGaji3 = this.investasi.slipGaji3File;
-
-    this.temp = XFile('');
 
     super.initState();
   }
@@ -125,91 +122,147 @@ class _FormInvestasi3State extends State<FormInvestasi3> {
     });
   }
 
-  void setPopUpImageKTP(){
-    setState(() {
-      this.temp = this.ktp;
-    });
-  }
-
-  void setPopUpImageKTPPasangan(){
-    setState(() {
-      this.temp = this.ktpPasangan;
-    });
-  }
-
-  void setPopUpImageKartuKeluarga(){
-    setState(() {
-      this.temp = this.kk;
-    });
-  }
-
-  void setPopUpImageSlipGaji1(){
-    setState(() {
-      this.temp = this.slipGaji1;
-    });
-  }
-
-  void setPopUpImageSlipGaji2(){
-    setState(() {
-      this.temp = this.slipGaji2;
-    });
-  }
-
-  void setPopUpImageSlipGaji3(){
-    setState(() {
-      this.temp = this.slipGaji3;
-    });
-  }
-
-  void onClickUploadImage(setState) async {
+  void onClickUploadImageKTP(setState) async {
     // Pick an image
     final XFile? image = await _picker.pickImage(
       source: ImageSource.gallery,
     );
     setState(() {
-      this.temp = image!;
+      this.ktp = image!;
+    });
+    saveImageKTP(image!);
+  }
+
+  void onClickDeleteImageKTP(setState){
+    setState(() {
+      this.ktp = XFile('');
+    });
+    saveImageKTP(XFile(''));
+  }
+
+  void saveImageKTP(XFile image){
+    setState(() {
+      this.ktp = image;
     });
   }
 
-  void onClickDeleteImage(setState){
+  void onClickUploadImageKTPPasangan(setState) async {
+    // Pick an image
+    final XFile? image = await _picker.pickImage(
+      source: ImageSource.gallery,
+    );
     setState(() {
-      this.temp = XFile('');
+      this.ktpPasangan = image!;
+    });
+    saveImageKTPPasangan(image!);
+  }
+
+  void onClickDeleteImageKTPPasangan(setState){
+    setState(() {
+      this.ktpPasangan = XFile('');
+    });
+    saveImageKTPPasangan(XFile(''));
+  }
+
+  void saveImageKTPPasangan(XFile image){
+    setState(() {
+      this.ktpPasangan = image;
     });
   }
 
-  void onClickSaveImageKTP(){
+  void onClickUploadImageKK(setState) async {
+    // Pick an image
+    final XFile? image = await _picker.pickImage(
+      source: ImageSource.gallery,
+    );
     setState(() {
-      this.ktp = this.temp;
+      this.kk = image!;
+    });
+    saveImageKartuKeluarga(image!);
+  }
+
+  void onClickDeleteImageKK(setState){
+    setState(() {
+      this.kk = XFile('');
+    });
+    saveImageKartuKeluarga(XFile(''));
+  }
+
+  void saveImageKartuKeluarga(XFile image){
+    setState(() {
+      this.kk = image;
     });
   }
 
-  void onClickSaveImageKTPPasangan(){
+  void onClickUploadImageSlipGaji1(setState) async {
+    // Pick an image
+    final XFile? image = await _picker.pickImage(
+      source: ImageSource.gallery,
+    );
     setState(() {
-      this.ktpPasangan = this.temp;
+      this.slipGaji1 = image!;
+    });
+    saveImageSlipGaji1(image!);
+  }
+
+  void onClickDeleteImageSlipGaji1(setState){
+    setState(() {
+      this.slipGaji1 = XFile('');
+    });
+    saveImageSlipGaji1(XFile(''));
+  }
+
+  void saveImageSlipGaji1(XFile image){
+    setState(() {
+      this.slipGaji1 = image;
     });
   }
 
-  void onClickSaveImageKartuKeluarga(){
+  void onClickUploadImageSlipGaji2(setState) async {
+    // Pick an image
+    final XFile? image = await _picker.pickImage(
+      source: ImageSource.gallery,
+    );
     setState(() {
-      this.kk = this.temp;
+      this.slipGaji2 = image!;
+    });
+    saveImageSlipGaji2(image!);
+  }
+
+  void onClickDeleteImageSlipGaji2(setState){
+    setState(() {
+      this.slipGaji2 = XFile('');
+    });
+    saveImageSlipGaji2(XFile(''));
+  }
+
+  void saveImageSlipGaji2(XFile image){
+    setState(() {
+      this.slipGaji2 = image;
     });
   }
 
-  void onClickSaveImageSlipGaji1(){
+  void onClickUploadImageSlipGaji3(setState) async {
+    // Pick an image
+    final XFile? image = await _picker.pickImage(
+      source: ImageSource.gallery,
+    );
     setState(() {
-      this.slipGaji1 = this.temp;
+      this.slipGaji3 = image!;
     });
+    saveImageSlipGaji3(image!);
   }
 
-  void onClickSaveImageSlipGaji2(){
+  void onClickDeleteImageSlipGaji3(setState){
     setState(() {
-      this.slipGaji2 = this.temp;
+      this.slipGaji3 = XFile('');
     });
+    saveImageSlipGaji3(XFile(''));
   }
 
-  void onClickSaveImageSlipGaji3(){
+  void saveImageSlipGaji3(XFile image){
     setState(() {
-      this.slipGaji3 = this.temp;
+      this.slipGaji3 = image;
     });
   }
 
@@ -259,12 +312,7 @@ class _FormInvestasi3State extends State<FormInvestasi3> {
                         children: [
                           this.ktp.path != '' ? InkWell(
                               onTap: () {
-                                print("image clicked");
-
-                                this.setPopUpImageKTP();
-
                                 showDialog<String>(
-                                    barrierDismissible: false,
                                     context: context,
                                     builder: (BuildContext context) {
                                       return StatefulBuilder(
@@ -279,18 +327,31 @@ class _FormInvestasi3State extends State<FormInvestasi3> {
                                             elevation: 5.0,
                                             title: Column(
                                               children: [
+                                                Align(
+                                                  alignment: Alignment.topRight,
+                                                  child: IconButton(
+                                                      padding: EdgeInsets.zero,
+                                                      onPressed: (){
+                                                        Navigator.of(context).pop();
+                                                      },
+                                                      icon: Icon(
+                                                        Icons.close,
+                                                        size: 24.0,
+                                                        color: Colors.white,
+                                                      )
+                                                  ),
+                                                ),
                                                 CustomText("KTP", 15.0, false),
                                                 SizedBox(height: 10),
-                                                this.temp.path == "" ?
+                                                this.ktp.path == "" ?
                                                 CustomText("Gambar Belum Di-upload", 15.0, true)
                                                     : Image.file(
-                                                  File(this.temp.path),
+                                                  File(this.ktp.path),
                                                   width: 315,
                                                   height: 200,
                                                 ),
                                                 SizedBox(height: 20),
                                                 Container(
-                                                  width: 186,
                                                   child: ElevatedButton(
                                                       style: ElevatedButton.styleFrom(
                                                           elevation: 10.0,
@@ -301,7 +362,7 @@ class _FormInvestasi3State extends State<FormInvestasi3> {
                                                       ),
                                                       onPressed: () {
                                                         //fungsi unggah
-                                                        this.onClickUploadImage(setState);
+                                                        this.onClickUploadImageKTP(setState);
                                                       },
                                                       child: Row(
                                                         mainAxisAlignment: MainAxisAlignment.center,
@@ -319,7 +380,6 @@ class _FormInvestasi3State extends State<FormInvestasi3> {
                                                 ),
                                                 SizedBox(height: 10),
                                                 Container(
-                                                  width: 186,
                                                   child: ElevatedButton(
                                                       style: ElevatedButton.styleFrom(
                                                           elevation: 10.0,
@@ -330,7 +390,8 @@ class _FormInvestasi3State extends State<FormInvestasi3> {
                                                       ),
                                                       onPressed: () {
                                                         //fungsi hapus
-                                                        this.onClickDeleteImage(setState);
+                                                        this.onClickDeleteImageKTP(setState);
+                                                        Navigator.pop(context);
                                                       },
                                                       child: Row(
                                                         mainAxisAlignment: MainAxisAlignment.center,
@@ -346,55 +407,6 @@ class _FormInvestasi3State extends State<FormInvestasi3> {
                                                       )
                                                   ),
                                                 ),
-                                                SizedBox(height: 20.0,),
-                                                Row(
-                                                  mainAxisAlignment: MainAxisAlignment.center,
-                                                  children: [
-                                                    Container(
-                                                      width: 100,
-                                                      child: ElevatedButton(
-                                                          style: ElevatedButton.styleFrom(
-                                                              elevation: 10.0,
-                                                              primary: HexColor("#24A0ED"),
-                                                              shape: RoundedRectangleBorder(
-                                                                  borderRadius: BorderRadius.circular(12.0)
-                                                              )
-                                                          ),
-                                                          onPressed: () {
-                                                            //fungsi simpan
-                                                            this.onClickSaveImageKTP();
-                                                            Navigator.pop(context, 'Simpan');
-                                                          },
-                                                          child: CustomText("Simpan", 15.0, false)
-                                                      ),
-                                                    ),
-                                                    SizedBox(width: 20.0,),
-                                                    Container(
-                                                      width: 100,
-                                                      child: ElevatedButton(
-                                                          style: ElevatedButton.styleFrom(
-                                                              elevation: 10.0,
-                                                              primary: Colors.white,
-                                                              shape: RoundedRectangleBorder(
-                                                                  borderRadius: BorderRadius.circular(12.0)
-                                                              )
-                                                          ),
-                                                          onPressed: () {
-                                                            //fungsi batal
-                                                            Navigator.pop(context, 'Batal');
-                                                          },
-                                                          child: Text(
-                                                            "Batal",
-                                                            style: TextStyle(
-                                                                fontSize: 15.0,
-                                                                color: Colors.black,
-                                                                fontFamily: 'Comfortaa'
-                                                            ),
-                                                          )
-                                                      ),
-                                                    ),
-                                                  ],
-                                                )
                                               ],
                                             ),
                                           );
@@ -462,12 +474,7 @@ class _FormInvestasi3State extends State<FormInvestasi3> {
                         children: [
                           this.ktpPasangan.path != '' ? InkWell(
                               onTap: () {
-                                print("image clicked");
-
-                                this.setPopUpImageKTPPasangan();
-
                                 showDialog<String>(
-                                    barrierDismissible: false,
                                     context: context,
                                     builder: (BuildContext context) {
                                       return StatefulBuilder(
@@ -482,18 +489,31 @@ class _FormInvestasi3State extends State<FormInvestasi3> {
                                             elevation: 5.0,
                                             title: Column(
                                               children: [
+                                                Align(
+                                                  alignment: Alignment.topRight,
+                                                  child: IconButton(
+                                                      padding: EdgeInsets.zero,
+                                                      onPressed: (){
+                                                        Navigator.of(context).pop();
+                                                      },
+                                                      icon: Icon(
+                                                        Icons.close,
+                                                        size: 24.0,
+                                                        color: Colors.white,
+                                                      )
+                                                  ),
+                                                ),
                                                 CustomText("KTP Pasangan", 15.0, false),
                                                 SizedBox(height: 10),
-                                                this.temp.path == "" ?
+                                                this.ktpPasangan.path == "" ?
                                                 CustomText("Gambar Belum Di-upload", 15.0, true)
                                                     : Image.file(
-                                                  File(this.temp.path),
+                                                  File(this.ktpPasangan.path),
                                                   width: 315,
                                                   height: 200,
                                                 ),
                                                 SizedBox(height: 20),
                                                 Container(
-                                                  width: 186,
                                                   child: ElevatedButton(
                                                       style: ElevatedButton.styleFrom(
                                                           elevation: 10.0,
@@ -504,7 +524,7 @@ class _FormInvestasi3State extends State<FormInvestasi3> {
                                                       ),
                                                       onPressed: () {
                                                         //fungsi unggah
-                                                        this.onClickUploadImage(setState);
+                                                        this.onClickUploadImageKTPPasangan(setState);
                                                       },
                                                       child: Row(
                                                         mainAxisAlignment: MainAxisAlignment.center,
@@ -522,7 +542,6 @@ class _FormInvestasi3State extends State<FormInvestasi3> {
                                                 ),
                                                 SizedBox(height: 10),
                                                 Container(
-                                                  width: 186,
                                                   child: ElevatedButton(
                                                       style: ElevatedButton.styleFrom(
                                                           elevation: 10.0,
@@ -533,7 +552,8 @@ class _FormInvestasi3State extends State<FormInvestasi3> {
                                                       ),
                                                       onPressed: () {
                                                         //fungsi hapus
-                                                        this.onClickDeleteImage(setState);
+                                                        this.onClickDeleteImageKTPPasangan(setState);
+                                                        Navigator.pop(context);
                                                       },
                                                       child: Row(
                                                         mainAxisAlignment: MainAxisAlignment.center,
@@ -549,55 +569,6 @@ class _FormInvestasi3State extends State<FormInvestasi3> {
                                                       )
                                                   ),
                                                 ),
-                                                SizedBox(height: 20.0,),
-                                                Row(
-                                                  mainAxisAlignment: MainAxisAlignment.center,
-                                                  children: [
-                                                    Container(
-                                                      width: 100,
-                                                      child: ElevatedButton(
-                                                          style: ElevatedButton.styleFrom(
-                                                              elevation: 10.0,
-                                                              primary: HexColor("#24A0ED"),
-                                                              shape: RoundedRectangleBorder(
-                                                                  borderRadius: BorderRadius.circular(12.0)
-                                                              )
-                                                          ),
-                                                          onPressed: () {
-                                                            //fungsi simpan
-                                                            this.onClickSaveImageKTPPasangan();
-                                                            Navigator.pop(context, 'Simpan');
-                                                          },
-                                                          child: CustomText("Simpan", 15.0, false)
-                                                      ),
-                                                    ),
-                                                    SizedBox(width: 20.0,),
-                                                    Container(
-                                                      width: 100,
-                                                      child: ElevatedButton(
-                                                          style: ElevatedButton.styleFrom(
-                                                              elevation: 10.0,
-                                                              primary: Colors.white,
-                                                              shape: RoundedRectangleBorder(
-                                                                  borderRadius: BorderRadius.circular(12.0)
-                                                              )
-                                                          ),
-                                                          onPressed: () {
-                                                            //fungsi batal
-                                                            Navigator.pop(context, 'Batal');
-                                                          },
-                                                          child: Text(
-                                                            "Batal",
-                                                            style: TextStyle(
-                                                                fontSize: 15.0,
-                                                                color: Colors.black,
-                                                                fontFamily: 'Comfortaa'
-                                                            ),
-                                                          )
-                                                      ),
-                                                    ),
-                                                  ],
-                                                )
                                               ],
                                             ),
                                           );
@@ -670,12 +641,7 @@ class _FormInvestasi3State extends State<FormInvestasi3> {
                         children: [
                           this.kk.path != '' ? InkWell(
                               onTap: () {
-                                print("image clicked");
-
-                                this.setPopUpImageKartuKeluarga();
-
                                 showDialog<String>(
-                                    barrierDismissible: false,
                                     context: context,
                                     builder: (BuildContext context) {
                                       return StatefulBuilder(
@@ -690,18 +656,31 @@ class _FormInvestasi3State extends State<FormInvestasi3> {
                                             elevation: 5.0,
                                             title: Column(
                                               children: [
+                                                Align(
+                                                  alignment: Alignment.topRight,
+                                                  child: IconButton(
+                                                      padding: EdgeInsets.zero,
+                                                      onPressed: (){
+                                                        Navigator.of(context).pop();
+                                                      },
+                                                      icon: Icon(
+                                                        Icons.close,
+                                                        size: 24.0,
+                                                        color: Colors.white,
+                                                      )
+                                                  ),
+                                                ),
                                                 CustomText("Kartu Keluarga", 15.0, false),
                                                 SizedBox(height: 10),
-                                                this.temp.path == "" ?
+                                                this.kk.path == "" ?
                                                 CustomText("Gambar Belum Di-upload", 15.0, true)
                                                     : Image.file(
-                                                  File(this.temp.path),
+                                                  File(this.kk.path),
                                                   width: 315,
                                                   height: 200,
                                                 ),
                                                 SizedBox(height: 20),
                                                 Container(
-                                                  width: 186,
                                                   child: ElevatedButton(
                                                       style: ElevatedButton.styleFrom(
                                                           elevation: 10.0,
@@ -712,7 +691,7 @@ class _FormInvestasi3State extends State<FormInvestasi3> {
                                                       ),
                                                       onPressed: () {
                                                         //fungsi unggah
-                                                        this.onClickUploadImage(setState);
+                                                        this.onClickUploadImageKK(setState);
                                                       },
                                                       child: Row(
                                                         mainAxisAlignment: MainAxisAlignment.center,
@@ -730,7 +709,6 @@ class _FormInvestasi3State extends State<FormInvestasi3> {
                                                 ),
                                                 SizedBox(height: 10),
                                                 Container(
-                                                  width: 186,
                                                   child: ElevatedButton(
                                                       style: ElevatedButton.styleFrom(
                                                           elevation: 10.0,
@@ -741,7 +719,8 @@ class _FormInvestasi3State extends State<FormInvestasi3> {
                                                       ),
                                                       onPressed: () {
                                                         //fungsi hapus
-                                                        this.onClickDeleteImage(setState);
+                                                        this.onClickDeleteImageKK(setState);
+                                                        Navigator.pop(context);
                                                       },
                                                       child: Row(
                                                         mainAxisAlignment: MainAxisAlignment.center,
@@ -757,55 +736,6 @@ class _FormInvestasi3State extends State<FormInvestasi3> {
                                                       )
                                                   ),
                                                 ),
-                                                SizedBox(height: 20.0,),
-                                                Row(
-                                                  mainAxisAlignment: MainAxisAlignment.center,
-                                                  children: [
-                                                    Container(
-                                                      width: 100,
-                                                      child: ElevatedButton(
-                                                          style: ElevatedButton.styleFrom(
-                                                              elevation: 10.0,
-                                                              primary: HexColor("#24A0ED"),
-                                                              shape: RoundedRectangleBorder(
-                                                                  borderRadius: BorderRadius.circular(12.0)
-                                                              )
-                                                          ),
-                                                          onPressed: () {
-                                                            //fungsi simpan
-                                                            this.onClickSaveImageKartuKeluarga();
-                                                            Navigator.pop(context, 'Simpan');
-                                                          },
-                                                          child: CustomText("Simpan", 15.0, false)
-                                                      ),
-                                                    ),
-                                                    SizedBox(width: 20.0,),
-                                                    Container(
-                                                      width: 100,
-                                                      child: ElevatedButton(
-                                                          style: ElevatedButton.styleFrom(
-                                                              elevation: 10.0,
-                                                              primary: Colors.white,
-                                                              shape: RoundedRectangleBorder(
-                                                                  borderRadius: BorderRadius.circular(12.0)
-                                                              )
-                                                          ),
-                                                          onPressed: () {
-                                                            //fungsi batal
-                                                            Navigator.pop(context, 'Batal');
-                                                          },
-                                                          child: Text(
-                                                            "Batal",
-                                                            style: TextStyle(
-                                                                fontSize: 15.0,
-                                                                color: Colors.black,
-                                                                fontFamily: 'Comfortaa'
-                                                            ),
-                                                          )
-                                                      ),
-                                                    ),
-                                                  ],
-                                                )
                                               ],
                                             ),
                                           );
@@ -873,12 +803,7 @@ class _FormInvestasi3State extends State<FormInvestasi3> {
                         children: [
                           this.slipGaji1.path != '' ? InkWell(
                               onTap: () {
-                                print("image clicked");
-
-                                this.setPopUpImageSlipGaji1();
-
                                 showDialog<String>(
-                                    barrierDismissible: false,
                                     context: context,
                                     builder: (BuildContext context) {
                                       return StatefulBuilder(
@@ -893,18 +818,31 @@ class _FormInvestasi3State extends State<FormInvestasi3> {
                                             elevation: 5.0,
                                             title: Column(
                                               children: [
+                                                Align(
+                                                  alignment: Alignment.topRight,
+                                                  child: IconButton(
+                                                      padding: EdgeInsets.zero,
+                                                      onPressed: (){
+                                                        Navigator.of(context).pop();
+                                                      },
+                                                      icon: Icon(
+                                                        Icons.close,
+                                                        size: 24.0,
+                                                        color: Colors.white,
+                                                      )
+                                                  ),
+                                                ),
                                                 CustomText("Slip Gaji #1", 15.0, false),
                                                 SizedBox(height: 10),
-                                                this.temp.path == "" ?
+                                                this.slipGaji1.path == "" ?
                                                 CustomText("Gambar Belum Di-upload", 15.0, true)
                                                     : Image.file(
-                                                  File(this.temp.path),
+                                                  File(this.slipGaji1.path),
                                                   width: 315,
                                                   height: 200,
                                                 ),
                                                 SizedBox(height: 20),
                                                 Container(
-                                                  width: 186,
                                                   child: ElevatedButton(
                                                       style: ElevatedButton.styleFrom(
                                                           elevation: 10.0,
@@ -915,7 +853,7 @@ class _FormInvestasi3State extends State<FormInvestasi3> {
                                                       ),
                                                       onPressed: () {
                                                         //fungsi unggah
-                                                        this.onClickUploadImage(setState);
+                                                        this.onClickUploadImageSlipGaji1(setState);
                                                       },
                                                       child: Row(
                                                         mainAxisAlignment: MainAxisAlignment.center,
@@ -933,7 +871,6 @@ class _FormInvestasi3State extends State<FormInvestasi3> {
                                                 ),
                                                 SizedBox(height: 10),
                                                 Container(
-                                                  width: 186,
                                                   child: ElevatedButton(
                                                       style: ElevatedButton.styleFrom(
                                                           elevation: 10.0,
@@ -944,7 +881,8 @@ class _FormInvestasi3State extends State<FormInvestasi3> {
                                                       ),
                                                       onPressed: () {
                                                         //fungsi hapus
-                                                        this.onClickDeleteImage(setState);
+                                                        this.onClickDeleteImageSlipGaji1(setState);
+                                                        Navigator.pop(context);
                                                       },
                                                       child: Row(
                                                         mainAxisAlignment: MainAxisAlignment.center,
@@ -960,55 +898,6 @@ class _FormInvestasi3State extends State<FormInvestasi3> {
                                                       )
                                                   ),
                                                 ),
-                                                SizedBox(height: 20.0,),
-                                                Row(
-                                                  mainAxisAlignment: MainAxisAlignment.center,
-                                                  children: [
-                                                    Container(
-                                                      width: 100,
-                                                      child: ElevatedButton(
-                                                          style: ElevatedButton.styleFrom(
-                                                              elevation: 10.0,
-                                                              primary: HexColor("#24A0ED"),
-                                                              shape: RoundedRectangleBorder(
-                                                                  borderRadius: BorderRadius.circular(12.0)
-                                                              )
-                                                          ),
-                                                          onPressed: () {
-                                                            //fungsi simpan
-                                                            this.onClickSaveImageSlipGaji1();
-                                                            Navigator.pop(context, 'Simpan');
-                                                          },
-                                                          child: CustomText("Simpan", 15.0, false)
-                                                      ),
-                                                    ),
-                                                    SizedBox(width: 20.0,),
-                                                    Container(
-                                                      width: 100,
-                                                      child: ElevatedButton(
-                                                          style: ElevatedButton.styleFrom(
-                                                              elevation: 10.0,
-                                                              primary: Colors.white,
-                                                              shape: RoundedRectangleBorder(
-                                                                  borderRadius: BorderRadius.circular(12.0)
-                                                              )
-                                                          ),
-                                                          onPressed: () {
-                                                            //fungsi batal
-                                                            Navigator.pop(context, 'Batal');
-                                                          },
-                                                          child: Text(
-                                                            "Batal",
-                                                            style: TextStyle(
-                                                                fontSize: 15.0,
-                                                                color: Colors.black,
-                                                                fontFamily: 'Comfortaa'
-                                                            ),
-                                                          )
-                                                      ),
-                                                    ),
-                                                  ],
-                                                )
                                               ],
                                             ),
                                           );
@@ -1081,12 +970,7 @@ class _FormInvestasi3State extends State<FormInvestasi3> {
                         children: [
                           this.slipGaji2.path != '' ? InkWell(
                               onTap: () {
-                                print("image clicked");
-
-                                this.setPopUpImageSlipGaji2();
-
                                 showDialog<String>(
-                                    barrierDismissible: false,
                                     context: context,
                                     builder: (BuildContext context) {
                                       return StatefulBuilder(
@@ -1101,18 +985,31 @@ class _FormInvestasi3State extends State<FormInvestasi3> {
                                             elevation: 5.0,
                                             title: Column(
                                               children: [
+                                                Align(
+                                                  alignment: Alignment.topRight,
+                                                  child: IconButton(
+                                                      padding: EdgeInsets.zero,
+                                                      onPressed: (){
+                                                        Navigator.of(context).pop();
+                                                      },
+                                                      icon: Icon(
+                                                        Icons.close,
+                                                        size: 24.0,
+                                                        color: Colors.white,
+                                                      )
+                                                  ),
+                                                ),
                                                 CustomText("Slip Gaji #2", 15.0, false),
                                                 SizedBox(height: 10),
-                                                this.temp.path == "" ?
+                                                this.slipGaji2.path == "" ?
                                                 CustomText("Gambar Belum Di-upload", 15.0, true)
                                                     : Image.file(
-                                                  File(this.temp.path),
+                                                  File(this.slipGaji2.path),
                                                   width: 315,
                                                   height: 200,
                                                 ),
                                                 SizedBox(height: 20),
                                                 Container(
-                                                  width: 186,
                                                   child: ElevatedButton(
                                                       style: ElevatedButton.styleFrom(
                                                           elevation: 10.0,
@@ -1123,7 +1020,7 @@ class _FormInvestasi3State extends State<FormInvestasi3> {
                                                       ),
                                                       onPressed: () {
                                                         //fungsi unggah
-                                                        this.onClickUploadImage(setState);
+                                                        this.onClickUploadImageSlipGaji2(setState);
                                                       },
                                                       child: Row(
                                                         mainAxisAlignment: MainAxisAlignment.center,
@@ -1141,7 +1038,6 @@ class _FormInvestasi3State extends State<FormInvestasi3> {
                                                 ),
                                                 SizedBox(height: 10),
                                                 Container(
-                                                  width: 186,
                                                   child: ElevatedButton(
                                                       style: ElevatedButton.styleFrom(
                                                           elevation: 10.0,
@@ -1152,7 +1048,8 @@ class _FormInvestasi3State extends State<FormInvestasi3> {
                                                       ),
                                                       onPressed: () {
                                                         //fungsi hapus
-                                                        this.onClickDeleteImage(setState);
+                                                        this.onClickDeleteImageSlipGaji2(setState);
+                                                        Navigator.pop(context);
                                                       },
                                                       child: Row(
                                                         mainAxisAlignment: MainAxisAlignment.center,
@@ -1168,55 +1065,6 @@ class _FormInvestasi3State extends State<FormInvestasi3> {
                                                       )
                                                   ),
                                                 ),
-                                                SizedBox(height: 20.0,),
-                                                Row(
-                                                  mainAxisAlignment: MainAxisAlignment.center,
-                                                  children: [
-                                                    Container(
-                                                      width: 100,
-                                                      child: ElevatedButton(
-                                                          style: ElevatedButton.styleFrom(
-                                                              elevation: 10.0,
-                                                              primary: HexColor("#24A0ED"),
-                                                              shape: RoundedRectangleBorder(
-                                                                  borderRadius: BorderRadius.circular(12.0)
-                                                              )
-                                                          ),
-                                                          onPressed: () {
-                                                            //fungsi simpan
-                                                            this.onClickSaveImageSlipGaji2();
-                                                            Navigator.pop(context, 'Simpan');
-                                                          },
-                                                          child: CustomText("Simpan", 15.0, false)
-                                                      ),
-                                                    ),
-                                                    SizedBox(width: 20.0,),
-                                                    Container(
-                                                      width: 100,
-                                                      child: ElevatedButton(
-                                                          style: ElevatedButton.styleFrom(
-                                                              elevation: 10.0,
-                                                              primary: Colors.white,
-                                                              shape: RoundedRectangleBorder(
-                                                                  borderRadius: BorderRadius.circular(12.0)
-                                                              )
-                                                          ),
-                                                          onPressed: () {
-                                                            //fungsi batal
-                                                            Navigator.pop(context, 'Batal');
-                                                          },
-                                                          child: Text(
-                                                            "Batal",
-                                                            style: TextStyle(
-                                                                fontSize: 15.0,
-                                                                color: Colors.black,
-                                                                fontFamily: 'Comfortaa'
-                                                            ),
-                                                          )
-                                                      ),
-                                                    ),
-                                                  ],
-                                                )
                                               ],
                                             ),
                                           );
@@ -1284,12 +1132,7 @@ class _FormInvestasi3State extends State<FormInvestasi3> {
                         children: [
                           this.slipGaji3.path != '' ? InkWell(
                               onTap: () {
-                                print("image clicked");
-
-                                this.setPopUpImageSlipGaji3();
-
                                 showDialog<String>(
-                                    barrierDismissible: false,
                                     context: context,
                                     builder: (BuildContext context) {
                                       return StatefulBuilder(
@@ -1304,18 +1147,31 @@ class _FormInvestasi3State extends State<FormInvestasi3> {
                                             elevation: 5.0,
                                             title: Column(
                                               children: [
+                                                Align(
+                                                  alignment: Alignment.topRight,
+                                                  child: IconButton(
+                                                      padding: EdgeInsets.zero,
+                                                      onPressed: (){
+                                                        Navigator.of(context).pop();
+                                                      },
+                                                      icon: Icon(
+                                                        Icons.close,
+                                                        size: 24.0,
+                                                        color: Colors.white,
+                                                      )
+                                                  ),
+                                                ),
                                                 CustomText("Slip Gaji #3", 15.0, false),
                                                 SizedBox(height: 10),
-                                                this.temp.path == "" ?
+                                                this.slipGaji3.path == "" ?
                                                 CustomText("Gambar Belum Di-upload", 15.0, true)
                                                     : Image.file(
-                                                  File(this.temp.path),
+                                                  File(this.slipGaji3.path),
                                                   width: 315,
                                                   height: 200,
                                                 ),
                                                 SizedBox(height: 20),
                                                 Container(
-                                                  width: 186,
                                                   child: ElevatedButton(
                                                       style: ElevatedButton.styleFrom(
                                                           elevation: 10.0,
@@ -1326,7 +1182,7 @@ class _FormInvestasi3State extends State<FormInvestasi3> {
                                                       ),
                                                       onPressed: () {
                                                         //fungsi unggah
-                                                        this.onClickUploadImage(setState);
+                                                        this.onClickUploadImageSlipGaji3(setState);
                                                       },
                                                       child: Row(
                                                         mainAxisAlignment: MainAxisAlignment.center,
@@ -1344,7 +1200,6 @@ class _FormInvestasi3State extends State<FormInvestasi3> {
                                                 ),
                                                 SizedBox(height: 10),
                                                 Container(
-                                                  width: 186,
                                                   child: ElevatedButton(
                                                       style: ElevatedButton.styleFrom(
                                                           elevation: 10.0,
@@ -1355,7 +1210,8 @@ class _FormInvestasi3State extends State<FormInvestasi3> {
                                                       ),
                                                       onPressed: () {
                                                         //fungsi hapus
-                                                        this.onClickDeleteImage(setState);
+                                                        this.onClickDeleteImageSlipGaji3(setState);
+                                                        Navigator.pop(context);
                                                       },
                                                       child: Row(
                                                         mainAxisAlignment: MainAxisAlignment.center,
@@ -1371,55 +1227,6 @@ class _FormInvestasi3State extends State<FormInvestasi3> {
                                                       )
                                                   ),
                                                 ),
-                                                SizedBox(height: 20.0,),
-                                                Row(
-                                                  mainAxisAlignment: MainAxisAlignment.center,
-                                                  children: [
-                                                    Container(
-                                                      width: 100,
-                                                      child: ElevatedButton(
-                                                          style: ElevatedButton.styleFrom(
-                                                              elevation: 10.0,
-                                                              primary: HexColor("#24A0ED"),
-                                                              shape: RoundedRectangleBorder(
-                                                                  borderRadius: BorderRadius.circular(12.0)
-                                                              )
-                                                          ),
-                                                          onPressed: () {
-                                                            //fungsi simpan
-                                                            this.onClickSaveImageSlipGaji3();
-                                                            Navigator.pop(context, 'Simpan');
-                                                          },
-                                                          child: CustomText("Simpan", 15.0, false)
-                                                      ),
-                                                    ),
-                                                    SizedBox(width: 20.0,),
-                                                    Container(
-                                                      width: 100,
-                                                      child: ElevatedButton(
-                                                          style: ElevatedButton.styleFrom(
-                                                              elevation: 10.0,
-                                                              primary: Colors.white,
-                                                              shape: RoundedRectangleBorder(
-                                                                  borderRadius: BorderRadius.circular(12.0)
-                                                              )
-                                                          ),
-                                                          onPressed: () {
-                                                            //fungsi batal
-                                                            Navigator.pop(context, 'Batal');
-                                                          },
-                                                          child: Text(
-                                                            "Batal",
-                                                            style: TextStyle(
-                                                                fontSize: 15.0,
-                                                                color: Colors.black,
-                                                                fontFamily: 'Comfortaa'
-                                                            ),
-                                                          )
-                                                      ),
-                                                    ),
-                                                  ],
-                                                )
                                               ],
                                             ),
                                           );
