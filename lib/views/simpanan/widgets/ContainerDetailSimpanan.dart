@@ -94,13 +94,13 @@ class _ContainerDetailSimpananState extends State<ContainerDetailSimpanan> {
                       alignment: Alignment.centerLeft,
                       child: Container(
                         height: 30.0,
-                        width: item[index].status == "Status" ? 100 : 140 ,
+                        width: item[index].status == "Terbayar" ? 100 : 140 ,
                         child: Card(
                           elevation: 5.0,
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(12.0),
                           ),
-                          color: item[index].status == "Status" ? HexColor("#00C851") : Colors.orange,
+                          color: item[index].status == "Terbayar" ? HexColor("#00C851") : Colors.orange,
                           child: Align(
                             child: CustomText("${item[index].status}", 15.0, false),
                             alignment: Alignment.center,
