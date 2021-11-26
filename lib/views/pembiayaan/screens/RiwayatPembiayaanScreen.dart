@@ -4,14 +4,22 @@ import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:project_simpin_syariah/models/pembiayaan/Pembiayaan.dart';
-import 'package:project_simpin_syariah/views/customwidgets/BottomNav.dart';
+import 'package:project_simpin_syariah/models/pembiayaan/RiwayatPembiayaan.dart';
 import 'package:project_simpin_syariah/views/customwidgets/ButtonBack.dart';
 import 'package:project_simpin_syariah/views/customwidgets/CustomText.dart';
-import 'package:project_simpin_syariah/views/pembiayaan/screens/AjukanPembiayaanScreen1.dart';
 import 'package:project_simpin_syariah/views/pembiayaan/screens/InformasiPengajuanPembiayaanScreen.dart';
 import 'package:project_simpin_syariah/views/pembiayaan/widgets/ContainerRiwayatPembiayaan.dart';
 
 class RiwayatPembiayaanScreen extends StatelessWidget{
+  late RiwayatPembiayaan riwayatPembiayaan;
+  late List<RiwayatPembiayaan> listDataRiwayatPembiayaan;
+
+  RiwayatPembiayaanScreen(){
+    riwayatPembiayaan = RiwayatPembiayaan("", 0, "", "", "");
+    listDataRiwayatPembiayaan = riwayatPembiayaan.getDataRiwayatPembiayaan();
+    // listDataRiwayatPembiayaan = [];
+  }
+
   @override
   Widget build(BuildContext context) {
     Size screenSize = MediaQuery.of(context).size;
@@ -31,12 +39,14 @@ class RiwayatPembiayaanScreen extends StatelessWidget{
           width: screenSize.width,
           height: screenSize.height,
           color: HexColor("#50AEA7"),
-          child: SingleChildScrollView(
+          child: this.listDataRiwayatPembiayaan.isNotEmpty ? SingleChildScrollView(
             physics: AlwaysScrollableScrollPhysics(),
             child: Container(
               padding: EdgeInsets.only(left: 20.0, right: 20.0, bottom: 20.0,),
-              child: ContainerRiwayatPembiayaan()
+              child: ContainerRiwayatPembiayaan(listDataRiwayatPembiayaan)
             ),
+          ) : Center (
+            child: CustomText("Belum ada riwayat pembiayaan", 15.0, true)
           ),
         ),
       ),

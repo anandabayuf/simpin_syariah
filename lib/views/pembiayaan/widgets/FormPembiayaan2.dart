@@ -29,9 +29,9 @@ class _FormPembiayaan2State extends State<FormPembiayaan2> {
   late DateTime tanggalAkad;
   late MoneyMaskedTextController nilaiPPA;
   late MoneyMaskedTextController hargaJual;
-  late TextEditingController angsuran;
+  late MoneyMaskedTextController angsuran;
   late MoneyMaskedTextController tHPGajiTerakhir;
-  late TextEditingController cashRatio;
+  late MoneyMaskedTextController cashRatio;
 
   late DateFormat dateFormat;
 
@@ -42,9 +42,9 @@ class _FormPembiayaan2State extends State<FormPembiayaan2> {
     this.tanggalAkad = this.pembiayaan.tanggalAkad;
     this.nilaiPPA = MoneyMaskedTextController(initialValue: this.pembiayaan.nilaiPPA.toDouble(), thousandSeparator: '.', leftSymbol: 'Rp ', precision: 0, decimalSeparator: '');
     this.hargaJual = MoneyMaskedTextController(initialValue: this.pembiayaan.hargaJual.toDouble(), thousandSeparator: '.', leftSymbol: 'Rp ', precision: 0, decimalSeparator: '');
-    this.angsuran = TextEditingController(text: this.pembiayaan.angsuran.toString());
+    this.angsuran = MoneyMaskedTextController(initialValue: this.pembiayaan.angsuran.toDouble(), thousandSeparator: '.', leftSymbol: 'Rp ', precision: 0, decimalSeparator: '');
     this.tHPGajiTerakhir = MoneyMaskedTextController(initialValue: this.pembiayaan.tHPGajiTerakhir.toDouble(), thousandSeparator: '.', leftSymbol: 'Rp ', precision: 0, decimalSeparator: '');
-    this.cashRatio = TextEditingController(text: this.pembiayaan.cashRatio.toString());
+    this.cashRatio = MoneyMaskedTextController(initialValue: this.pembiayaan.cashRatio.toDouble(), thousandSeparator: '.', leftSymbol: 'Rp ', precision: 0, decimalSeparator: '');
     
     initializeDateFormatting();
     this.dateFormat = new DateFormat.yMMMMd('id');
@@ -57,6 +57,7 @@ class _FormPembiayaan2State extends State<FormPembiayaan2> {
     this.nilaiPPA.dispose();
     this.hargaJual.dispose();
     this.angsuran.dispose();
+    this.angsuran.dispose();
     this.tHPGajiTerakhir.dispose();
     this.cashRatio.dispose();
     super.dispose();
@@ -67,9 +68,9 @@ class _FormPembiayaan2State extends State<FormPembiayaan2> {
       this.pembiayaan.tanggalAkad = this.tanggalAkad;
       this.pembiayaan.nilaiPPA = this.nilaiPPA.numberValue.toInt();
       this.pembiayaan.hargaJual = this.hargaJual.numberValue.toInt();
-      this.pembiayaan.angsuran = int.parse(this.angsuran.text);
+      this.pembiayaan.angsuran = this.angsuran.numberValue.toInt();
       this.pembiayaan.tHPGajiTerakhir = this.tHPGajiTerakhir.numberValue.toInt();
-      this.pembiayaan.cashRatio = int.parse(this.cashRatio.text);
+      this.pembiayaan.cashRatio = this.cashRatio.numberValue.toInt();
     });
   }
 

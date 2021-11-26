@@ -3,12 +3,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:project_simpin_syariah/views/customwidgets/ButtonBack.dart';
-import 'package:project_simpin_syariah/views/customwidgets/BottomNav.dart';
 import 'package:project_simpin_syariah/views/customwidgets/CustomText.dart';
 import 'package:project_simpin_syariah/views/pembiayaan/widgets/ContainerDetailAngsuran.dart';
 
 class DetailAngsuranScreen extends StatelessWidget{
-  final int idRiwayatPembiayaan;
+  final String idRiwayatPembiayaan;
 
   DetailAngsuranScreen({Key? key, required this.idRiwayatPembiayaan}) : super(key: key);
 

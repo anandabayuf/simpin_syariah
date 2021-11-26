@@ -8,7 +8,7 @@ import 'package:intl/intl.dart';
 import 'package:intl/date_symbol_data_local.dart';
 
 class ContainerDetailRiwayatPembiayaan extends StatefulWidget{
-  final int idRiwayatPembiayaan;
+  final String idRiwayatPembiayaan;
 
   ContainerDetailRiwayatPembiayaan({Key? key, required this.idRiwayatPembiayaan}) : super(key: key);
 
@@ -20,14 +20,14 @@ class _ContainerDetailRiwayatPembiayaanState extends State<ContainerDetailRiwaya
   late DetailAngsuran datas;
   late List<DetailAngsuran> listDatas;
   late DateFormat dateFormat;
-  final int idRiwayatPembiayaan;
+  final String idRiwayatPembiayaan;
 
   _ContainerDetailRiwayatPembiayaanState(this.idRiwayatPembiayaan);
 
   @override
   void initState() {
     super.initState();
-    datas = DetailAngsuran(0, new RiwayatPembiayaan(0, 0, "", "", ""), DateTime.now(), 0, 0, "");
+    datas = DetailAngsuran(0, new RiwayatPembiayaan("", 0, "", "", ""), DateTime.now(), 0, 0, "");
     this.listDatas = datas.getDataDetailRiwayatPembiayaan(this.idRiwayatPembiayaan);
     initializeDateFormatting();
     dateFormat = new DateFormat.yMMMMd('id');
@@ -46,7 +46,7 @@ class _ContainerDetailRiwayatPembiayaanState extends State<ContainerDetailRiwaya
         return Container(
           child: InkWell(
             onTap: (){
-              print("card ${index}");
+              print("card $index");
             },
             child: Card(
               color: Colors.white.withOpacity(0.5),
@@ -58,6 +58,11 @@ class _ContainerDetailRiwayatPembiayaanState extends State<ContainerDetailRiwaya
                 padding: const EdgeInsets.all(10.0),
                 child: Column(
                   children: [
+                    Align(
+                        alignment: Alignment.centerLeft,
+                        child: CustomText("${item[index].riwayatPembiayaan.id}", 15.0, true)
+                    ),
+                    SizedBox(height: 15.0,),
                     Align(
                         alignment: Alignment.centerLeft,
                         child: CustomText("Nilai Pembiayaan", 15.0, true)

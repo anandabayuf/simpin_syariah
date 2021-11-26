@@ -1,4 +1,3 @@
-import 'package:filter_list/filter_list.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
@@ -9,15 +8,18 @@ import 'package:intl/intl.dart';
 import 'package:project_simpin_syariah/views/pembiayaan/screens/DetailAngsuranScreen.dart';
 
 class ContainerRiwayatPembiayaan extends StatefulWidget{
+  late List<RiwayatPembiayaan> listDataRiwayatPembiayaan;
+
+  ContainerRiwayatPembiayaan(this.listDataRiwayatPembiayaan);
+
   @override
-  _ContainerRiwayatPembiayaanState createState() => _ContainerRiwayatPembiayaanState();
+  _ContainerRiwayatPembiayaanState createState() => _ContainerRiwayatPembiayaanState(listDataRiwayatPembiayaan);
 }
 
 class _ContainerRiwayatPembiayaanState extends State<ContainerRiwayatPembiayaan> {
-  late RiwayatPembiayaan datas;
-  late List<RiwayatPembiayaan> listDatas;
+  late List<RiwayatPembiayaan> listDataRiwayatPembiayaan;
 
-  late Pembiayaan pembiayaan;
+  final Pembiayaan pembiayaan = Pembiayaan.emptyConstructor();
 
   List<RiwayatPembiayaan> temp = [];
 
@@ -29,15 +31,13 @@ class _ContainerRiwayatPembiayaanState extends State<ContainerRiwayatPembiayaan>
   late List<bool> stateJenisAkad;
   late List<bool> stateStatusPembiayaan;
 
+  _ContainerRiwayatPembiayaanState(this.listDataRiwayatPembiayaan);
+
   @override
   void initState() {
     super.initState();
-    datas = RiwayatPembiayaan(0, 0, "", "", "");
 
-    this.listDatas = datas.getDataRiwayatPembiayaan();
-    temp = this.listDatas;
-
-    pembiayaan = Pembiayaan.emptyConstructor();
+    temp = this.listDataRiwayatPembiayaan;
 
     stateTujuanPembiayaan = List.generate(this.pembiayaan.getDataPeruntukkan().length, (index) => false);
     stateJenisAkad = List.generate(this.pembiayaan.getDataJenisAkad().length, (index) => false);
@@ -214,7 +214,7 @@ class _ContainerRiwayatPembiayaanState extends State<ContainerRiwayatPembiayaan>
     if (selectedTujuanPembiayaan.isNotEmpty && selectedJenisAkad.isNotEmpty &&
         selectedStatusPembiayaan.isNotEmpty) {
       setState(() {
-        this.listDatas = this.temp.where((element) =>
+        this.listDataRiwayatPembiayaan = this.temp.where((element) =>
             selectedTujuanPembiayaan.contains(element.tujuanPembiayaan) &&
             selectedJenisAkad.contains(element.jenisAkad) &&
             selectedStatusPembiayaan.contains(element.statusPembiayaan)
@@ -223,7 +223,7 @@ class _ContainerRiwayatPembiayaanState extends State<ContainerRiwayatPembiayaan>
     }
     else if(selectedTujuanPembiayaan.isNotEmpty && selectedJenisAkad.isNotEmpty){
       setState(() {
-        this.listDatas = this.temp.where((element) =>
+        this.listDataRiwayatPembiayaan = this.temp.where((element) =>
         selectedTujuanPembiayaan.contains(element.tujuanPembiayaan) &&
             selectedJenisAkad.contains(element.jenisAkad)
         ).toList();
@@ -231,7 +231,7 @@ class _ContainerRiwayatPembiayaanState extends State<ContainerRiwayatPembiayaan>
     }
     else if(selectedTujuanPembiayaan.isNotEmpty && selectedStatusPembiayaan.isNotEmpty){
       setState(() {
-        this.listDatas = this.temp.where((element) =>
+        this.listDataRiwayatPembiayaan = this.temp.where((element) =>
         selectedTujuanPembiayaan.contains(element.tujuanPembiayaan) &&
             selectedStatusPembiayaan.contains(element.statusPembiayaan)
         ).toList();
@@ -239,7 +239,7 @@ class _ContainerRiwayatPembiayaanState extends State<ContainerRiwayatPembiayaan>
     }
     else if(selectedJenisAkad.isNotEmpty && selectedStatusPembiayaan.isNotEmpty){
       setState(() {
-        this.listDatas = this.temp.where((element) =>
+        this.listDataRiwayatPembiayaan = this.temp.where((element) =>
             selectedJenisAkad.contains(element.jenisAkad) &&
             selectedStatusPembiayaan.contains(element.statusPembiayaan)
         ).toList();
@@ -247,21 +247,21 @@ class _ContainerRiwayatPembiayaanState extends State<ContainerRiwayatPembiayaan>
     }
     else if(selectedTujuanPembiayaan.isNotEmpty){
       setState(() {
-        this.listDatas = this.temp.where((element) =>
+        this.listDataRiwayatPembiayaan = this.temp.where((element) =>
         selectedTujuanPembiayaan.contains(element.tujuanPembiayaan)
         ).toList();
       });
     }
     else if(selectedJenisAkad.isNotEmpty){
       setState(() {
-        this.listDatas = this.temp.where((element) =>
+        this.listDataRiwayatPembiayaan = this.temp.where((element) =>
             selectedJenisAkad.contains(element.jenisAkad)
         ).toList();
       });
     }
     else if(selectedStatusPembiayaan.isNotEmpty){
       setState(() {
-        this.listDatas = this.temp.where((element) =>
+        this.listDataRiwayatPembiayaan = this.temp.where((element) =>
             selectedStatusPembiayaan.contains(element.statusPembiayaan)
         ).toList();
       });
@@ -271,7 +271,7 @@ class _ContainerRiwayatPembiayaanState extends State<ContainerRiwayatPembiayaan>
         selectedTujuanPembiayaan.clear();
         selectedJenisAkad.clear();
         selectedStatusPembiayaan.clear();
-        this.listDatas = this.temp;
+        this.listDataRiwayatPembiayaan = this.temp;
       });
     }
     //print(selectedJenisSimpanan);
@@ -280,14 +280,14 @@ class _ContainerRiwayatPembiayaanState extends State<ContainerRiwayatPembiayaan>
 
   @override
   Widget build(BuildContext context) {
-    final item = listDatas;
+    final item = listDataRiwayatPembiayaan;
     //untuk data filter
     final tujuanPembiayaan = pembiayaan.getDataPeruntukkan();
     final jenisAkad = pembiayaan.getDataJenisAkad();
     final statusPembiayaan = pembiayaan.getDataStatus();
     final formatCurrency = new NumberFormat.currency(locale: "id_ID", symbol: "Rp", decimalDigits: 0);
 
-    return temp.length > 0 ? Column(
+    return Column(
       children: [
         Align(
           alignment: Alignment.centerRight,
@@ -656,18 +656,18 @@ class _ContainerRiwayatPembiayaanState extends State<ContainerRiwayatPembiayaan>
           ),
         ),
         ListView.builder(
-          itemCount: listDatas.length,
+          itemCount: listDataRiwayatPembiayaan.length,
           shrinkWrap: true,
           physics: NeverScrollableScrollPhysics(),
           itemBuilder: (BuildContext context, int index){
             return Container(
               child: InkWell(
                 onTap: (){
-                  print("card ${index}");
+                  print("card $index");
                   Navigator.push(
                       context,
                       MaterialPageRoute(builder: (context) =>
-                          DetailAngsuranScreen(idRiwayatPembiayaan: index))
+                          DetailAngsuranScreen(idRiwayatPembiayaan: item[index].id))
                   );
                 },
                 child: Card(
@@ -739,11 +739,11 @@ class _ContainerRiwayatPembiayaanState extends State<ContainerRiwayatPembiayaan>
                             width: 150,
                             child: InkWell(
                               onTap: (){
-                                print("lihat Detail ${index}");
+                                print("lihat Detail $index");
                                 Navigator.push(
                                     context,
                                     MaterialPageRoute(builder: (context) =>
-                                        DetailAngsuranScreen(idRiwayatPembiayaan: index))
+                                        DetailAngsuranScreen(idRiwayatPembiayaan: item[index].id))
                                 );
                               },
                               child: Row(
@@ -779,7 +779,6 @@ class _ContainerRiwayatPembiayaanState extends State<ContainerRiwayatPembiayaan>
         ),
         SizedBox(height: 60.0,)
       ],
-    )
-    : CustomText("Belum ada riwayat pembiayaan", 15.0, true);
+    );
   }
 }

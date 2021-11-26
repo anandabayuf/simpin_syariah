@@ -80,4 +80,11 @@ class Pembiayaan {
       'Analytic Account - 3',
     ];
   }
+
+  List<String> getDataStatus(){
+    return[
+      'Lunas',
+      'Aktif',
+    ];
+  }
 }
