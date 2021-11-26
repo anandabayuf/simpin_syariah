@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
+import 'package:project_simpin_syariah/models/user/User.dart';
+import 'package:project_simpin_syariah/views/Main.dart';
 import 'package:project_simpin_syariah/views/customwidgets/CustomText.dart';
 import 'package:project_simpin_syariah/views/customwidgets/FailedInformation.dart';
 
@@ -15,8 +17,7 @@ class _FormLoginState extends State<FormLogin> {
   late TextEditingController _password;
   late bool _passwordVisible;
   late bool _isButtonClicked;
-  final String staticEmail = 'john@email.com';
-  final String staticPassword = '12345678';
+  final User user = User.emptyConstructor().getDummyUser();
 
   @override
   void initState() {
@@ -152,10 +153,15 @@ class _FormLoginState extends State<FormLogin> {
                     });
 
                     //check code
-                    if(this._email.text == this.staticEmail) {
-                      if(this._password.text != this.staticPassword){
+                    if(this._email.text == this.user.email) {
+                      if(this._password.text != this.user.password){
                         ScaffoldMessenger.of(context).showSnackBar(
                             FailedInformation(context, 'Password yang anda masukkan salah')
+                        );
+                      } else {
+                        Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(builder: (context) => Main())
                         );
                       }
                     } else {
@@ -201,10 +207,15 @@ class _FormLoginState extends State<FormLogin> {
                       });
 
                       //check code
-                      if(this._email.text == this.staticEmail) {
-                        if(this._password.text != this.staticPassword){
+                      if(this._email.text == this.user.email) {
+                        if(this._password.text != this.user.password){
                           ScaffoldMessenger.of(context).showSnackBar(
                               FailedInformation(context, 'Password yang anda masukkan salah')
+                          );
+                        } else {
+                          Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(builder: (context) => Main())
                           );
                         }
                       } else {
