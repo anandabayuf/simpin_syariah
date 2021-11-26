@@ -5,7 +5,6 @@ import 'package:hexcolor/hexcolor.dart';
 import 'package:project_simpin_syariah/models/simpanan/RiwayatSimpanan.dart';
 import 'package:project_simpin_syariah/views/customwidgets/ButtonBack.dart';
 import 'package:project_simpin_syariah/views/customwidgets/CustomText.dart';
-import 'package:project_simpin_syariah/views/pembiayaan/widgets/ContainerDetailAngsuran.dart';
 import 'package:project_simpin_syariah/views/simpanan/widgets/ContainerDetailSimpanan.dart';
 
 class DetailSimpananScreen extends StatelessWidget{

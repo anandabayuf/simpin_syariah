@@ -9,7 +9,6 @@ import 'package:project_simpin_syariah/models/user/User.dart';
 import 'package:project_simpin_syariah/views/profile/screens/UbahPasswordScreen.dart';
 import 'package:project_simpin_syariah/views/profile/widgets/AppVersionDialog.dart';
 import 'package:project_simpin_syariah/views/customwidgets/BottomNav.dart';
-import 'package:project_simpin_syariah/views/customwidgets/ButtonText.dart';
 import 'package:project_simpin_syariah/views/customwidgets/CustomText.dart';
 
 class ProfileScreen extends StatefulWidget{

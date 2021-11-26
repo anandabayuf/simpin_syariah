@@ -105,7 +105,6 @@ class _FormPembiayaan1State extends State<FormPembiayaan1> {
               color: Colors.white,
               size: 24.0,
             ),
-
             style: TextStyle(
               fontSize: 15.0,
               color: Colors.white,

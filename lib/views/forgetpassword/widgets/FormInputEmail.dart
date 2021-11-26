@@ -71,7 +71,7 @@ class _FormInputEmailState extends State<FormInputEmail> {
             validator: (String? value) {
               if (value == '' || value!.trim() == '') {
                 return 'alamat email harus diisi';
-              } else if (value != null && !value.contains('@')) {
+              } else if (!value.contains('@')) {
                 return 'Masukkan alamat email yang valid';
               }
               return null;

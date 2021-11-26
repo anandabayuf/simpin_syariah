@@ -3,7 +3,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:project_simpin_syariah/models/investasi/Investasi.dart';
-import 'package:project_simpin_syariah/views/customwidgets/BottomNav.dart';
 import 'package:project_simpin_syariah/views/customwidgets/CustomText.dart';
 import 'package:project_simpin_syariah/views/investasi/widgets/FormInvestasi2.dart';
 

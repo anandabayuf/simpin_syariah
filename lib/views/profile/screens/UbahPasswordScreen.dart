@@ -3,7 +3,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:project_simpin_syariah/views/profile/widgets/ContainerIconImage.dart';
-import 'package:project_simpin_syariah/views/forgetpassword/widgets/FormMakeNewPass.dart';
 import 'package:project_simpin_syariah/views/customwidgets/CustomText.dart';
 import 'package:project_simpin_syariah/views/profile/widgets/FormUbahPassword.dart';
 

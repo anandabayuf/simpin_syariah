@@ -1,10 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:hexcolor/hexcolor.dart';
 import 'package:project_simpin_syariah/models/investasi/Investasi.dart';
 import 'package:project_simpin_syariah/views/customwidgets/CustomText.dart';
 import 'package:project_simpin_syariah/views/investasi/screens/AjukanInvestasiScreen2.dart';
-import 'package:project_simpin_syariah/views/pembiayaan/screens/AjukanPembiayaanScreen2.dart';
 
 class FormInvestasi1 extends StatefulWidget {
   final Investasi investasi;

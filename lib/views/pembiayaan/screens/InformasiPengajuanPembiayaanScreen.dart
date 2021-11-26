@@ -3,7 +3,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:project_simpin_syariah/models/pembiayaan/Pembiayaan.dart';
-import 'package:project_simpin_syariah/models/user/User.dart';
 import 'package:project_simpin_syariah/views/customwidgets/CustomText.dart';
 import 'package:project_simpin_syariah/views/pembiayaan/screens/AjukanPembiayaanScreen1.dart';
 
