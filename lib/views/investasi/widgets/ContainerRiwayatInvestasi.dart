@@ -1,45 +1,48 @@
-import 'package:filter_list/filter_list.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:project_simpin_syariah/models/investasi/Investasi.dart';
 import 'package:project_simpin_syariah/views/customwidgets/CustomText.dart';
+import 'package:project_simpin_syariah/views/investasi/screens/PengembalianNisbahScreen.dart';
 
 class ContainerRiwayatInvestasi extends StatefulWidget{
+  late Investasi investasi;
+  late List<Investasi> listDataRiwayatInvestasi;
+
+  ContainerRiwayatInvestasi(this.investasi, this.listDataRiwayatInvestasi);
+
   @override
-  State<ContainerRiwayatInvestasi> createState() => _ContainerRiwayatInvestasiState();
+  State<ContainerRiwayatInvestasi> createState() => _ContainerRiwayatInvestasiState(this.investasi, this.listDataRiwayatInvestasi);
 }
 
 class _ContainerRiwayatInvestasiState extends State<ContainerRiwayatInvestasi> {
-  late Investasi datas;
-  late List<Investasi> listDatas;
+  late Investasi investasi;
+  late List<Investasi> listRiwayatInvestasi;
 
   List<Investasi> temp = [];
   List<String> selectedJenisInvestasi = [];
 
   late List<bool> stateJenisInvestasi;
 
+  _ContainerRiwayatInvestasiState(this.investasi, this.listRiwayatInvestasi);
+
   @override
   void initState() {
     super.initState();
-    datas = new Investasi("", "", "", "", "", "", "", "", 0,
-        "", DateTime.now(), DateTime.now(), "", 0, 0, 0,
-        new XFile(""), new XFile(""), new XFile(""), new XFile(""), new XFile(""), new XFile(""));
 
-    this.listDatas = datas.getDataInvestasi();
-    temp = this.listDatas;
+    // this.listDatas = datas.getDataInvestasi();
+    temp = this.listRiwayatInvestasi;
 
-    stateJenisInvestasi = List.generate(this.datas.dataDropDownJenisInvestasi().length, (index) => false);
+    stateJenisInvestasi = List.generate(this.investasi.dataDropDownJenisInvestasi().length, (index) => false);
   }
 
   void initiateState(){
     if(selectedJenisInvestasi.isEmpty){
-      stateJenisInvestasi = List.generate(this.datas.dataDropDownJenisInvestasi().length, (index) => false);
+      stateJenisInvestasi = List.generate(this.investasi.dataDropDownJenisInvestasi().length, (index) => false);
     } else {
       var i = 0;
-      while(i < datas.dataDropDownJenisInvestasi().length){
-        if(!selectedJenisInvestasi.contains(datas.dataDropDownJenisInvestasi().elementAt(i))){
+      while(i < investasi.dataDropDownJenisInvestasi().length){
+        if(!selectedJenisInvestasi.contains(investasi.dataDropDownJenisInvestasi().elementAt(i))){
           this.stateJenisInvestasi[i] = false;
         } else {
           this.stateJenisInvestasi[i] = true;
@@ -57,7 +60,7 @@ class _ContainerRiwayatInvestasiState extends State<ContainerRiwayatInvestasi> {
 
   void pilihSemuaJenisInvestasi(stateSetter){
     var i = 0;
-    while(i < this.datas.dataDropDownJenisInvestasi().length){
+    while(i < this.investasi.dataDropDownJenisInvestasi().length){
       stateSetter((){
         this.stateJenisInvestasi[i] = true;
       });
@@ -67,7 +70,7 @@ class _ContainerRiwayatInvestasiState extends State<ContainerRiwayatInvestasi> {
 
   void clearAllChosenJenisInvestasi(stateSetter){
     var i = 0;
-    while(i < this.datas.dataDropDownJenisInvestasi().length){
+    while(i < this.investasi.dataDropDownJenisInvestasi().length){
       stateSetter((){
         this.stateJenisInvestasi[i] = false;
       });
@@ -77,10 +80,10 @@ class _ContainerRiwayatInvestasiState extends State<ContainerRiwayatInvestasi> {
 
   @override
   Widget build(BuildContext context) {
-    final item = listDatas;
-    final jenisInvestasi = this.datas.dataDropDownJenisInvestasi();
+    final item = listRiwayatInvestasi;
+    final jenisInvestasi = this.investasi.dataDropDownJenisInvestasi();
 
-    return temp.length > 0 ? Column(
+    return Column(
       children: [
         Align(
           alignment: Alignment.centerRight,
@@ -257,13 +260,13 @@ class _ContainerRiwayatInvestasiState extends State<ContainerRiwayatInvestasi> {
                                         if (selectedJenisInvestasi.isNotEmpty) {
                                           setState(() {
                                             //this.temporaryState = stateJenisSimpanan;
-                                            this.listDatas = this.temp.where((element) => selectedJenisInvestasi.contains(element.jenisInvestasi)).toList();
+                                            this.listRiwayatInvestasi = this.temp.where((element) => selectedJenisInvestasi.contains(element.jenisInvestasi)).toList();
                                           });
-                                          print(listDatas);
+                                          print(listRiwayatInvestasi);
                                         } else {
                                           setState(() {
                                             selectedJenisInvestasi.clear();
-                                            this.listDatas = this.temp;
+                                            this.listRiwayatInvestasi = this.temp;
                                           });
                                         }
                                         //print(selectedJenisSimpanan);
@@ -312,19 +315,18 @@ class _ContainerRiwayatInvestasiState extends State<ContainerRiwayatInvestasi> {
           ),
         ),
         ListView.builder(
-          itemCount: listDatas.length,
+          itemCount: listRiwayatInvestasi.length,
           shrinkWrap: true,
           physics: NeverScrollableScrollPhysics(),
           itemBuilder: (BuildContext context, int index){
             return Container(
               child: InkWell(
                 onTap: (){
-                  print("card ${index}");
-                  // Navigator.push(
-                  //     context,
-                  //     MaterialPageRoute(builder: (context) =>
-                  //         DetailAngsuran(idRiwayatPembiayaan: index))
-                  // );
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) =>
+                          PengembalianNisbahScreen(riwayatInvestasi: item[index],))
+                  );
                 },
                 child: Card(
                   color: Colors.white.withOpacity(0.5),
@@ -371,12 +373,11 @@ class _ContainerRiwayatInvestasiState extends State<ContainerRiwayatInvestasi> {
                             width: 150,
                             child: InkWell(
                               onTap: (){
-                                print("lihat Detail ${index}");
-                                // Navigator.push(
-                                //     context,
-                                //     MaterialPageRoute(builder: (context) =>
-                                //         DetailAngsuran(idRiwayatPembiayaan: index))
-                                // );
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(builder: (context) =>
+                                        PengembalianNisbahScreen(riwayatInvestasi: item[index],))
+                                );
                               },
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.end,
@@ -411,6 +412,6 @@ class _ContainerRiwayatInvestasiState extends State<ContainerRiwayatInvestasi> {
         ),
         SizedBox(height: 60.0,)
       ],
-    ) : CustomText("Belum ada riwayat Investasi", 15.0, true);
+    );
   }
 }

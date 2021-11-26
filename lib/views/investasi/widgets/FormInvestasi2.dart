@@ -5,12 +5,10 @@ import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:flutter_masked_text2/flutter_masked_text2.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:project_simpin_syariah/models/investasi/Investasi.dart';
-import 'package:project_simpin_syariah/models/pembiayaan/Pembiayaan.dart';
 import 'package:project_simpin_syariah/views/customwidgets/CustomText.dart';
 import 'package:intl/intl.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:project_simpin_syariah/views/investasi/screens/AjukanInvestasiScreen3.dart';
-import 'package:project_simpin_syariah/views/pembiayaan/screens/AjukanPembiayaanScreen3.dart';
 
 class FormInvestasi2 extends StatefulWidget {
   final Investasi investasi;
@@ -140,6 +138,7 @@ class _FormInvestasi2State extends State<FormInvestasi2> {
           ),
           SizedBox(height: 5.0,),
           DropdownButtonFormField(
+            value: this.jangkaWaktu != "" ? this.jangkaWaktu : null,
             elevation: 5,
             decoration: InputDecoration(
               hintText: 'Pilih Jangka Waktu',
@@ -329,6 +328,7 @@ class _FormInvestasi2State extends State<FormInvestasi2> {
           ),
           SizedBox(height: 5.0,),
           DropdownButtonFormField(
+            value: this.pengembalian != "" ? this.pengembalian : null,
             elevation: 5,
             decoration: InputDecoration(
               hintText: 'Pilih Pengembalian',
