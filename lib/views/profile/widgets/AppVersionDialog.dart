@@ -30,7 +30,7 @@ class AppVersionDialog extends AlertDialog {
             ),
           ),
           Image.asset(
-            "assets/images/login/LambangKoperasi.png",
+            "assets/images/logo/LambangKoperasi.png",
             width: 200,
           ),
           SizedBox(

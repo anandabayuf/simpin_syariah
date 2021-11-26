@@ -11,7 +11,7 @@ class ContainerTitle extends StatelessWidget{
         children: [
           Card(
             child: Image.asset(
-              'assets/images/login/LambangKoperasi.png',
+              'assets/images/logo/LambangKoperasi.png',
               height: 40.0,
               width: 40.0,
             ),

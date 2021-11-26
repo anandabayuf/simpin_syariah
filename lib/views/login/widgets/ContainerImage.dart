@@ -4,7 +4,7 @@ class ContainerImage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Image.asset(
-      'assets/images/login/LambangKoperasi.png',
+      'assets/images/logo/LambangKoperasi.png',
       width: 250,
       height: 250,
     );
