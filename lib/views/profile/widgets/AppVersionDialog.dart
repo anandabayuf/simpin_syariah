@@ -11,35 +11,38 @@ class AppVersionDialog extends AlertDialog {
             Radius.circular(19.0)
         )
     ),
-    title: Column(
-      children: [
-        Align(
-          alignment: Alignment.topRight,
-          child: IconButton(
-            padding: EdgeInsets.zero,
-            onPressed: (){
-              Navigator.of(context).pop();
-            },
-            icon: Icon(
-              Icons.close,
-              size: 24.0,
-              color: Colors.white,
-            )
+    title: Container(
+      width: MediaQuery.of(context).size.width,
+      child: Column(
+        children: [
+          Align(
+            alignment: Alignment.topRight,
+            child: IconButton(
+              padding: EdgeInsets.zero,
+              onPressed: (){
+                Navigator.of(context).pop();
+              },
+              icon: Icon(
+                Icons.close,
+                size: 24.0,
+                color: Colors.white,
+              )
+            ),
           ),
-        ),
-        Image.asset(
-          "assets/images/login/LambangKoperasi.png",
-          width: 200,
-        ),
-        SizedBox(
-          height: 15.0,
-        ),
-        CustomText("Simpin Syariah", 24.0, false),
-        SizedBox(
-          height: 5.0,
-        ),
-        CustomText("Versi $appVer", 15.0, true),
-      ],
+          Image.asset(
+            "assets/images/login/LambangKoperasi.png",
+            width: 200,
+          ),
+          SizedBox(
+            height: 15.0,
+          ),
+          CustomText("Simpin Syariah", 24.0, false),
+          SizedBox(
+            height: 5.0,
+          ),
+          CustomText("Versi $appVer", 15.0, true),
+        ],
+      ),
     ),
   );
 }

@@ -212,9 +212,9 @@ class _FormUbahPasswordState extends State<FormUbahPassword> {
             },
           ),
           SizedBox(height: 50.0,),
-          _isButtonClicked ?  CircularProgressIndicator(
+          if (_isButtonClicked) CircularProgressIndicator(
             color: HexColor('#F8B50F'),
-          ) : Container(
+          ) else Container(
             width: screenSize.width,
             height: 39,
             child: ElevatedButton(
@@ -239,15 +239,43 @@ class _FormUbahPasswordState extends State<FormUbahPassword> {
                           seconds: 3
                       ),
                       (){
-                        setState(() {
-                          this._isButtonClicked = false;
-                        });
-                        Navigator.of(context).pushReplacementNamed(
-                            '/login'
-                        );
-                        ScaffoldMessenger.of(context).showSnackBar(
-                            SuccessInformation(context, 'Password berhasil diubah')
-                        );
+                        //pengecekan password
+
+                        //jika password lama sesuai && password baru tidak sama dengan password lama maka,
+                        if (_oldPass.text == "12345678" && _newPass.text != "12345678") {
+                          setState(() {
+                            _oldPassVisible = false;
+                            _newPassVisible = false;
+                            _newPassConfVisible = false;
+
+                            this._isButtonClicked = false;
+
+                            this._oldPass.clear();
+                            this._newPass.clear();
+                            this._newPassConf.clear();
+                          });
+                          ScaffoldMessenger.of(context).showSnackBar(
+                              SuccessInformation(context, 'Password berhasil diubah')
+                          );
+                        }
+                        //jika password lama tidak sesuai
+                        else if(this._oldPass.text != "12345678") {
+                          setState(() {
+                            this._isButtonClicked = false;
+                          });
+                          ScaffoldMessenger.of(context).showSnackBar(
+                              FailedInformation(context, 'Password lama salah!')
+                          );
+                        }
+                        //jika password baru masih sama seperti password lama
+                        else if(this._newPass.text == "12345678"){
+                          setState(() {
+                            this._isButtonClicked = false;
+                          });
+                          ScaffoldMessenger.of(context).showSnackBar(
+                              FailedInformation(context, 'Password baru harus berbeda dari password sebelumnya')
+                          );
+                        }
                       }
                     );
                   }
