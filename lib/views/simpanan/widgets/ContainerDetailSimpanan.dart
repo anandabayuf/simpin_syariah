@@ -1,8 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
-import 'package:project_simpin_syariah/models/pembiayaan/DetailAngsuran.dart';
-import 'package:project_simpin_syariah/models/pembiayaan/RiwayatPembiayaan.dart';
 import 'package:project_simpin_syariah/models/simpanan/DetailSimpanan.dart';
 import 'package:project_simpin_syariah/models/simpanan/RiwayatSimpanan.dart';
 import 'package:project_simpin_syariah/views/customwidgets/CustomText.dart';
@@ -19,8 +17,8 @@ class ContainerDetailSimpanan extends StatefulWidget{
 }
 
 class _ContainerDetailSimpananState extends State<ContainerDetailSimpanan> {
-  late DetailSimpanan datas;
-  late List<DetailSimpanan> listDatas;
+  late DetailSimpanan detailSimpanan;
+  late List<DetailSimpanan> listDataDetailSimpanan;
   late DateFormat dateFormat;
   final RiwayatSimpanan riwayatSimpanan;
 
@@ -29,26 +27,26 @@ class _ContainerDetailSimpananState extends State<ContainerDetailSimpanan> {
   @override
   void initState() {
     super.initState();
-    datas = new DetailSimpanan("", new RiwayatSimpanan("", "", 0), 0, DateTime.now(), "") ;
-    this.listDatas = datas.getDetailSimpanan(riwayatSimpanan.id);
+    detailSimpanan = new DetailSimpanan("", new RiwayatSimpanan("", "", 0), 0, DateTime.now(), "") ;
+    this.listDataDetailSimpanan = detailSimpanan.getDetailSimpanan(riwayatSimpanan.id);
     initializeDateFormatting();
     dateFormat = new DateFormat.yMMMMd('id');
   }
 
   @override
   Widget build(BuildContext context) {
-    final item = listDatas;
+    final item = listDataDetailSimpanan;
     final formatCurrency = new NumberFormat.currency(locale: "id_ID", symbol: "Rp", decimalDigits: 0);
 
     return ListView.builder(
-      itemCount: listDatas.length,
+      itemCount: listDataDetailSimpanan.length,
       shrinkWrap: true,
       physics: NeverScrollableScrollPhysics(),
       itemBuilder: (BuildContext context, int index){
         return Container(
           child: InkWell(
             onTap: (){
-              print("card ${index}");
+              print("card $index");
             },
             child: Card(
               color: Colors.white.withOpacity(0.5),

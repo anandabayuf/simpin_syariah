@@ -15,7 +15,13 @@ class DetailSimpanan{
   List<DetailSimpanan> getDetailSimpanan(String idRiwayatSimpanan){
     return [
       new DetailSimpanan("", riwayatSimpanan.getRiwayatSimpananById(idRiwayatSimpanan),
-          5000000, DateTime.now(), "Status")
+          5000000, DateTime.now(), "Terbayar"),
+      new DetailSimpanan("", riwayatSimpanan.getRiwayatSimpananById(idRiwayatSimpanan),
+          1000000, DateTime.now(), "Belum Bayar"),
+      new DetailSimpanan("", riwayatSimpanan.getRiwayatSimpananById(idRiwayatSimpanan),
+          8000000, DateTime.now(), "Terbayar"),
+      new DetailSimpanan("", riwayatSimpanan.getRiwayatSimpananById(idRiwayatSimpanan),
+          7000000, DateTime.now(), "Belum Bayar")
     ];
   }
 }
