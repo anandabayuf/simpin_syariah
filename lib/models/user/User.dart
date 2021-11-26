@@ -12,13 +12,13 @@ class User{
 
   User.emptyConstructor();
 
-  void setName(String newName){
-    this.name = newName;
+  void setProfileURL(String profileURL){
+    this.profileURL = profileURL;
   }
 
   User getDummyUser(){
-    return new User(0, "John Doe", "/assets/images/appbar/profilepict.png", "johndoe@email.com", "123549656",
-        "0283868127", "12345678");
+    return new User(0, "John Doe", "", "johndoe@email.com", "3273161209000001",
+        "82112341234", "12345678");
   }
 
 }

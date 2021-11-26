@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:badges/badges.dart';
 import 'package:colorful_safe_area/colorful_safe_area.dart';
 import 'package:flutter/cupertino.dart';
@@ -27,6 +29,7 @@ class _MainState extends State<Main> {
   late List<Notifikasi> listDataNotifikasi;
 
   late bool isNotificationClicked;
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
@@ -45,6 +48,7 @@ class _MainState extends State<Main> {
     Size screenSize = MediaQuery.of(context).size;
 
     return Scaffold(
+      key: _scaffoldKey,
       extendBody: true,
       body: ColorfulSafeArea(
         color: HexColor("#50AEA7"),
@@ -60,7 +64,7 @@ class _MainState extends State<Main> {
                 children: [
                   HomeScreen(this.user),
                   NotificationScreen(this.listDataNotifikasi),
-                  ProfileScreen(this.user),
+                  ProfileScreen(_scaffoldKey, this.user),
                 ],
               )
             ),
@@ -148,7 +152,11 @@ class _MainState extends State<Main> {
                 ),
                 BottomNavigationBarItem(
                   icon: this.user.profileURL != "" ? CircleAvatar(
-                    backgroundImage: AssetImage('assets/images/appbar/profilepict.png'),
+                    backgroundImage: Image.file(
+                      File(this.user.profileURL),
+                      width: 20,
+                      height: 20,
+                    ).image,
                     radius: 20.0,
                     backgroundColor: Colors.transparent,
                   ) : Icon(
@@ -160,7 +168,11 @@ class _MainState extends State<Main> {
                   activeIcon: this.user.profileURL != "" ? CircleAvatar(
                     backgroundColor: Colors.white.withOpacity(0.5),
                     child: CircleAvatar(
-                      backgroundImage: AssetImage('assets/images/appbar/profilepict.png'),
+                      backgroundImage: Image.file(
+                        File(this.user.profileURL),
+                        width: 20,
+                        height: 20,
+                      ).image,
                       radius: 20.0,
                       backgroundColor: Colors.transparent,
                     ),
