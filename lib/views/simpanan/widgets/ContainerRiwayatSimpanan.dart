@@ -1,4 +1,3 @@
-import 'package:filter_list/filter_list.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
@@ -8,41 +7,44 @@ import 'package:intl/intl.dart';
 import 'package:project_simpin_syariah/views/simpanan/screens/DetailSimpananScreen.dart';
 
 class ContainerRiwayatSimpanan extends StatefulWidget{
+  late RiwayatSimpanan riwayatSimpanan;
+  late List<RiwayatSimpanan> listDataRiwayatSimpanan;
+
+  ContainerRiwayatSimpanan(this.riwayatSimpanan, this.listDataRiwayatSimpanan);
+
   @override
-  _ContainerRiwayatSimpananState createState() => _ContainerRiwayatSimpananState();
+  _ContainerRiwayatSimpananState createState() => _ContainerRiwayatSimpananState(
+    this.riwayatSimpanan, this.listDataRiwayatSimpanan
+  );
 }
 
 class _ContainerRiwayatSimpananState extends State<ContainerRiwayatSimpanan> {
-  late RiwayatSimpanan datas;
-  late List<RiwayatSimpanan> listDatas;
-
-  late RiwayatSimpanan simpanan;
+  late RiwayatSimpanan riwayatSimpanan;
+  late List<RiwayatSimpanan> listDataRiwayatSimpanan;
 
   List<RiwayatSimpanan> temp = [];
   List<String> selectedJenisSimpanan = [];
 
   late List<bool> stateJenisSimpanan;
 
+  _ContainerRiwayatSimpananState(this.riwayatSimpanan, this.listDataRiwayatSimpanan);
+
   @override
   void initState() {
     super.initState();
-    datas = new RiwayatSimpanan("", "", 0);
 
-    this.listDatas = datas.getRiwayatSimpanan();
-    temp = this.listDatas;
+    temp = this.listDataRiwayatSimpanan;
 
-    simpanan = RiwayatSimpanan.emptyConstructor();
-
-    stateJenisSimpanan = List.generate(this.simpanan.getDataJenisSimpanan().length, (index) => false);
+    stateJenisSimpanan = List.generate(this.riwayatSimpanan.getDataJenisSimpanan().length, (index) => false);
   }
 
   void initiateState(){
     if(selectedJenisSimpanan.isEmpty){
-      stateJenisSimpanan = List.generate(this.simpanan.getDataJenisSimpanan().length, (index) => false);
+      stateJenisSimpanan = List.generate(this.riwayatSimpanan.getDataJenisSimpanan().length, (index) => false);
     } else {
       var i = 0;
-      while(i < simpanan.getDataJenisSimpanan().length){
-        if(!selectedJenisSimpanan.contains(simpanan.getDataJenisSimpanan().elementAt(i))){
+      while(i < riwayatSimpanan.getDataJenisSimpanan().length){
+        if(!selectedJenisSimpanan.contains(riwayatSimpanan.getDataJenisSimpanan().elementAt(i))){
           this.stateJenisSimpanan[i] = false;
         } else {
           this.stateJenisSimpanan[i] = true;
@@ -60,7 +62,7 @@ class _ContainerRiwayatSimpananState extends State<ContainerRiwayatSimpanan> {
 
   void pilihSemuaJenisSimpanan(stateSetter){
     var i = 0;
-    while(i < this.simpanan.getDataJenisSimpanan().length){
+    while(i < this.riwayatSimpanan.getDataJenisSimpanan().length){
       stateSetter((){
         this.stateJenisSimpanan[i] = true;
       });
@@ -70,7 +72,7 @@ class _ContainerRiwayatSimpananState extends State<ContainerRiwayatSimpanan> {
 
   void clearAllChosenJenisSimpanan(stateSetter){
     var i = 0;
-    while(i < this.simpanan.getDataJenisSimpanan().length){
+    while(i < this.riwayatSimpanan.getDataJenisSimpanan().length){
       stateSetter((){
         this.stateJenisSimpanan[i] = false;
       });
@@ -80,11 +82,11 @@ class _ContainerRiwayatSimpananState extends State<ContainerRiwayatSimpanan> {
 
   @override
   Widget build(BuildContext context) {
-    final item = listDatas;
-    final jenisSimpanan = simpanan.getDataJenisSimpanan();
+    final item = listDataRiwayatSimpanan;
+    final jenisSimpanan = riwayatSimpanan.getDataJenisSimpanan();
     final formatCurrency = new NumberFormat.currency(locale: "id_ID", symbol: "Rp", decimalDigits: 0);
 
-    return temp.length > 0 ? Column(
+    return Column(
       children: [
         Align(
           alignment: Alignment.centerRight,
@@ -253,7 +255,7 @@ class _ContainerRiwayatSimpananState extends State<ContainerRiwayatSimpanan> {
                                         this.selectedJenisSimpanan = [];
                                         while(i < this.stateJenisSimpanan.length){
                                           if(this.stateJenisSimpanan[i]){
-                                            this.selectedJenisSimpanan.add(this.simpanan.getDataJenisSimpanan().elementAt(i));
+                                            this.selectedJenisSimpanan.add(this.riwayatSimpanan.getDataJenisSimpanan().elementAt(i));
                                           }
                                           i++;
                                         }
@@ -261,12 +263,12 @@ class _ContainerRiwayatSimpananState extends State<ContainerRiwayatSimpanan> {
                                         if (selectedJenisSimpanan.isNotEmpty) {
                                           setState(() {
                                             //this.temporaryState = stateJenisSimpanan;
-                                            this.listDatas = this.temp.where((element) => selectedJenisSimpanan.contains(element.jenisSimpanan)).toList();
+                                            this.listDataRiwayatSimpanan = this.temp.where((element) => selectedJenisSimpanan.contains(element.jenisSimpanan)).toList();
                                           });
                                         } else {
                                           setState(() {
                                             selectedJenisSimpanan.clear();
-                                            this.listDatas = this.temp;
+                                            this.listDataRiwayatSimpanan = this.temp;
                                           });
                                         }
                                         //print(selectedJenisSimpanan);
@@ -315,14 +317,14 @@ class _ContainerRiwayatSimpananState extends State<ContainerRiwayatSimpanan> {
           ),
         ),
         ListView.builder(
-          itemCount: listDatas.length,
+          itemCount: listDataRiwayatSimpanan.length,
           shrinkWrap: true,
           physics: NeverScrollableScrollPhysics(),
           itemBuilder: (BuildContext context, int index){
             return Container(
               child: InkWell(
                 onTap: (){
-                  print("lihat Detail ${index}");
+                  print("lihat Detail $index");
                   Navigator.push(
                       context,
                       MaterialPageRoute(builder: (context) =>
@@ -364,7 +366,7 @@ class _ContainerRiwayatSimpananState extends State<ContainerRiwayatSimpanan> {
                             width: 150,
                             child: InkWell(
                               onTap: (){
-                                print("lihat Detail ${index}");
+                                print("lihat Detail $index");
                                 Navigator.push(
                                     context,
                                     MaterialPageRoute(builder: (context) =>
@@ -404,6 +406,6 @@ class _ContainerRiwayatSimpananState extends State<ContainerRiwayatSimpanan> {
         ),
         SizedBox(height: 60.0,)
       ],
-    ) : CustomText("Belum ada riwayat Simpanan", 15.0, true);
+    );
   }
 }
