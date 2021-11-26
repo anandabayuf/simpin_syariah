@@ -40,6 +40,7 @@ dependencies:
   badges: ^2.0.1
   carousel_slider: ^4.0.0
   image_cropper: ^1.4.1
+  timeago: ^3.1.0
 
 dev_dependencies:
   intl: any
@@ -59,10 +60,10 @@ flutter:
 
   assets:
     - assets/images/
-    - assets/images/login/
+    - assets/images/logo/
     - assets/images/forgetpassword/
     - assets/images/appbar/
-    - assets/icons/bottomnav/
+    - assets/icons/home/
     - assets/icons/dialog/
 
   fonts:
