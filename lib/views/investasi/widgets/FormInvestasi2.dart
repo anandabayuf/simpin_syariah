@@ -62,10 +62,10 @@ class _FormInvestasi2State extends State<FormInvestasi2> {
 
   @override
   void dispose() {
-    this.totalInvestasi.dispose();
-    this.nisbahInvestor.dispose();
-    this.equivalentRate.dispose();
-    this.pajak.dispose();
+    // this.totalInvestasi.dispose();
+    // this.nisbahInvestor.dispose();
+    // this.equivalentRate.dispose();
+    // this.pajak.dispose();
     super.dispose();
   }
 

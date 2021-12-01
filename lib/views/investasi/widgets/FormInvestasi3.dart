@@ -41,6 +41,8 @@ class _FormInvestasi3State extends State<FormInvestasi3> {
   late XFile slipGaji2;
   late XFile slipGaji3;
 
+  late bool isAjukanClicked;
+
   final ImagePicker _picker = ImagePicker();
 
   _FormInvestasi3State(this.scaffoldKey, this.investasi, this.formKeyScreen1, this.formKeyScreen2);
@@ -53,6 +55,8 @@ class _FormInvestasi3State extends State<FormInvestasi3> {
     this.slipGaji1 = this.investasi.slipGaji1File;
     this.slipGaji2 = this.investasi.slipGaji2File;
     this.slipGaji3 = this.investasi.slipGaji3File;
+
+    this.isAjukanClicked = false;
 
     super.initState();
   }
@@ -668,6 +672,13 @@ class _FormInvestasi3State extends State<FormInvestasi3> {
         this.investasi.slipGaji3File.path != "";
   }
 
+  void setStateButtonAjukan(bool value){
+    setState(() {
+      this.isAjukanClicked = value;
+    });
+  }
+
+
   @override
   Widget build(BuildContext context) {
     Size screenSize = MediaQuery.of(context).size;
@@ -950,7 +961,7 @@ class _FormInvestasi3State extends State<FormInvestasi3> {
             ],
           ),
           SizedBox(height: 30.0,),
-          Container(
+          this.isAjukanClicked ? SizedBox.shrink() : Container(
             height: 57,
             child: ElevatedButton(
               onPressed: (){
@@ -994,8 +1005,10 @@ class _FormInvestasi3State extends State<FormInvestasi3> {
               ),
             ),
           ),
-          SizedBox(height: 20.0,),
-          Container(
+          this.isAjukanClicked ? SizedBox.shrink() : SizedBox(height: 20.0,),
+          this.isAjukanClicked ? CircularProgressIndicator(
+            color: HexColor('#F8B50F'),
+          ) : Container(
             height: 57,
             child: ElevatedButton(
               onPressed: (){
@@ -1030,9 +1043,11 @@ class _FormInvestasi3State extends State<FormInvestasi3> {
                   );
                   showDialog<String>(
                       barrierDismissible: false,
-                      context: context,
-                      builder: (BuildContext context) =>
-                          ConfirmationDialog(context, this.investasi)
+                      context: scaffoldKey.currentContext!,
+                      builder: (BuildContext showConfirmationDialogContext) =>
+                          ConfirmationDialog(scaffoldKey.currentContext!,
+                              showConfirmationDialogContext, this.investasi,
+                          this.setStateButtonAjukan)
                   );
                 } else {
                   ScaffoldMessenger.of(context).showSnackBar(

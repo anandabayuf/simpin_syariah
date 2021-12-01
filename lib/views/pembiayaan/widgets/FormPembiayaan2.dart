@@ -54,12 +54,12 @@ class _FormPembiayaan2State extends State<FormPembiayaan2> {
 
   @override
   void dispose() {
-    this.nilaiPPA.dispose();
-    this.hargaJual.dispose();
-    this.angsuran.dispose();
-    this.angsuran.dispose();
-    this.tHPGajiTerakhir.dispose();
-    this.cashRatio.dispose();
+    // this.nilaiPPA.dispose();
+    // this.hargaJual.dispose();
+    // this.angsuran.dispose();
+    // this.angsuran.dispose();
+    // this.tHPGajiTerakhir.dispose();
+    // this.cashRatio.dispose();
     super.dispose();
   }
 

@@ -5,10 +5,16 @@ import 'package:project_simpin_syariah/views/customwidgets/CustomText.dart';
 import 'package:project_simpin_syariah/views/customwidgets/FailedInformation.dart';
 import 'package:project_simpin_syariah/views/customwidgets/SuccessInformation.dart';
 
+typedef void SetStateButtonAjukanFunction(bool value);
+
 class ConfirmationDialog extends AlertDialog {
   final Pembiayaan pembiayaan;
+  final SetStateButtonAjukanFunction setStateButtonAjukanFunction;
+  final BuildContext screenDialogContext;
+  final BuildContext showConfirmationDialogContext;
 
-  ConfirmationDialog(BuildContext context, this.pembiayaan):super(
+  ConfirmationDialog(this.screenDialogContext, this.showConfirmationDialogContext,
+      this.pembiayaan, this.setStateButtonAjukanFunction):super(
     backgroundColor: Colors.white.withOpacity(0.5),
     shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.all(
@@ -62,21 +68,32 @@ class ConfirmationDialog extends AlertDialog {
                 ),
               ),
               onPressed: () {
-                //cuma dummy check
-                if(pembiayaan.nilaiPPA != 0){
-                  //data pembiayaan masuk ke backend
+                setStateButtonAjukanFunction(true);
 
-                  //...
-                  Navigator.popUntil(context, ModalRoute.withName('/pembiayaan/riwayat'));
-                  ScaffoldMessenger.of(context).showSnackBar(
-                      SuccessInformation(context, 'Pembiayaan berhasil diajukan')
-                  );
-                } else{
-                  Navigator.pop(context);
-                  ScaffoldMessenger.of(context).showSnackBar(
-                      FailedInformation(context, 'Pembiayaan gagal diajukan, periksa kembali data yang anda masukkan')
-                  );
-                }
+                Navigator.pop(showConfirmationDialogContext);
+
+                Future.delayed(
+                  Duration(
+                  seconds: 3
+                  ),
+                  (){
+                    setStateButtonAjukanFunction(false);
+                    //cuma dummy check
+                    if(pembiayaan.nilaiPPA != 0){
+                      //data pembiayaan masuk ke backend
+
+                      //...
+                      Navigator.popUntil(screenDialogContext, ModalRoute.withName('/pembiayaan/riwayat'));
+                      ScaffoldMessenger.of(screenDialogContext).showSnackBar(
+                          SuccessInformation(screenDialogContext, 'Pembiayaan berhasil diajukan')
+                      );
+                    } else{
+                      ScaffoldMessenger.of(screenDialogContext).showSnackBar(
+                          FailedInformation(screenDialogContext, 'Pembiayaan gagal diajukan, periksa kembali data yang anda masukkan')
+                      );
+                    }
+                  }
+                );
               },
               child: CustomText("Ajukan", 15.0, false),
             ),
@@ -92,7 +109,7 @@ class ConfirmationDialog extends AlertDialog {
                   ),
                 ),
                 onPressed: (){
-                  Navigator.of(context).pop();
+                  Navigator.of(showConfirmationDialogContext).pop();
                 },
                 child: Text(
                   "Batal",

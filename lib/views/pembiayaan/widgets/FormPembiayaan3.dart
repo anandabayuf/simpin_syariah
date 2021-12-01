@@ -7,6 +7,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:project_simpin_syariah/models/pembiayaan/Pembiayaan.dart';
 import 'package:project_simpin_syariah/views/customwidgets/CustomText.dart';
 import 'package:project_simpin_syariah/views/customwidgets/FailedInformation.dart';
+import 'package:project_simpin_syariah/views/customwidgets/SuccessInformation.dart';
 import 'package:project_simpin_syariah/views/pembiayaan/widgets/ConfirmationDialog.dart';
 import 'package:project_simpin_syariah/views/customwidgets/UploadContainer.dart';
 import 'package:project_simpin_syariah/views/customwidgets/UploadPicker.dart';
@@ -41,6 +42,8 @@ class _FormPembiayaan3State extends State<FormPembiayaan3> {
   late XFile slipGaji2;
   late XFile slipGaji3;
 
+  late bool isAjukanClicked;
+
   final ImagePicker _picker = ImagePicker();
 
   _FormPembiayaan3State(this.scaffoldKey, this.pembiayaan, this.formKeyScreen1, this.formKeyScreen2);
@@ -53,6 +56,8 @@ class _FormPembiayaan3State extends State<FormPembiayaan3> {
     this.slipGaji1 = this.pembiayaan.slipGaji1File;
     this.slipGaji2 = this.pembiayaan.slipGaji2File;
     this.slipGaji3 = this.pembiayaan.slipGaji3File;
+
+    this.isAjukanClicked = false;
 
     super.initState();
   }
@@ -668,6 +673,12 @@ class _FormPembiayaan3State extends State<FormPembiayaan3> {
         this.pembiayaan.slipGaji3File.path != "";
   }
 
+  void setStateButtonAjukan(bool value){
+    setState(() {
+      this.isAjukanClicked = value;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Form(
@@ -948,7 +959,7 @@ class _FormPembiayaan3State extends State<FormPembiayaan3> {
             ],
           ),
           SizedBox(height: 30.0,),
-          Container(
+          this.isAjukanClicked ? SizedBox.shrink() : Container(
             height: 57,
             child: ElevatedButton(
               onPressed: (){
@@ -992,8 +1003,10 @@ class _FormPembiayaan3State extends State<FormPembiayaan3> {
               ),
             ),
           ),
-          SizedBox(height: 20.0,),
-          Container(
+          this.isAjukanClicked ? SizedBox.shrink() : SizedBox(height: 20.0,),
+          this.isAjukanClicked ? CircularProgressIndicator(
+            color: HexColor('#F8B50F'),
+          ) : Container(
             height: 57,
             child: ElevatedButton(
               onPressed: (){
@@ -1027,7 +1040,8 @@ class _FormPembiayaan3State extends State<FormPembiayaan3> {
                       barrierDismissible: false,
                       context: scaffoldKey.currentContext!,
                       builder: (BuildContext showConfirmationDialogContext) =>
-                          ConfirmationDialog(showConfirmationDialogContext, this.pembiayaan)
+                          ConfirmationDialog(scaffoldKey.currentContext!, showConfirmationDialogContext,
+                              this.pembiayaan, this.setStateButtonAjukan)
                   );
                 } else {
                   ScaffoldMessenger.of(context).showSnackBar(
