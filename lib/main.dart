@@ -28,15 +28,12 @@ class MyApp extends StatelessWidget {
           }
         )
       ),
-      home: Main(),
       initialRoute: '/login',
       routes: {
         '/login': (context) => LoginScreen(),
         '/lupa-password': (context) => InputEmailScreen(),
         '/verifikasi-email': (context) => EmailVerificationScreen(),
         '/buat-password-baru': (context) => MakeNewPassScreen(),
-        // '/home': (context) => HomeScreen(),
-        // '/profile': (context) => ProfileScreen(),
         '/pembiayaan/riwayat': (context) => RiwayatPembiayaanScreen(),
         '/simpanan/riwayat': (context) => RiwayatSimpananScreen(),
         '/investasi/riwayat': (context) => RiwayatInvestasiScreen(),
