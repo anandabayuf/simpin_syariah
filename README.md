@@ -4,18 +4,19 @@
 - [Ulasan *Project*](#ulasan-project)
     - [Deskripsi *Project*](#deskripsi-project)
     - [*Tools* dan Teknologi yang Digunakan](#*tools*-dan-teknologi-yang-digunakan)
-    - [*Task* yang Sudah dan Belum Dikerjakan](#Task-yang-sudah-dan-belum-dikerjakan)
     - [Struktur *Project*](#struktur-project)
     - [*Library* yang Digunakan](#Library-yang-digunakan)
     - [*Assets* yang Digunakan](#assets-yang-digunakan)
+    - [*Task* yang Sudah dan Belum Dikerjakan](#Task-yang-sudah-dan-belum-dikerjakan)
 - [Prasyarat](#prasyarat)
 - [Cara Menjalankan *Project*](#cara-menjalankan-project)
 - [Cara Melakukan *Deployment*](#cara-melakukan-deployment)
+- [Credits](#credits)
 
 ## Ulasan *Project*
 
 ### Deskripsi *Project*
-Reposito*ry ini berisi *source code* *project app* Flutter dari pengembangan *front-end* aplikasi Simpin Syariah. 
+*Repository* ini berisi *source code* *project app* Flutter dari pengembangan *front-end* aplikasi Simpin Syariah. 
 
 Aplikasi Simpin Syariah merupakan aplikasi berbasis *mobile* Android. Pengembangan *front-end* aplikasi yang dilakukan yaitu mengimplementasi *design mockup* setiap *screen* yang terdapat pada aplikasi atau dalam kata lain yaitu *slicing* atau *layouting*. 
 
@@ -23,30 +24,6 @@ Aplikasi Simpin Syariah merupakan aplikasi berbasis *mobile* Android. Pengembang
 
 ### *Tools* dan Teknologi yang Digunakan
 *Front-end* dikembangkan dengan *framework* [Flutter](https://flutter.dev/) dengan bahasa pemrograman [Dart](https://dart.dev/) dan menggunakan IDE [Android Studio](https://developer.android.com/studio).
-
-### *Task* yang sudah dan belum Dikerjakan
-*Front-end* yang sudah dikembangkan diantaranya yaitu:
-- [x] Tampilan login beserta fungsionalnya
-- [x] Tampilan lupa Password beserta fungsionalnya
-- [x] Tampilan home beserta fungsionalnya
-- [x] Tampilan notifikasi beserta fungsionalnya
-- [x] Tampilan versi aplikasi
-- Tampilan Pembiayaan
-    - [x] Tampilan riwayat pembiayaan & filter beserta fungsionalnya
-    - [x] Tampilan detail Angsuran beserta fungsionalnya
-    - [x] Tampilan pengajuan Pembiayaan beserta fungsionalnya
-- Tampilan Simpanan
-    - [x] Tampilan riwayat simpanan & filter beserta fungsionalnya
-    - [x] Tampilan detail simpanan beserta fungsionalnya
-- Tampilan Investasi
-    - [x] Tampilan riwayat investasi & filter beserta fungsionalnya
-    - [x] Tampilan pengembalian nisbah beserta fungsionalnya
-    - [x] Tampilan pengajuan investasi beserta fungsionalnya
-- Tampilan Keanggotaan
-    - [x] Tampilan ubah data keanggotaan beserta fungsionalnya 
-    - [x] Tampilan ubah password beserta fungsionalnya
-- [ ] Fungsi setiap fitur
-- [ ] Integrasi dengan *backend* API
 
 
 ### Struktur *Project*
@@ -118,34 +95,64 @@ flutter:
         # tambahkan aset font disini
 ```
 
+### *Task* yang Sudah dan Belum Dikerjakan
+*Front-end* yang sudah dikembangkan diantaranya yaitu:
+- [x] Tampilan login beserta fungsionalnya
+- [x] Tampilan lupa Password beserta fungsionalnya
+- [x] Tampilan home beserta fungsionalnya
+- [x] Tampilan notifikasi beserta fungsionalnya
+- [x] Tampilan versi aplikasi
+- Tampilan Pembiayaan
+    - [x] Tampilan riwayat pembiayaan & filter beserta fungsionalnya
+    - [x] Tampilan detail Angsuran beserta fungsionalnya
+    - [x] Tampilan pengajuan Pembiayaan beserta fungsionalnya
+- Tampilan Simpanan
+    - [x] Tampilan riwayat simpanan & filter beserta fungsionalnya
+    - [x] Tampilan detail simpanan beserta fungsionalnya
+- Tampilan Investasi
+    - [x] Tampilan riwayat investasi & filter beserta fungsionalnya
+    - [x] Tampilan pengembalian nisbah beserta fungsionalnya
+    - [x] Tampilan pengajuan investasi beserta fungsionalnya
+- Tampilan Keanggotaan
+    - [x] Tampilan Profile beserta fungsionalnya
+    - [x] Tampilan ubah data keanggotaan beserta fungsionalnya 
+    - [x] Tampilan ubah password beserta fungsionalnya
+- [ ] Fungsi setiap fitur
+- [ ] Integrasi dengan *backend* API
 
 ## Prasyarat
 Sebelum dapat menggunakan *project* ini, diharuskan untuk:
 1. Install [Flutter SDK](https://docs.flutter.dev/get-started/install) (disarankan menggunakan versi *stable* [2.5.3](https://docs.flutter.dev/development/tools/sdk/releases)). Pastikan saat menjalankan `flutter doctor` pada terminal semua *checklist* sudah centang hijau.
 
 ## Cara *Run Project*
-Terdapat beberapa cara untuk *run project*. Dapat melalui *browser app* seperti chrome, *device* android yang terhubung melalui USB *debugging mode*.
+Terdapat beberapa cara untuk *run project*. Dapat melalui *browser app* seperti chrome, *device* android yang terhubung melalui USB *debugging mode*. 
+Pertama-tama *clone repository project* ini ke *local files*.
 
 ### IDE Android Studio
-1. Pilih *target selector* dan tekan tombol *run* pada *toolbar*
+1. Buka *project folder* dengan Android Studio
+2. Buka *file* [pubspec.yaml](pubspec.yaml) dan jalankan **pub get** untuk mendapatkan *dependency*
+3. Pilih *target selector* dan tekan *icon run* pada *toolbar* untuk mulai *run project*
 ![toolbar](https://docs.flutter.dev/assets/images/docs/tools/android-studio/main-toolbar.png)
 
 ### Terminal
-1. Jalankan kode dibawah untuk mendapatkan *dependency*
+1. *Change directory* ke *root project folder*
+2. Jalankan kode dibawah untuk mendapatkan *dependency*
 
 ```cmd
 flutter pub get
 ```
 
-2. jalankan kode di bawah untuk mulai
+3. Untuk memulai *run project* jalankan kode di bawah
+
+```cmd
+flutter run
+```
+
+4. Setelah run, pada terminal pilih *debugging device* yang ada, dapat berupa android *device* yang telah *connect* melalui USB *Debugging Mode* atau melalui *browser app*
 
 ## Cara Melakukan *Deployment*
-*Deployment* dapat menghasilkan *multi-platform application*, diantaranya *web application*, android *application* (.apk), iOS *application* (.ipa). Kebutuhan dari *project* ini yaitu hanya *mobile application*.
+Cara melakukan *deployment* android *application* dapat dilihat pada [tautan](https://docs.flutter.dev/deployment/android).
 
-### *Android App Deployment*
-Untuk melakukan *deployment* android *application*, lakukan *step* di bawah ini.
-1. Jalankan *command* di bawah pada terminal dengan lokasi pada *root project* untuk melakukan *deployment project* menjadi android *application*
-```cmd
-flutter build apk
-```
-2. Jika berhasil maka buka *file* .apk terdapat pada *folder* `...\simpin_syariah\build\app\outputs\flutter-apk` dengan *file* [app-release.apk](build/app/outputs/flutter-apk)
+## Credits
+Project pengembangan *front-end* aplikasi Simpin Syariah dan perancangannya dikerjakan oleh:
+1. [Ananda Bayu Fauzan](https://github.com/anandabayuf)
