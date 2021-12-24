@@ -9,7 +9,7 @@
     - [*Assets* yang Digunakan](#assets-yang-digunakan)
     - [*Task* yang Sudah dan Belum Dikerjakan](#Task-yang-sudah-dan-belum-dikerjakan)
 - [Prasyarat](#prasyarat)
-- [Cara Menjalankan *Project*](#cara-menjalankan-project)
+- [Cara *Run Project*](#cara-run-project)
 - [Cara Melakukan *Deployment*](#cara-melakukan-deployment)
 - [Credits](#credits)
 
@@ -49,7 +49,7 @@ Struktur dari [models](lib/models) ini yaitu:
 
 #### views
 *Folder* ini berisikan *screen-screen* setiap fiturnya. Setiap folder di dalamnya merupakan representasi dari setiap fitur. Dan setiap *folder* fitur memiliki folder **screens** dan **widgets**. **screens** merupakan komponen *screen* yang berisi kumpulan *widget* dari *folder* **widgets** yang disusun sehingga membentuk satu *screen*. **widgets** berisi komponen *widgets* yang dapat digunakan ulang (*reusable*). Di dalamnya juga terdapat *folder* [customwidgets](lib/views/customwidgets/) yang berisi *widget-widget* yang dibuat disesuaikan dengan rancangan serta dapat digunakan ulang (*reusable*). 
-Pada [views](lib/views/) juga terdapat [Main.dart]((lib/views/Main.dart) yang merupakan *file* yang menampung *screen* awal setelah pengguna *login*. Berisikan komponen *bottom navigation bar*.
+Pada [views](lib/views/) juga terdapat [Main.dart](lib/views/Main.dart) yang merupakan *file* yang menampung *screen* awal setelah pengguna *login*. Berisikan komponen *bottom navigation bar*.
 Struktur dari [views](lib/views/) ini yaitu:
 
 
